@@ -1,0 +1,36 @@
+.page {
+
+  /*to prevent padding from changin overall width*/
+      -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+      -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+      box-sizing: border-box;         /* Opera/IE 8+ */
+      
+  background-color: white;
+  /*box-shadow: 0px 0px 20px #000000;*/
+
+  width: 66vw;
+  height: 85.358vw; /*ratio = 1:1.2933*/
+
+  margin-top: 2vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2vw;
+
+  padding-top: 6vw;
+  padding-left: 5.7vw;
+  padding-right: 5.7vw;
+  padding-bottom: 1vw;
+
+  position: relative; 
+}
+
+.twocolumn {
+  -webkit-column-count: 2; /* Chrome, Safari, Opera */
+  -moz-column-count: 2; /* Firefox */
+  column-count: 2;
+
+  -moz-column-fill: auto; /* Firefox */
+  column-fill: auto;
+
+  column-gap: 2.5vw;
+}

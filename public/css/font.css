@@ -1,11 +1,84 @@
+.linespace {
+  height: 0.43vw;
+}
+
+.largelinespace {
+  height: 1.4vw;
+}
+
+.extremelinespace {
+  height: 7vw;
+}
+
+
 .title {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-size: 2vw;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 2.1vw;
   text-align: center;
   font-weight: bold;
+  /*font-style: italic;*/
+  letter-spacing: -0.8px;
+}
+
+.author {
+  font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+  text-align: center;
+  font-size: 1.4vw;
   font-style: italic;
 }
 
-.paragraph {
-  font-size: 1.2vw;
+.affiliation {
+  font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+  text-align: center;
+  font-size: 1.35vw;
 }
+
+.sectiontitle {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1vw;
+  font-weight: bold;
+  letter-spacing: -0.03vw;
+}
+
+.paragraph {
+  font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+  font-size: 1.12vw;
+  font-weight: normal;
+  letter-spacing: -0.025vw;
+  line-height: 1.26vw;
+
+}
+
+.caption {
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 0.9vw;
+  padding-left: 2vw;
+  padding-right: 2vw;
+  letter-spacing: -0.03vw;
+}
+
+.permission {
+  font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;
+  font-size: 0.93vw;
+  letter-spacing: -0.03vw;
+  line-height: 1.125vw;
+
+  width: 24vw;
+  
+  position: absolute;
+  bottom: 7.7vw;
+  left: 6.5vw;
+}
+
+.pagenumber {
+  /*-webkit-column-span: all; 
+  column-span: all;*/
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1vw;
+
+  position: absolute;
+  bottom: 3vw;
+  left: 32vw;
+}
+
+
