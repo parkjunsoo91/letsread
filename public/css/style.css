@@ -1,9 +1,26 @@
-#background {
+.background {
   background-color:#545454;
 }
-#paper {
+.paper {
   background-color: white;
-  width: 70%;
-  margin: auto;
-  padding-bottom: 141.4%;
+  width: 70vw;
+  height: 98.98vw;
+
+  margin-top: 2vw;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 2vw;
+
+  padding-top: 0.5vw;
+  padding-left: 0.5vw;
+  padding-right: 0.5vw;
+  padding-bottom: 1vw;
+}
+
+.title {
+  font-size: 4vw;
+}
+
+.paragraph {
+  font-size: 1.5vw;
 }
