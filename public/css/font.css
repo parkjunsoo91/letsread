@@ -1,0 +1,11 @@
+.title {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 2vw;
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.paragraph {
+  font-size: 1.2vw;
+}
