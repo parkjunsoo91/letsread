@@ -6,11 +6,17 @@
     <meta charset="utf-8">
     <meta name="description" content="Crowdsourced reading platform">
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
-    <link rel="stylesheet" href="../static/default.css">
+    
+    <!--<link rel="stylesheet" href="../static/default.css">
     <link rel="stylesheet" href="../static/font.css">
     <link rel="stylesheet" href="../static/paper.css">
-    <link rel="stylesheet" href="../static/ui.css">
+    <link rel="stylesheet" href="../static/ui.css">-->
     
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='paper.css') }}">  
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ui.css') }}">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
     <script>
