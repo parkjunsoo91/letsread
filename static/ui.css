@@ -1,11 +1,42 @@
 .toppanel{
-    display: inline;
+    /*margin-top: 2vw;
+    margin-left: 15vw;
+    margin-right: auto;
+    margin-bottom: 2vw;*/
+    margin-top: 3vw;
+    text-align: center;
 }
 
-.buttonpannel{
-    display: inline;
+.button {
+    background-color: #595959;
+    
+    border: none;
+    /*border-radius: 1.5vw;*/
+
+    /*padding-top: 0.6vw;
+    padding-bottom: 0.6vw;
+    padding-left: 1vw;
+    padding-right: 1vw;*/
+
+    width: 7vw;
+    height: 2.4vw;
+    margin-left: -0.05vw;
 }
 
-.loginpannel{
-    display: inline;
+.login{
+    background-color: #1b4ea0;
+    /*border-radius: 0;*/
+}
+
+.textinput{
+    background-color: #878787;
+    border: none;
+    /*border-radius: 1.5vw;*/
+
+    text-align: center;
+    
+    width: 15vw;
+    height: 2.2vw;
+    
+    margin-left: 29vw;
 }

@@ -83,6 +83,8 @@
 
 .uitext {
   font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  font-size: 1vw; 
+  letter-spacing: 0.04vw;
   color: #CCCCCC;
 }
 
