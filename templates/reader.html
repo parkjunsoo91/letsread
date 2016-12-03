@@ -6,9 +6,12 @@
     <meta charset="utf-8">
     <meta name="description" content="Crowdsourced reading platform">
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
-    <link rel="stylesheet" href="../static/default.css">
-    <link rel="stylesheet" href="../static/font.css">
-    <link rel="stylesheet" href="../static/paper.css">
+    <!--link rel="stylesheet" href="../static/default.css"-->
+    <!--link rel="stylesheet" href="../static/font.css"-->
+    <!--link rel="stylesheet" href="../static/paper.css"-->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='paper.css') }}">
     <script>
         </script>
 </head>
@@ -53,7 +56,7 @@
 
                 to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented or evaluated, and has important limitations.
                 <div class="linespace"></div>
-                Systems which recommend content to users, known as “recommender systems” are very popular today in other domains. Some of the most popular movie, shopping, and music websites provide users with personalized recommendations [23, 29, 34, 36], and research in improving recommendation algorithms is an active field of research [2]. In this paper we introduce and investigate the application of modern recommender system algorithms to address the ommand awareness problem in software applications. 
+                Systems which recommend content to users, known as “recommender systems” are very popular today in other domains. Some of the most popular movie, shopping, and music websites provide users with personalized recommendations [23, 29, 34, 36], and research in improving recommendation algorithms is an active field of research [2]. In this paper we introduce and investigate the application of modern recommender system algorithms to address the ommand awareness problem in software applications. haha
                 <div class="linespace"></div>
                 <img src="../assets/figure1.PNG" style="width:25vw;">
                 <div class="caption">
