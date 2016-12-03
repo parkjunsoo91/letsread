@@ -52,10 +52,12 @@ def close_db(error):
 @app.route('/', methods=['GET','POST'])
 def show():
     print(request)
+    print('show()ing')
     if request.method == 'POST':
-        print(request.form['uid'])
-        print(request.form['pid'])
-        print(request.form['high'])
+        print("hi")
+        print(request.args.get['uid'])
+        print(request.args.get['pid'])
+        print(request.args.get['high'])
 
     return render_template('view.html')
 
