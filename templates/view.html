@@ -29,7 +29,7 @@
         var sendID = function() {
             var userid = document.getElementById("userid").value;
             var url = "/view"
-            var params = "uid="+userid+"&paper=0&high=0";
+            var params = "uid="+userid+"&pid=0&high=0";
             var http = new XMLHttpRequest();
             var welcomeString = "  Hi, " + userid;
             http.open("POST", url+"?"+params, true);
