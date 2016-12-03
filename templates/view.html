@@ -9,27 +9,50 @@
     <link rel="stylesheet" href="../static/default.css">
     <link rel="stylesheet" href="../static/font.css">
     <link rel="stylesheet" href="../static/paper.css">
+    <link rel="stylesheet" href="../static/ui.css">
     
-    <script>
-        function setHighlightMode() {
-            // @영보 서버 통신 구현
-        }
-        function setEraserMode() {
-            // @영보 서버 통신 구현
-        }
-        function sendID(){
-            // @영보 서버 통신 구현
-        }
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 
+    <script>
+        var setHighlightMode = function() {
+            // @영보 mode 정보 JSON에 넣기
+        }
+        var setEraserMode = function() {
+            // @영보 mode 정보 JSON에 넣기
+        }
+        var sendID = function() {
+            var userid = document.getElementById("userid").value;
+            var url = "/view"
+            var params = "uid="+userid+"&paper=0&high=0";
+            var http = new XMLHttpRequest();
+            var welcomeString = "  Hi, " + userid;
+            http.open("POST", url+"?"+params, true);
+            http.onreadystatechange = function(){
+                if(http.readyState == 4 && http.status == 200) {
+                    alert(http.responseText);
+                }
+            }
+            http.send(null);
+            $(document).ready(function(){
+                $("#userid").remove();
+                $("#loginbutton").remove();
+                $("#welcometext").append(welcomeString);
+            });
+        }
     </script>
 </head>
 
 <body>
     <div class="toppanel">
-        <button class="modebutton" onclick="setHighlightMode()">Highlighter</button>
-        <button class="modebutton" onclick="setEraserMode()">Eraser</button>
-        <input type="text" id="userid"></input>
-        <button class="loginbutton" onclick="sendID()">login</button>
+        <span class="button panel">
+            <button class="modebutton" onclick="setHighlightMode()">Highlighter</button>
+            <button class="modebutton" onclick="setEraserMode()">Eraser</button>
+        </span>
+        <span class="loginpanel">
+            <input class="uitext" type="text" id="userid"></input>
+            <button class="loginbutton" id="loginbutton" onclick="sendID()">login</button>
+            <span class="uitext" id="welcometext"></span>
+        </span>
     </div>
 
     <div class="page">
