@@ -49,15 +49,19 @@ def close_db(error):
         g.sqlite_db.close()
 
 
-@app.route('/', methods=['GET','POST'])
+@app.route('/view', methods=['GET','POST'])
 def show():
     print(request)
-    print('show()ing')
     if request.method == 'POST':
-        print("hi")
-        print(request.args.get['uid'])
-        print(request.args.get['pid'])
-        print(request.args.get['high'])
+        print("the msg is POST")
+        print(request.args.get('uid'))
+        print(request.args.get('pid'))
+        print(request.args.get('high'))
+        return redirect(url_for('show'))
+    elif request.method == 'GET':
+        print("the msg is GET")
+    else:
+        print("this is embarassing")
 
     return render_template('view.html')
 
@@ -68,6 +72,7 @@ def show_entries():
     entries = cur.fetchall()
     return render_template('reader.html', entries=entries)
 '''
+
 @app.route('/add', methods=['POST'])
 def add_entry():
     if not session.get('logged_in'):
