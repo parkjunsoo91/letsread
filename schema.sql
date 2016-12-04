@@ -6,8 +6,7 @@ create table highlights (
   nodeid integer not null,
   'text' text
 );
-create table accounts (
+create table users (
   id integer primary key autoincrement,
-  name char(255),
-  pw char (255)
+  username char(255)
 );

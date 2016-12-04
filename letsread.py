@@ -36,6 +36,12 @@ def connect_db():
     rv.row_factory = sqlite3.Row
     return rv
 
+def query_db(query, args=(), one=False):
+    cur = get_db().execute(query, args)
+    rv = cur.fetchall()
+    cur.close()
+    return (rv[0] if rv else None) if one else rv
+
 @app.cli.command('initdb')
 def initdb_command():
     """Initializes the database."""
@@ -49,15 +55,19 @@ def close_db(error):
         g.sqlite_db.close()
 
 
+@app.route('/')
+def root():
+    return redirect(url_for('view'))
+
 @app.route('/view', methods=['GET','POST'])
-def show():
+def view():
     print(request)
     if request.method == 'POST':
         print("the msg is POST")
         print(request.args.get('uid'))
         print(request.args.get('pid'))
         print(request.args.get('high'))
-        return redirect(url_for('show'))
+        return redirect(url_for('view'))
     elif request.method == 'GET':
         print("the msg is GET")
     else:
@@ -65,13 +75,35 @@ def show():
 
     return render_template('view.html')
 
+@app.route('/login', methods=['POST'])
+def login():
+    error = None
+    the_username = request.form['username']
+    user = query_db('select * from users where username = ?', [the_username], one=True)
+    if user is None:
+        print 'No such user... adding the user'
+        db = get_db()
+        db.execute('insert into users (username) values (?)', [the_username])
+        db.commit()
+        user = query_db('select * from users where username = ?', [the_username], one=True)
+    print the_username, 'has the id', user['id']
+
+    session['id'] = user['id']
+    return redirect(url_for('view'))
+
+@app.route('/logout')
+def logout():
+    session.pop('id', None)
+    flash('You were logged out')
+    return redirect(url_for('view'))
+
+
 '''
 def show_entries():
     db = get_db()
     cur = db.execute('select title, text from entries order by id desc')
     entries = cur.fetchall()
     return render_template('reader.html', entries=entries)
-'''
 
 @app.route('/add', methods=['POST'])
 def add_entry():
@@ -97,10 +129,5 @@ def login():
             flash('You were logged in')
             return redirect(url_for('show_entries'))
     return render_template('login.html', error=error)
-
-@app.route('/logout')
-def logout():
-    session.pop('logged_in', None)
-    flash('You were logged out')
-    return redirect(url_for('show_entries'))
+'''
 

@@ -54,8 +54,19 @@
             <button class="uitext button" onclick="setEraserMode()">Eraser</button>
         </span>
         <span class="loginpanel">
+        {% if not session.id %}
+            <!--
             <input class="uitext textinput" type="text" id="userid"></input>
             <button class="uitext button login" id="loginbutton" onclick="sendID()">Login</button>
+        -->
+            <form action="{{url_for('login') }}" method=post>
+                <input class="uitext textinput" type="text" id="userid" name="username">
+                <input class="uitext button login" id="loginbutton" type="submit" value="Login">
+            </form>
+        {% else %}
+            welcome!
+            <a href="{{ url_for('logout')}}">logout</a>
+        {% endif %}
         </span>
     </div>
 
