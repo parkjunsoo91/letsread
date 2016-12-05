@@ -7,10 +7,10 @@
     <meta name="description" content="Crowdsourced reading platform">
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
     
-    <!--<link rel="stylesheet" href="../static/default.css">
+    <!--link rel="stylesheet" href="../static/default.css">
     <link rel="stylesheet" href="../static/font.css">
     <link rel="stylesheet" href="../static/paper.css">
-    <link rel="stylesheet" href="../static/ui.css">-->
+    <link rel="stylesheet" href="../static/ui.css"-->
     
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font.css') }}">
@@ -26,6 +26,8 @@
         var setEraserMode = function() {
             // @영보 mode 정보 JSON에 넣기
         }
+
+        //currently unused.
         var sendID = function() {
             var userid = document.getElementById("userid").value;
             var url = "/view"
@@ -44,10 +46,30 @@
                 $("#loginbutton").html(":)");
             });
         }
+
+        function loadHighlights()
+        {
+            //code doesn't work
+            return;
+            var uid = {{session.id}};
+            var pid = 0
+            document.getElementById("")
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    //get json of all highlights and draw them accordingly
+                    alert("placeholder alert." + this.responseText);
+                    //document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "{{url_for('loadHighlights')}}", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
+            xhttp.send("uid=" + uid + "&pid=" + pid);
+        }
     </script>
 </head>
 
-<body>
+<body onload="loadHighlights()">
     <div class="toppanel">
         <span class="buttonpanel">
             <button class="uitext button" onclick="setHighlightMode()">Highlighter</button>
@@ -55,17 +77,16 @@
         </span>
         <span class="loginpanel">
         {% if not session.id %}
-            <!--
-            <input class="uitext textinput" type="text" id="userid"></input>
-            <button class="uitext button login" id="loginbutton" onclick="sendID()">Login</button>
-        -->
-            <form action="{{url_for('login') }}" method=post>
+            <!--input class="uitext textinput" type="text" id="userid"></input>
+            <button class="uitext button login" id="loginbutton" onclick="sendID()">Login</button-->
+            <form action="{{url_for('login') }}" method=post class="inline">
                 <input class="uitext textinput" type="text" id="userid" name="username">
                 <input class="uitext button login" id="loginbutton" type="submit" value="Login">
             </form>
         {% else %}
-            welcome!
-            <a href="{{ url_for('logout')}}">logout</a>
+            <span class="uitext textinput">welcome, {{name}}!
+            <a class="uitext button login" href="{{ url_for('logout')}}">logout</a>
+            </span>
         {% endif %}
         </span>
     </div>

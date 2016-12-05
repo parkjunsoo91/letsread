@@ -1,7 +1,7 @@
 import os
 import sqlite3
 from flask import Flask, request, session, g, redirect, url_for, abort, \
-     render_template, flash
+     render_template, flash, jsonify
 # create our little application :)
 app = Flask(__name__)
 app.config.from_object(__name__)
@@ -59,21 +59,13 @@ def close_db(error):
 def root():
     return redirect(url_for('view'))
 
-@app.route('/view', methods=['GET','POST'])
+@app.route('/view')
 def view():
-    print(request)
-    if request.method == 'POST':
-        print("the msg is POST")
-        print(request.args.get('uid'))
-        print(request.args.get('pid'))
-        print(request.args.get('high'))
-        return redirect(url_for('view'))
-    elif request.method == 'GET':
-        print("the msg is GET")
-    else:
-        print("this is embarassing")
-
-    return render_template('view.html')
+    name = None
+    if session.get('id'):
+        user = query_db('select * from users where id = ?', [session['id']], one=True)
+        name = user['username']
+    return render_template('view.html', name=name)
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -89,13 +81,40 @@ def login():
     print the_username, 'has the id', user['id']
 
     session['id'] = user['id']
+    session['username'] = user['username']
     return redirect(url_for('view'))
 
 @app.route('/logout')
 def logout():
     session.pop('id', None)
-    flash('You were logged out')
+    session.pop('username', None)
     return redirect(url_for('view'))
+
+
+#client sends highlight request in AJAX.
+#server responds with the same data.
+@app.route('/highlight', methods=['POST'])
+def highlight():
+    uid = request.args.get('uid')
+    pid = request.args.get('pid')
+    #TODO: decide what data should be included to indicate highlight location.
+    high = request.args.get('high')
+    db = get_db()
+    db.execute('insert into highlights (uid, pid, nodeid) values (?,?,?)', 
+                [uid, pid, high])
+    db.commit()
+    return jsonify(uid=uid, pid=pid, high=high)
+
+#load all highlights when session page loads.
+@app.route('/loadHighlights', methods=['POST'])
+def loadHighlights():
+    uid = request.args.get('uid')
+    pid = request.args.get('pid')
+    print "uid is " + uid
+    print "pid is " + pid
+    highlights = query_db('select * from highlights where pid=?', [pid], one=False)
+    #TODO: decide how to load all highlights.
+    return jsonify(uid=uid, pid=pid) #placeholder return string.
 
 
 '''
