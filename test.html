@@ -28,23 +28,6 @@
         "end": p1Content.length + 1
     });
 
-    function highlight() {
-        var sel = window.getSelection();
-        var element = sel.anchorNode.parentElement;
-        var id = element.id;
-        while (element.tagName != 'P') { //TODO: p가 아니라 div나 paragraph로 인식하기
-            element = element.parentElement;
-            id = element.id;
-        }
-        console.log(element.tagName);
-        document.getElementById("demo").innerHTML = "ID: " + id + "  content: " + sel.toString();
-        var inputText = document.getElementById(id);
-        var innerHTML = inputText.innerHTML;
-        var index = innerHTML.indexOf(sel.toString());
-        var end = index + sel.toString().length;
-        innerHTML = innerHTML.substring(0, index) + "<span class='highlight'>" + innerHTML.substring(index, end) + "</span>" + innerHTML.substring(end);
-        inputText.innerHTML = innerHTML;
-    }
     //Test surroundContents
     function surroundHighlight() {
         var sel = window.getSelection();
@@ -55,14 +38,6 @@
         att.value = "highlight";
         newNode.setAttributeNode(att);
         range.surroundContents(newNode);
-        // var startText = range.startContainer.textContent;
-        // var endText = range.endContainer.textContent;
-        // console.log("startText: " + startText);
-        // console.log("endText: " + endText);
-        // console.log("startOffset: " + range.startOffset);
-        // console.log("endOffset: " + range.endOffset);
-        // range.startContainer.parentElement.innerHTML = startText.substring(0,range.startOffset) + "<span class='highlight'>" + startText.substring(range.startOffset, startText.length);
-        // range.endContainer.parentElement.innerHTML = endText.substring(0,range.endOffset) + "</span>" + endText.substring(range.endOffset, endText.length);
     }
 
     //JSON 기반으로 template HTML에 highlight넣어주는 함수
