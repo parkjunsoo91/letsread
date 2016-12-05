@@ -18,6 +18,7 @@
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ui.css') }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="{{ url_for('static', filename='highlight.js') }}"></script>
 
     <script>
         var setHighlightMode = function() {
@@ -67,6 +68,11 @@
             xhttp.send("uid=" + uid + "&pid=" + pid);
         }
     </script>
+    <style>
+    .highlight {
+        background-color: yellow;
+    }
+    </style>
 </head>
 
 <body onload="loadHighlights()">
@@ -91,7 +97,7 @@
         </span>
     </div>
 
-    <div class="page">
+    <div class="page" onclick="surroundHighlight()">
         <div class="title" style="font-style: italic">CommunityCommands:</div>
         <div class="title">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
