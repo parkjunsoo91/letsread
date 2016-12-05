@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+    .highlight {
+        background-color: yellow;
+    }
+    </style>
+</head>
+
+<body onclick="surroundHighlight()">
+    <p id="p1"> Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each release, more commands might be added, and without explicit effort on the part of the user to learn about new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has being growing linearly over time. And even with the thousands of commands available in AutoCAD, the largest group of users only use between 31 and 40 of them (Figure 1).</p>
+    <p id="p2"> An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks, but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user works with an expert next to them, who can recommend commands when appropriate.</p>
+    <p id="demo"> </p>
+    <script>
+    var json = '{"user":{"Aramshim":{"p1":[{"start":0,"end":0},{"start":10,"end":15}]}}}';
+    var obj = JSON.parse(json);
+    obj.user.Aramshim.p1.push({
+        "start": 20,
+        "end": 30
+    });
+    document.getElementById("demo").innerHTML = obj.user.Aramshim.p1[2].start + "~" + obj.user.Aramshim.p1[2].end;
+    var p1Content = document.getElementById("p1").innerHTML;
+    var p2Content = document.getElementById("p2").innerHTML; //TODO: 자동으로 각 컨텐츠 모두 가져오기
+    obj.user.Aramshim.p1.push({
+        "start": p1Content.length + 1,
+        "end": p1Content.length + 1
+    });
+
+    function highlight() {
+        var sel = window.getSelection();
+        var element = sel.anchorNode.parentElement;
+        var id = element.id;
+        while (element.tagName != 'P') { //TODO: p가 아니라 div나 paragraph로 인식하기
+            element = element.parentElement;
+            id = element.id;
+        }
+        console.log(element.tagName);
+        document.getElementById("demo").innerHTML = "ID: " + id + "  content: " + sel.toString();
+        var inputText = document.getElementById(id);
+        var innerHTML = inputText.innerHTML;
+        var index = innerHTML.indexOf(sel.toString());
+        var end = index + sel.toString().length;
+        innerHTML = innerHTML.substring(0, index) + "<span class='highlight'>" + innerHTML.substring(index, end) + "</span>" + innerHTML.substring(end);
+        inputText.innerHTML = innerHTML;
+    }
+    //Test surroundContents
+    function surroundHighlight() {
+        var sel = window.getSelection();
+        var range = sel.getRangeAt(0);
+        console.log("start: " + range.startContainer + "  End: " + range.endContainer);
+        var newNode = document.createElement("span");
+        var att = document.createAttribute("class");
+        att.value = "highlight";
+        newNode.setAttributeNode(att);
+        range.surroundContents(newNode);
+        // var startText = range.startContainer.textContent;
+        // var endText = range.endContainer.textContent;
+        // console.log("startText: " + startText);
+        // console.log("endText: " + endText);
+        // console.log("startOffset: " + range.startOffset);
+        // console.log("endOffset: " + range.endOffset);
+        // range.startContainer.parentElement.innerHTML = startText.substring(0,range.startOffset) + "<span class='highlight'>" + startText.substring(range.startOffset, startText.length);
+        // range.endContainer.parentElement.innerHTML = endText.substring(0,range.endOffset) + "</span>" + endText.substring(range.endOffset, endText.length);
+    }
+
+    //JSON 기반으로 template HTML에 highlight넣어주는 함수
+    function highlightJSON() {
+        var p1 = "p1";
+        var p2 = "p2"; //TODO: json기반으로 있는 id들 모두 인식하기
+        for (i = 0; i < 1; i++) {
+            var len = obj.user.Aramshim.p1.length;
+            console.log("length: " + len);
+            var innerHTML = p1Content
+            for (j = len - 2; j >= 1; j--) {
+                var start = obj.user.Aramshim.p1[j].start;
+                var end = obj.user.Aramshim.p1[j].end;
+                innerHTML = innerHTML.substring(0, start) + "<span class='highlight'>" + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
+                document.getElementById("p1").innerHTML = innerHTML;
+            }
+        }
+    }
+    //마우스 드래그로 선택시 JSON으로 변환해주는 함수
+    function selectToJSON() {
+        var sel = window.getSelection();
+        var element = sel.anchorNode.parentElement;
+        var id = element.id;
+        while (element.tagName != 'P') {
+            element = element.parentElement;
+            id = element.id;
+        }
+        console.log(element.tagName);
+
+        var selStart = p1Content.indexOf(sel.toString()); //TODO: 모든 p를 다 커버하도록 변경
+        //var selStart = sel.anchorOffset;
+        var selEnd = selStart + sel.toString().length;
+        document.getElementById("demo").innerHTML = "ID: " + id + "  content: " + sel.toString() + "<br>" + "selStart: " + selStart + "  selEnd: " + selEnd;
+        if (selEnd > p1Content.length) {
+            selEnd = p1Content.length;
+        }
+        var spliceIdx = 0; //splice시작하는 인덱스
+        var spliceLength = 0; //새로운 항목 추가를 위해 삭제하는 엔트리 개수
+        var startFix = false;
+        var endFix = false;
+        var newStart = selStart;
+        var newEnd = selEnd;
+
+        console.log(selStart + " " + selEnd);
+        for (i = 0; i < obj.user.Aramshim.p1.length; i++) {
+            console.log(i + "th " + obj.user.Aramshim.p1[i].start + " " + obj.user.Aramshim.p1[i].end);
+            if (!startFix && obj.user.Aramshim.p1[i].start <= selStart) {
+                if (obj.user.Aramshim.p1[i].end >= selStart) {
+                    newStart = obj.user.Aramshim.p1[i].start;
+                }
+            } else if (!startFix && obj.user.Aramshim.p1[i].start > selStart) {
+                startFix = true;
+            }
+            if (!endFix && obj.user.Aramshim.p1[i].end >= selEnd) {
+                if (obj.user.Aramshim.p1[i].start <= selEnd) {
+                    newEnd = obj.user.Aramshim.p1[i].end;
+                }
+                endFix = true;
+            }
+        }
+        startFix = false;
+        for (i = 0; i < obj.user.Aramshim.p1.length; i++) {
+            if (!startFix && newStart <= obj.user.Aramshim.p1[i].start) {
+                spliceIdx = i;
+                startFix = true;
+            }
+            if (newEnd >= obj.user.Aramshim.p1[i].end) {
+                spliceLength = i + 1;
+            }
+        }
+        spliceLength -= spliceIdx;
+
+        obj.user.Aramshim.p1.splice(spliceIdx, spliceLength, {
+            start: newStart,
+            end: newEnd
+        });
+        console.log(spliceIdx + " " + spliceLength + " " + newStart + " " + newEnd + " " + obj.user.Aramshim.p1.length);
+    }
+
+    function high() {
+        selectToJSON();
+        highlightJSON();
+    }
+    </script>
+</body>
+
+</html>
