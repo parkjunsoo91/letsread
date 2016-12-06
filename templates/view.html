@@ -41,25 +41,25 @@
             });
         }
 
-        function loadHighlights()
-        {
-            //code doesn't work
-            return;
-            var uid = {{session.id}};
-            var pid = 0
-            document.getElementById("")
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    //get json of all highlights and draw them accordingly
-                    alert("placeholder alert." + this.responseText);
-                    //document.getElementById("demo").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("POST", "{{url_for('loadHighlights')}}", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
-            xhttp.send("uid=" + uid + "&pid=" + pid);
-        }
+        // function loadHighlights()
+        // {
+        //     //code doesn't work
+        //     return;
+        //     var uid = {{session.id}};
+        //     var pid = 0
+        //     document.getElementById("")
+        //     var xhttp = new XMLHttpRequest();
+        //     xhttp.onreadystatechange = function() {
+        //         if (this.readyState == 4 && this.status == 200) {
+        //             //get json of all highlights and draw them accordingly
+        //             alert("placeholder alert." + this.responseText);
+        //             //document.getElementById("demo").innerHTML = this.responseText;
+        //         }
+        //     };
+        //     xhttp.open("POST", "{{url_for('loadHighlights')}}", true);
+        //     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
+        //     xhttp.send("uid=" + uid + "&pid=" + pid);
+        // }
     </script>
     <style>
     .highlight {

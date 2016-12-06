@@ -186,3 +186,26 @@ function modeSelect(){
         eraseHighlight();
     }
 }
+
+ function loadHighlights()
+{
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            //get json of all highlights and draw them accordingly
+            alert("placeholder alert." + this.responseText);
+            var loadedJson = JSON.parse(this.responseText);
+            if(loadedJson.ok){
+                console.log("Load complete!");
+                obj = loadedJson.content;
+                console.log(JSON.stringify(obj));
+            }
+            else{
+                console.log("Load Error");
+            }
+        }
+    };
+    xhttp.open("POST", "{{url_for('loadHighlight')}}", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
+    xhttp.send("total=1&pid=1");
+}
