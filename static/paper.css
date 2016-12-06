@@ -5,7 +5,7 @@
       -moz-box-sizing: border-box;    /* Firefox, other Gecko */
       box-sizing: border-box;         /* Opera/IE 8+ */
       
-  background-color: white;
+  /*background-color: white;*/
   /*box-shadow: 0px 0px 20px #000000;*/
 
   width: 66vw;
@@ -21,7 +21,9 @@
   padding-right: 5.7vw;
   padding-bottom: 1vw;
 
-  position: relative; 
+  position: absolute;
+  left: 15vw;
+
 }
 
 .twocolumn {
@@ -33,4 +35,26 @@
   column-fill: auto;
 
   column-gap: 2.5vw;
+}
+
+#page1layer1 {
+  /*background-color: white;*/
+  z-index: 2;
+  /*opacity: 0.5;*/
+}
+
+#page1layer2 {
+  /*top: 30vw;*/
+  /*background-color: yellow; */
+  z-index: 1;
+  color: white;
+  pointer-events: none;
+}
+
+#page1layer3 {
+  /*top: 60vw;*/
+  background-color: white; 
+  color: white;
+  z-index: 0;
+  pointer-events: none;
 }
