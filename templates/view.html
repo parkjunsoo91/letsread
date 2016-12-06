@@ -6,16 +6,16 @@
     <meta charset="utf-8">
     <meta name="description" content="Crowdsourced reading platform">
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
-    
-    <!--<link rel="stylesheet" href="../static/default.css">
+
+    <link rel="stylesheet" href="../static/default.css">
     <link rel="stylesheet" href="../static/font.css">
     <link rel="stylesheet" href="../static/paper.css">
-    <link rel="stylesheet" href="../static/ui.css">-->
-    
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
+    <link rel="stylesheet" href="../static/ui.css">
+
+    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='paper.css') }}">  
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ui.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='paper.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ui.css') }}">-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
@@ -81,9 +81,9 @@
         }
     </script>
     <style>
-    .highlight {
-        background-color: yellow;
-    }
+        .highlight {
+            background-color: yellow;
+        }
     </style>
 </head>
 
@@ -104,13 +104,12 @@
         {% else %}
             <span class="uitext textinput">welcome, {{name}}!
             <a class="uitext button login" href="{{ url_for('logout')}}">logout</a>
-            </span>
-        {% endif %}
+            </span> {% endif %}
         </span>
     </div>
 
-   <!--/page1layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page" id="page1layer1" onclick="surroundHighlight()">
+    <!--/page1layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer1" id="page1layer1" onclick="surroundHighlight()">
         <div class="title" style="font-style: italic">CommunityCommands:</div>
         <div class="title">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
@@ -203,8 +202,8 @@
     </div>
 
 
-<!--/page1layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page" id="page1layer2" onclick="surroundHighlight()">
+    <!--/page1layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer2" id="page1layer2" onclick="surroundHighlight()">
         <div class="title" style="font-style: italic">CommunityCommands:</div>
         <div class="title">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
@@ -296,8 +295,8 @@
         <div class="pagenumber">193</div>
     </div>
 
-<!--/page1layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page" id="page1layer3" onclick="surroundHighlight()">
+    <!--/page1layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer3" id="page1layer3" onclick="surroundHighlight()">
         <div class="title" style="font-style: italic">CommunityCommands:</div>
         <div class="title">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
@@ -390,6 +389,41 @@
     </div>
 
 
+    <!--/page2layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page2layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page2layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page3layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page3layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page3layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page4layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page4layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page4layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page5layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page5layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page5layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page6layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page6layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page6layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page7layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page7layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page7layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page8layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page8layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page8layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page9layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page9layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page9layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page10layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page10layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page10layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 </body>
 
 </html>
