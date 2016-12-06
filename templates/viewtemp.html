@@ -109,7 +109,7 @@
     </div>
 
     <!--/page1layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer1" id="page1" onclick="surroundHighlight()">
+    <div class="page pagelayer1" id="page1" onclick="modeSelect()">
         <div class="title" style="font-style: italic" id="page1layer1p1">CommunityCommands:</div>
         <div class="title" id="page1layer1p2">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
@@ -204,7 +204,7 @@
 
 
     <!--/page1layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer1" id="page1" onclick="surroundHighlight()">
+    <div class="page pagelayer1" id="page1" onclick="modeSelect()">
         <div class="title" style="font-style: italic" id="page1layer2p1">CommunityCommands:</div>
         <div class="title" id="page1layer2p2">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
@@ -298,7 +298,7 @@
     </div>
 
     <!--/page1layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer3" id="page1" onclick="surroundHighlight()">
+    <div class="page pagelayer3" id="page1" onclick="modeSelect()">
         <div class="title" style="font-style: italic" id="page1layer3p1">CommunityCommands:</div>
         <div class="title" id="page1layer3p2">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
@@ -391,7 +391,7 @@
         <div class="pagenumber">193</div>
     </div>
     <!--/page2layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer1" id="page2" onclick="surroundHighlight()">
+    <div class="page pagelayer1" id="page2" onclick="modeSelect()">
         <div class="twocolumn">
             <div class="sectiontitle" id="page2layer1p1">RELATED WORK</div>
             <div class="sectiontitle" id="page2layer1p2">Adaptive and Intelligent User Interfaces</div>
@@ -502,7 +502,7 @@
     </div>
 
     <!--/page2layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer2" id="page2" onclick="surroundHighlight()">
+    <div class="page pagelayer2" id="page2" onclick="modeSelect()">
         <div class="twocolumn">
             <div class="sectiontitle" id="page2layer2p1">RELATED WORK</div>
             <div class="sectiontitle" id="page2layer2p2">Adaptive and Intelligent User Interfaces</div>
@@ -613,7 +613,7 @@
     </div>
 
     <!--/page2layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer3" id="page2" onclick="surroundHighlight()">
+    <div class="page pagelayer3" id="page2" onclick="modeSelect()">
         <div class="twocolumn">
             <div class="sectiontitle" id="page2layer3p1">RELATED WORK</div>
             <div class="sectiontitle" id="page2layer3p2">Adaptive and Intelligent User Interfaces</div>
@@ -724,7 +724,7 @@
     </div>
 
     <!--/page3layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer1" id="page3" onclick="surroundHighlight()">
+    <div class="page pagelayer1" id="page3" onclick="modeSelect()">
         <div class="twocolumn">
             <div class="paragraph" id="page3layer1p1">
                 We consider a good recommendation to be a command that is both useful and novel to the user. A poor recommendation is a command
@@ -830,7 +830,7 @@
         <div class="pagenumber">195</div>
     </div>
     <!--/page3layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer2" id="page3" onclick="surroundHighlight()">
+    <div class="page pagelayer2" id="page3" onclick="modeSelect()">
         <div class="twocolumn">
             <div class="paragraph" id="page3layer2p1">
                 We consider a good recommendation to be a command that is both useful and novel to the user. A poor recommendation is a command
@@ -937,7 +937,7 @@
     </div>
 
     <!--/page3layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer3" id="page3" onclick="surroundHighlight()">
+    <div class="page pagelayer3" id="page3" onclick="modeSelect()">
         <div class="twocolumn">
             <div class="paragraph" id="page3layer3p1">
                 We consider a good recommendation to be a command that is both useful and novel to the user. A poor recommendation is a command
@@ -1044,43 +1044,1653 @@
     </div>
 
     <!--/page4layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer1" id="page4" onclick="surroundHighlight()">
+    <div class="page pagelayer1" id="page4" onclick="modeSelect()">
         <div class="twocolumn">
-            <div class="sectiontitle" id="page4layer1p1">COMMUNITYCOMMANDS</div>
-            <div class="paragraph" id="page4layer1p2">
-                We now describe CommunityCommands, a new system that provides personalized command recommendations using collaborative filtering
-                algorithms. The general idea is to first compare a user’s command frequencies to the entire user population.
-                Our system then generates a top 10 list (although the list size could vary) of recommendations for that user.
-                This top 10 list is presented in an ambient window within the user interface that the user can refer to when
-                convenient (Figure 3).
+            <div class="paragraph" id="page4layer1p1">
+                user uj has used the command ci. A limitation of using this approach is that in general, a small number of commands will
+                be frequently used by almost everyone [41]. Thus, when comparing the vectors, each pair of users will tend
+                to have high similarity because they will all share these popular high frequency commands. This is certainly
+                the case in AutoCAD. For example, in Figure 5, we see that the top 10 commands make up 50% of all commands
+                issued, and the top 100 commands make up 93% of all commands issued.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure5.PNG" style="width:25vw">
+            <div class="caption" id="page4layer1p2">
+                Figure 5. Cumulative percentage of command counts for the 2000 AutoCAD commands
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer1p3">
+                We need to suppress the overriding influence of commands that are being used frequently and by many users. Document retrieval
+                algorithms actually face a similar challenge. For example, an internet search engine should not consider
+                two webpages similar because they both share high frequencies of the words “a”, “to”, and “the”. Such systems
+                use a “term frequency inverse document frequency” (tf-idf) technique [21] to determine how important a word
+                is to a particular document in a collection. For our purposes, we adapt this technique into a command frequency,
+                inverse user frequency (cf–iuf) weighting function, by considering how important a command is to a particular
+                user within a community. To do so, we first take the command frequency (cf) to give a measure of the importance
+                of the command ci to the particular user uj.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq1.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer1p4">
+                where nij is the number of occurrences of the considered command of user uj, and the denominator is the number of occurrences
+                of all commands of user uj.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer1p5">
+                The inverse user frequency (iuf), a measure of the general importance of the command, is based on the percentage of total
+                users that use it:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq2.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <img src="../static/eq3.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer1p6">
+                A high weight in cf–iuf is obtained when a command is used frequently by a particular user, but is used by a relatively small
+                portion of the overall population.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer1p7">
+                For each user uj, we populate the command vector Vj such that each cell, Vj(i), contains the cf-iuf value for each command
+                ci, and use these vectors to compute user similarity.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer1p8">2. Finding Similar Users</div>
+            <div class="paragraph" id="page4layer1p9">
+                As with many traditional recommender systems, we measure the similarity between users by calculating the cosine of the angle
+                between the users' vectors [35]. In our case, we use the command vectors, as described above. Considering
+                two users uA and uB with command vectors VA and VB.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq4.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer1p10">
+                Thus, when similarity is near 0, the vectors VA and VB are substantially orthogonal (and the users are determined to be not
+                very similar) and when similarity is close to 1 they are nearly collinear (and the users are then determined
+                to be quite similar). As can be seen in Figure 6, using the cosine works nicely with our rating system based
+                on frequencies, since it does not take into account the total number of times a user has used a command,
+                but only its frequency.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer1p11">
+                We compare the active user to all other user in the community, to find the n most similar users, where n is another tuning
+                parameter.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure6.PNG" style="width:25vw">
+            <div class="caption" id="page4layer1p12">
+                Figure 6. Simplified example of user similarity. Alice and Bob are more similar than Bob and Cindy as the angle between their
+                command vectors is smaller.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer1p13">3. Calculating Expected Frequencies</div>
+            <div class="paragraph" id="page4layer1p14">
+                To calculate an expected frequency for each command, we take a weighted average of the command frequencies for the active
+                user’s n similar users. We define the expected frequency, efij, for command ci and user uj:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq5.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer1p15">
+                where wjk is any weighting function (which can be tuned) and cfik is the frequency of command ci and user k.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer1p16">4. Removing Previously Used commands</div>
+            <div class="paragraph" id="page4layer1p17">
+                Once we create a list of all the command frequencies, we remove any command which the user has been observed to use, preventing
+                no known commands from being suggested.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer1p18">5. Returning the Top 10 list</div>
+            <div class="paragraph" id="page4layer1p19">
+                The final step is to sort the remaining commands by their expected frequencies. The highest 10 commands will appear in the
+                user’s recommendation list.
             </div>
         </div>
-        <div class="pagenumber">195</div>
+        <div class="pagenumber">196</div>
     </div>
     <!--/page4layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer2" id="page4" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page4layer2p1">
+                user uj has used the command ci. A limitation of using this approach is that in general, a small number of commands will
+                be frequently used by almost everyone [41]. Thus, when comparing the vectors, each pair of users will tend
+                to have high similarity because they will all share these popular high frequency commands. This is certainly
+                the case in AutoCAD. For example, in Figure 5, we see that the top 10 commands make up 50% of all commands
+                issued, and the top 100 commands make up 93% of all commands issued.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure5.PNG" style="width:25vw">
+            <div class="caption" id="page4layer2p2">
+                Figure 5. Cumulative percentage of command counts for the 2000 AutoCAD commands
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer2p3">
+                We need to suppress the overriding influence of commands that are being used frequently and by many users. Document retrieval
+                algorithms actually face a similar challenge. For example, an internet search engine should not consider
+                two webpages similar because they both share high frequencies of the words “a”, “to”, and “the”. Such systems
+                use a “term frequency inverse document frequency” (tf-idf) technique [21] to determine how important a word
+                is to a particular document in a collection. For our purposes, we adapt this technique into a command frequency,
+                inverse user frequency (cf–iuf) weighting function, by considering how important a command is to a particular
+                user within a community. To do so, we first take the command frequency (cf) to give a measure of the importance
+                of the command ci to the particular user uj.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq1.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer2p4">
+                where nij is the number of occurrences of the considered command of user uj, and the denominator is the number of occurrences
+                of all commands of user uj.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer2p5">
+                The inverse user frequency (iuf), a measure of the general importance of the command, is based on the percentage of total
+                users that use it:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq2.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <img src="../static/eq3.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer2p6">
+                A high weight in cf–iuf is obtained when a command is used frequently by a particular user, but is used by a relatively small
+                portion of the overall population.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer2p7">
+                For each user uj, we populate the command vector Vj such that each cell, Vj(i), contains the cf-iuf value for each command
+                ci, and use these vectors to compute user similarity.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer2p8">2. Finding Similar Users</div>
+            <div class="paragraph" id="page4layer2p9">
+                As with many traditional recommender systems, we measure the similarity between users by calculating the cosine of the angle
+                between the users' vectors [35]. In our case, we use the command vectors, as described above. Considering
+                two users uA and uB with command vectors VA and VB.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq4.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer2p10">
+                Thus, when similarity is near 0, the vectors VA and VB are substantially orthogonal (and the users are determined to be not
+                very similar) and when similarity is close to 1 they are nearly collinear (and the users are then determined
+                to be quite similar). As can be seen in Figure 6, using the cosine works nicely with our rating system based
+                on frequencies, since it does not take into account the total number of times a user has used a command,
+                but only its frequency.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer2p11">
+                We compare the active user to all other user in the community, to find the n most similar users, where n is another tuning
+                parameter.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure6.PNG" style="width:25vw">
+            <div class="caption" id="page4layer2p12">
+                Figure 6. Simplified example of user similarity. Alice and Bob are more similar than Bob and Cindy as the angle between their
+                command vectors is smaller.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer2p13">3. Calculating Expected Frequencies</div>
+            <div class="paragraph" id="page4layer2p14">
+                To calculate an expected frequency for each command, we take a weighted average of the command frequencies for the active
+                user’s n similar users. We define the expected frequency, efij, for command ci and user uj:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq5.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer2p15">
+                where wjk is any weighting function (which can be tuned) and cfik is the frequency of command ci and user k.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer2p16">4. Removing Previously Used commands</div>
+            <div class="paragraph" id="page4layer2p17">
+                Once we create a list of all the command frequencies, we remove any command which the user has been observed to use, preventing
+                no known commands from being suggested.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer2p18">5. Returning the Top 10 list</div>
+            <div class="paragraph" id="page4layer2p19">
+                The final step is to sort the remaining commands by their expected frequencies. The highest 10 commands will appear in the
+                user’s recommendation list.
+            </div>
+        </div>
+        <div class="pagenumber">196</div>
+    </div>
     <!--/page4layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer3" id="page4" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page4layer3p1">
+                user uj has used the command ci. A limitation of using this approach is that in general, a small number of commands will
+                be frequently used by almost everyone [41]. Thus, when comparing the vectors, each pair of users will tend
+                to have high similarity because they will all share these popular high frequency commands. This is certainly
+                the case in AutoCAD. For example, in Figure 5, we see that the top 10 commands make up 50% of all commands
+                issued, and the top 100 commands make up 93% of all commands issued.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure5.PNG" style="width:25vw">
+            <div class="caption" id="page4layer3p2">
+                Figure 5. Cumulative percentage of command counts for the 2000 AutoCAD commands
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer3p3">
+                We need to suppress the overriding influence of commands that are being used frequently and by many users. Document retrieval
+                algorithms actually face a similar challenge. For example, an internet search engine should not consider
+                two webpages similar because they both share high frequencies of the words “a”, “to”, and “the”. Such systems
+                use a “term frequency inverse document frequency” (tf-idf) technique [21] to determine how important a word
+                is to a particular document in a collection. For our purposes, we adapt this technique into a command frequency,
+                inverse user frequency (cf–iuf) weighting function, by considering how important a command is to a particular
+                user within a community. To do so, we first take the command frequency (cf) to give a measure of the importance
+                of the command ci to the particular user uj.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq1.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer3p4">
+                where nij is the number of occurrences of the considered command of user uj, and the denominator is the number of occurrences
+                of all commands of user uj.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer3p5">
+                The inverse user frequency (iuf), a measure of the general importance of the command, is based on the percentage of total
+                users that use it:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq2.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <img src="../static/eq3.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer3p6">
+                A high weight in cf–iuf is obtained when a command is used frequently by a particular user, but is used by a relatively small
+                portion of the overall population.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer3p7">
+                For each user uj, we populate the command vector Vj such that each cell, Vj(i), contains the cf-iuf value for each command
+                ci, and use these vectors to compute user similarity.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer3p8">2. Finding Similar Users</div>
+            <div class="paragraph" id="page4layer3p9">
+                As with many traditional recommender systems, we measure the similarity between users by calculating the cosine of the angle
+                between the users' vectors [35]. In our case, we use the command vectors, as described above. Considering
+                two users uA and uB with command vectors VA and VB.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq4.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer3p10">
+                Thus, when similarity is near 0, the vectors VA and VB are substantially orthogonal (and the users are determined to be not
+                very similar) and when similarity is close to 1 they are nearly collinear (and the users are then determined
+                to be quite similar). As can be seen in Figure 6, using the cosine works nicely with our rating system based
+                on frequencies, since it does not take into account the total number of times a user has used a command,
+                but only its frequency.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer3p11">
+                We compare the active user to all other user in the community, to find the n most similar users, where n is another tuning
+                parameter.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure6.PNG" style="width:25vw">
+            <div class="caption" id="page4layer3p12">
+                Figure 6. Simplified example of user similarity. Alice and Bob are more similar than Bob and Cindy as the angle between their
+                command vectors is smaller.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer3p13">3. Calculating Expected Frequencies</div>
+            <div class="paragraph" id="page4layer3p14">
+                To calculate an expected frequency for each command, we take a weighted average of the command frequencies for the active
+                user’s n similar users. We define the expected frequency, efij, for command ci and user uj:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq5.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page4layer3p15">
+                where wjk is any weighting function (which can be tuned) and cfik is the frequency of command ci and user k.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer3p16">4. Removing Previously Used commands</div>
+            <div class="paragraph" id="page4layer3p17">
+                Once we create a list of all the command frequencies, we remove any command which the user has been observed to use, preventing
+                no known commands from being suggested.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page4layer3p18">5. Returning the Top 10 list</div>
+            <div class="paragraph" id="page4layer3p19">
+                The final step is to sort the remaining commands by their expected frequencies. The highest 10 commands will appear in the
+                user’s recommendation list.
+            </div>
+        </div>
+        <div class="pagenumber">196</div>
+    </div>
 
     <!--/page5layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer1" id="page5" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="sectiontitle" id="page5layer1p1">Item-Based Collaborative Filtering</div>
+            <div class="paragraph" id="page5layer1p2">
+                Rather than matching users based on their command usage, our item-based collaborative filtering algorithm matches the active
+                user’s commands to similar commands. The steps of the algorithms are described below.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p2">1. Defining User Vectors</div>
+            <div class="paragraph" id="page5layer1p3">
+                We first define a vector Vi for each command ci in the n dimensional user-space. Similar to user-based approach, each cell,
+                Vi(j), contains the cf-iuf value for each user uj.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p4">2. Build a command-to-command Similarity Matrix</div>
+            <div class="paragraph" id="page5layer1p5">
+                Next, we generate a command-to-command similarity matrix, M. Mik is defined for each pair of commands i and k as:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq6.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p6">3. Create an “active list”</div>
+            <div class="paragraph" id="page5layer1p7">
+                For the active user, uj, we create an “active list” L, which contains all of the commands that the active user has used.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq7.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p8">4. Find similar unused commands</div>
+            <div class="paragraph" id="page5layer1p9">
+                Next, we define a similarity score, si, for each command ci which is not in the active user’s active list:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq8.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p10">5. Generate Top 10 List</div>
+            <div class="paragraph" id="page5layer1p11">
+                The last step is to sort the unused commands by their similarity scores si, and to provide the top ten commands in the user’s
+                recommendation list.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p12">Domain-Specific Rules</div>
+            <div class="paragraph" id="page5layer1p13">
+                The above techniques work without any specific knowledge about the application. In an initial pilot study, this was shown
+                to lead to some poor recommendations which could have been avoided. Thus, we created two types of rules to
+                inject some basic domain knowledge into the system.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p14">Upgrades (A ⇏ B)</div>
+            <div class="paragraph" id="page5layer1p15">
+                An upgrade is a situation where if you use command A there is no need for you to use command B. For example, if an AutoCAD
+                user uses MouseWheelPan we would not recommend the Pan command, since it is a less efficient mechanism to
+                activate the same function.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p16">Equivalencies (A ⇎ B)</div>
+            <div class="paragraph" id="page5layer1p17">
+                We consider two commands to be “equivalent” when it makes sense for a user to use one of the two commands, but not both.
+                For example in AutoCAD there is the HATCH and BHATCH commands. BHATCH is from earlier versions of the product,
+                but it does the same thing.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer1p18">
+                We spent approximately 2 hours with a domain expert to come up with 21 specific rules. Four of these rules were Upgrades
+                and 17 of the rules were Equivalencies.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p19">OFFLINE ALGORITHM EVALUATION</div>
+            <div class="paragraph" id="page5layer1p20">
+                Here, we present an automated method to evaluate the recommender algorithms using our existing offline data. Although offline
+                evaluation cannot replace online evaluation, it is a necessary and important step to tune the algorithms
+                and verify our design decisions before the recommender system is deployed to real users.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer1p21">
+                The development of the algorithm was a challenging task since we required a metric that would indicate if a recommended command,
+                which had never been observed, would be useful to a user. To do so we developed a new k-tail evaluation where
+                we use the first part of a user’s command history as a training set, and the rest of the history as a testing
+                set. We choose to use the most recently used commands as the testing set as opposed to a random hold out
+                to more closely map to our real usage situation.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer1p22">
+                Consider a user ui with a series of commands S. k-tail evaluation divides this command sequence into a training sequence
+                Strain and a testing sequence Stest, so that there are k unique commands in Strain which are not in Stest.
+                For example, the command sequence in Figure 7 is a 2-tail series since there are two commands, SOLIDEDIT
+                and 3DROTATE, which have never appeared in the training set.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure7.PNG" style="width:25vw">
+            <div class="caption" id="page5layer1p23">
+                Figure 7. k-Tail evaluation of a command sequence.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer1p24">
+                To evaluate an algorithm, we find the average number of commands which are in both a user i’s recommendation list Ri, and
+                their testing set Stest,i. We define the evaluation result of k-tail as hitk:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq9.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer1p25">
+                where n is the size of community.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p26">Algorithms</div>
+            <div class="paragraph" id="page5layer1p27">
+                In addition to testing our user-based and item-based collaborative filtering algorithms, we also implemented and evaluated
+                Linton’s algorithm [24, 25]. The algorithm suggests the top commands, as averaged across the total community,
+                which a user doesn’t use.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p28">Offline Results</div>
+            <div class="paragraph" id="page5layer1p29">
+                All three algorithms were evaluated using the k-tail method and the offline CIP data. We only included users for which we
+                had observed at least 2000 commands (4033 total users). The command sequence of each CIP user is divided
+                into a training set and a k-tail. Figure 8 shows that when k=1, the item-based algorithm predicts the next
+                new command correctly for 850 users, about 240 more than Linton's.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure8.PNG" style="width:25vw">
+            <div class="caption" id="page5layer1p30">
+                Figure 8. Offline results showing the percentage of times the next new command was predicted in a list of 10 by each algorithm.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer1p31">ONLINE ALGORITHM EVALUATION</div>
+            <div class="paragraph" id="page5layer1p32">
+                While our offline evaluation showed promise for our new techniques, the results may not be fully indicative of how our algorithms would work in practice. As such, we conducted an online “live” study with real users. We collected 
+            </div>
+        </div>
+        <div class="pagenumber">197</div>
+    </div>
     <!--/page5layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+     <div class="page pagelayer2" id="page5" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="sectiontitle" id="page5layer2p1">Item-Based Collaborative Filtering</div>
+            <div class="paragraph" id="page5layer2p2">
+                Rather than matching users based on their command usage, our item-based collaborative filtering algorithm matches the active
+                user’s commands to similar commands. The steps of the algorithms are described below.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p2">1. Defining User Vectors</div>
+            <div class="paragraph" id="page5layer2p3">
+                We first define a vector Vi for each command ci in the n dimensional user-space. Similar to user-based approach, each cell,
+                Vi(j), contains the cf-iuf value for each user uj.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p4">2. Build a command-to-command Similarity Matrix</div>
+            <div class="paragraph" id="page5layer2p5">
+                Next, we generate a command-to-command similarity matrix, M. Mik is defined for each pair of commands i and k as:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq6.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p6">3. Create an “active list”</div>
+            <div class="paragraph" id="page5layer2p7">
+                For the active user, uj, we create an “active list” L, which contains all of the commands that the active user has used.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq7.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p8">4. Find similar unused commands</div>
+            <div class="paragraph" id="page5layer2p9">
+                Next, we define a similarity score, si, for each command ci which is not in the active user’s active list:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq8.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p10">5. Generate Top 10 List</div>
+            <div class="paragraph" id="page5layer2p11">
+                The last step is to sort the unused commands by their similarity scores si, and to provide the top ten commands in the user’s
+                recommendation list.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p12">Domain-Specific Rules</div>
+            <div class="paragraph" id="page5layer2p13">
+                The above techniques work without any specific knowledge about the application. In an initial pilot study, this was shown
+                to lead to some poor recommendations which could have been avoided. Thus, we created two types of rules to
+                inject some basic domain knowledge into the system.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p14">Upgrades (A ⇏ B)</div>
+            <div class="paragraph" id="page5layer2p15">
+                An upgrade is a situation where if you use command A there is no need for you to use command B. For example, if an AutoCAD
+                user uses MouseWheelPan we would not recommend the Pan command, since it is a less efficient mechanism to
+                activate the same function.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p16">Equivalencies (A ⇎ B)</div>
+            <div class="paragraph" id="page5layer2p17">
+                We consider two commands to be “equivalent” when it makes sense for a user to use one of the two commands, but not both.
+                For example in AutoCAD there is the HATCH and BHATCH commands. BHATCH is from earlier versions of the product,
+                but it does the same thing.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer2p18">
+                We spent approximately 2 hours with a domain expert to come up with 21 specific rules. Four of these rules were Upgrades
+                and 17 of the rules were Equivalencies.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p19">OFFLINE ALGORITHM EVALUATION</div>
+            <div class="paragraph" id="page5layer2p20">
+                Here, we present an automated method to evaluate the recommender algorithms using our existing offline data. Although offline
+                evaluation cannot replace online evaluation, it is a necessary and important step to tune the algorithms
+                and verify our design decisions before the recommender system is deployed to real users.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer2p21">
+                The development of the algorithm was a challenging task since we required a metric that would indicate if a recommended command,
+                which had never been observed, would be useful to a user. To do so we developed a new k-tail evaluation where
+                we use the first part of a user’s command history as a training set, and the rest of the history as a testing
+                set. We choose to use the most recently used commands as the testing set as opposed to a random hold out
+                to more closely map to our real usage situation.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer2p22">
+                Consider a user ui with a series of commands S. k-tail evaluation divides this command sequence into a training sequence
+                Strain and a testing sequence Stest, so that there are k unique commands in Strain which are not in Stest.
+                For example, the command sequence in Figure 7 is a 2-tail series since there are two commands, SOLIDEDIT
+                and 3DROTATE, which have never appeared in the training set.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure7.PNG" style="width:25vw">
+            <div class="caption" id="page5layer2p23">
+                Figure 7. k-Tail evaluation of a command sequence.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer2p24">
+                To evaluate an algorithm, we find the average number of commands which are in both a user i’s recommendation list Ri, and
+                their testing set Stest,i. We define the evaluation result of k-tail as hitk:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq9.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer2p25">
+                where n is the size of community.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p26">Algorithms</div>
+            <div class="paragraph" id="page5layer2p27">
+                In addition to testing our user-based and item-based collaborative filtering algorithms, we also implemented and evaluated
+                Linton’s algorithm [24, 25]. The algorithm suggests the top commands, as averaged across the total community,
+                which a user doesn’t use.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p28">Offline Results</div>
+            <div class="paragraph" id="page5layer2p29">
+                All three algorithms were evaluated using the k-tail method and the offline CIP data. We only included users for which we
+                had observed at least 2000 commands (4033 total users). The command sequence of each CIP user is divided
+                into a training set and a k-tail. Figure 8 shows that when k=1, the item-based algorithm predicts the next
+                new command correctly for 850 users, about 240 more than Linton's.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure8.PNG" style="width:25vw">
+            <div class="caption" id="page5layer2p30">
+                Figure 8. Offline results showing the percentage of times the next new command was predicted in a list of 10 by each algorithm.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer2p31">ONLINE ALGORITHM EVALUATION</div>
+            <div class="paragraph" id="page5layer2p32">
+                While our offline evaluation showed promise for our new techniques, the results may not be fully indicative of how our algorithms would work in practice. As such, we conducted an online “live” study with real users. We collected 
+            </div>
+        </div>
+        <div class="pagenumber">197</div>
+    </div>
     <!--/page5layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+     <div class="page pagelayer3" id="page5" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="sectiontitle" id="page5layer3p1">Item-Based Collaborative Filtering</div>
+            <div class="paragraph" id="page5layer3p2">
+                Rather than matching users based on their command usage, our item-based collaborative filtering algorithm matches the active
+                user’s commands to similar commands. The steps of the algorithms are described below.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p2">1. Defining User Vectors</div>
+            <div class="paragraph" id="page5layer3p3">
+                We first define a vector Vi for each command ci in the n dimensional user-space. Similar to user-based approach, each cell,
+                Vi(j), contains the cf-iuf value for each user uj.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p4">2. Build a command-to-command Similarity Matrix</div>
+            <div class="paragraph" id="page5layer3p5">
+                Next, we generate a command-to-command similarity matrix, M. Mik is defined for each pair of commands i and k as:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq6.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p6">3. Create an “active list”</div>
+            <div class="paragraph" id="page5layer3p7">
+                For the active user, uj, we create an “active list” L, which contains all of the commands that the active user has used.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq7.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p8">4. Find similar unused commands</div>
+            <div class="paragraph" id="page5layer3p9">
+                Next, we define a similarity score, si, for each command ci which is not in the active user’s active list:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq8.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p10">5. Generate Top 10 List</div>
+            <div class="paragraph" id="page5layer3p11">
+                The last step is to sort the unused commands by their similarity scores si, and to provide the top ten commands in the user’s
+                recommendation list.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p12">Domain-Specific Rules</div>
+            <div class="paragraph" id="page5layer3p13">
+                The above techniques work without any specific knowledge about the application. In an initial pilot study, this was shown
+                to lead to some poor recommendations which could have been avoided. Thus, we created two types of rules to
+                inject some basic domain knowledge into the system.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p14">Upgrades (A ⇏ B)</div>
+            <div class="paragraph" id="page5layer3p15">
+                An upgrade is a situation where if you use command A there is no need for you to use command B. For example, if an AutoCAD
+                user uses MouseWheelPan we would not recommend the Pan command, since it is a less efficient mechanism to
+                activate the same function.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p16">Equivalencies (A ⇎ B)</div>
+            <div class="paragraph" id="page5layer3p17">
+                We consider two commands to be “equivalent” when it makes sense for a user to use one of the two commands, but not both.
+                For example in AutoCAD there is the HATCH and BHATCH commands. BHATCH is from earlier versions of the product,
+                but it does the same thing.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer3p18">
+                We spent approximately 2 hours with a domain expert to come up with 21 specific rules. Four of these rules were Upgrades
+                and 17 of the rules were Equivalencies.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p19">OFFLINE ALGORITHM EVALUATION</div>
+            <div class="paragraph" id="page5layer3p20">
+                Here, we present an automated method to evaluate the recommender algorithms using our existing offline data. Although offline
+                evaluation cannot replace online evaluation, it is a necessary and important step to tune the algorithms
+                and verify our design decisions before the recommender system is deployed to real users.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer3p21">
+                The development of the algorithm was a challenging task since we required a metric that would indicate if a recommended command,
+                which had never been observed, would be useful to a user. To do so we developed a new k-tail evaluation where
+                we use the first part of a user’s command history as a training set, and the rest of the history as a testing
+                set. We choose to use the most recently used commands as the testing set as opposed to a random hold out
+                to more closely map to our real usage situation.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer3p22">
+                Consider a user ui with a series of commands S. k-tail evaluation divides this command sequence into a training sequence
+                Strain and a testing sequence Stest, so that there are k unique commands in Strain which are not in Stest.
+                For example, the command sequence in Figure 7 is a 2-tail series since there are two commands, SOLIDEDIT
+                and 3DROTATE, which have never appeared in the training set.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure7.PNG" style="width:25vw">
+            <div class="caption" id="page5layer3p23">
+                Figure 7. k-Tail evaluation of a command sequence.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer3p24">
+                To evaluate an algorithm, we find the average number of commands which are in both a user i’s recommendation list Ri, and
+                their testing set Stest,i. We define the evaluation result of k-tail as hitk:
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/eq9.PNG" style="width:25vw">
+            <div class="linespace"></div>
+            <div class="paragraph" id="page5layer3p25">
+                where n is the size of community.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p26">Algorithms</div>
+            <div class="paragraph" id="page5layer3p27">
+                In addition to testing our user-based and item-based collaborative filtering algorithms, we also implemented and evaluated
+                Linton’s algorithm [24, 25]. The algorithm suggests the top commands, as averaged across the total community,
+                which a user doesn’t use.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p28">Offline Results</div>
+            <div class="paragraph" id="page5layer3p29">
+                All three algorithms were evaluated using the k-tail method and the offline CIP data. We only included users for which we
+                had observed at least 2000 commands (4033 total users). The command sequence of each CIP user is divided
+                into a training set and a k-tail. Figure 8 shows that when k=1, the item-based algorithm predicts the next
+                new command correctly for 850 users, about 240 more than Linton's.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure8.PNG" style="width:25vw">
+            <div class="caption" id="page5layer3p30">
+                Figure 8. Offline results showing the percentage of times the next new command was predicted in a list of 10 by each algorithm.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page5layer3p31">ONLINE ALGORITHM EVALUATION</div>
+            <div class="paragraph" id="page5layer3p32">
+                While our offline evaluation showed promise for our new techniques, the results may not be fully indicative of how our algorithms would work in practice. As such, we conducted an online “live” study with real users. We collected 
+            </div>
+        </div>
+        <div class="pagenumber">197</div>
+    </div>
 
     <!--/page6layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer1" id="page6" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page6layer1p1">
+                data for a set of real users, generated personalized recommendations for each of them, and had them evaluate their recommendations in a web-based survey. 
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer1p2">Participants</div>
+            <div class="paragraph" id="page6layer1p3">
+               We recruited 36 users (25 male, 11 female) of AutoCAD 2009 to participate in the study. To be considered for the study users were required to use AutoCAD a minimum of 20 hours per week. Participants were aged 21 to 55 and worked in varying fields including architecture, civil planning, and mechanical design, across North America. 
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer1p4">Setup</div>
+            <div class="paragraph" id="page6layer1p5">
+               To capture the participants’ command usages, we gave each participant a custom plug-in, which would give us access to their full CIP data from the time it was installed. Participants were asked to continue using AutoCAD as they normally would. Command data was recorded from each user for approximately 10 weeks. After collecting each user’s data, the recommendations were generated.  
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer1p6">
+               During the course of the study we stopped receiving data from 12 of the participants (they changed computers, lost their job, company inserted a new firewall, etc.) leaving us with 24 viable participants. Three of these were used in a preliminary pilot study. We sent out 21 surveys, with 4 participants not responding, leaving us with 17 users completing the study.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer1p7">Generating Recommendations</div>
+            <div class="paragraph" id="page6layer1p8">
+               We used a within-participant design. That is, each participant was sent recommendations from each of the three algorithms. To do this, we generated a top 8 list for each of the three algorithms. We then took the union of these three lists, and randomized the order. Since the algorithms could produce common commands, the final lists could range in size, and in the study, ranged from 17 to 25 items. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer1p9">
+               Each user was sent a survey with questions about each of the commands in their customized recommendation list. For each recommended command participants were given a short description of the functionality (for example “XLINE: creates an infinite line”). Users were asked to familiarize themselves with the command as much as possible before answering any questions about it. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer1p10">
+               Participants were asked to rate the commands on the following 2 statements, using a 5-point Likert scale from strongly disagree to strongly agree: 
+            </div>
+            <div class="linespace"></div>
+             <div class="caption" id="page6layer1p11">
+                Q1. I was familiar with this command.
+            </div>
+            <div class="caption" id="page6layer1p12">
+                Q2. I will use this command.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer1p13">
+               In an initial pilot study, we found that users sometimes claimed to use a command frequently, when we could tell from their data that they did not. This was often due to two different commands sounding similar. As such, in this study, we made it clear to the participants that they had not used any of the commands.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer1p14">Results</div>
+            <div class="sectiontitle" id="page6layer1p15">Novelty and Usefulness</div>
+            <div class="paragraph" id="page6layer1p16">
+               Recall our main design considerations for the recommender system was for it to produce useful and novel recommendations. We used responses to Q1 to measure novelty, and responses to Q2 to measure usefulness. Repeated measure analysis of variance showed a significant difference in average usefulness for technique (F2,32 = 13.340, p /< .0001). The ratings were 2.82 for Linton, 3.18 for User-Based, and 3.44 for Item-Based. There was a significant difference between Linton and Item-Based (p = .0001) and UserBased and Item-Based (p = .038). The effect on technique on novelty ratings did not reach significance.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer1p17">
+               As discussed in the design considerations section we are interested in the quality of the individual recommendations (Figure 2), particularly those falling into the “good” or “poor” categories. As such we do not only want to look at usefulness ratings, but rather judge the quality of the lists which the algorithms provide by assessing the number of good and poor recommendations which they produce.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer1p18">Good and Poor Recommendations</div>
+            <div class="paragraph" id="page6layer1p19">
+               First, we consider good recommendations to be those where the user was not previously familiar with the command, but after seeing the suggestion, will use it. This corresponds to a response of strongly disagree, somewhat disagree, or neither agree nor disagree to Q1, and a response of somewhat agree, or strongly agree to Q2. We define the percentage of good recommendations as the average number of recommendations produced which were good.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer1p20">
+               Repeated measure analysis of variance showed a main effect for the algorithm (F2,32 = 12.301, p < .0001) on percentage of good recommendations. The overall percentages of good recommendations were 14.7% for Linton, 27.2% for User-Based, and 30.9% for Item-Based. Pairwise comparison using Bonferroni adjustment showed that both UserBased (p = .006) and Item-Based (p = .001) were significantly different from Linton, but the difference between Item-Based and User-Based was not significant (Figure 9).
+            </div>
+            <div class="linespace"></div>
+             <img src="../static/figure9.PNG" style="width:25vw">
+            <div class="caption" id="page6layer1p21">
+                Figure 9. Percentage of “good” suggestions by technique.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer1p22">
+               We defined poor recommendations as those where regardless command, corresponding to a response of strongly disagree, or somewhat disagree to Q2. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer1p23">
+               Repeated measure analysis of variance showed a main effect for the algorithm (F2,32 = 11.486, p < .0001). The overall percentages of poor recommendations were 41.9% for Linton, 32.4% for User-Based, and 22.1% for Item-Based. Pairwise comparison showed that Item-Based was signifi-
+            </div>
+        </div>
+        <div class="pagenumber">198</div>
+    </div>
     <!--/page6layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer2" id="page6" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page6layer2p1">
+                data for a set of real users, generated personalized recommendations for each of them, and had them evaluate their recommendations in a web-based survey. 
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer2p2">Participants</div>
+            <div class="paragraph" id="page6layer2p3">
+               We recruited 36 users (25 male, 11 female) of AutoCAD 2009 to participate in the study. To be considered for the study users were required to use AutoCAD a minimum of 20 hours per week. Participants were aged 21 to 55 and worked in varying fields including architecture, civil planning, and mechanical design, across North America. 
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer2p4">Setup</div>
+            <div class="paragraph" id="page6layer2p5">
+               To capture the participants’ command usages, we gave each participant a custom plug-in, which would give us access to their full CIP data from the time it was installed. Participants were asked to continue using AutoCAD as they normally would. Command data was recorded from each user for approximately 10 weeks. After collecting each user’s data, the recommendations were generated.  
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer2p6">
+               During the course of the study we stopped receiving data from 12 of the participants (they changed computers, lost their job, company inserted a new firewall, etc.) leaving us with 24 viable participants. Three of these were used in a preliminary pilot study. We sent out 21 surveys, with 4 participants not responding, leaving us with 17 users completing the study.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer2p7">Generating Recommendations</div>
+            <div class="paragraph" id="page6layer2p8">
+               We used a within-participant design. That is, each participant was sent recommendations from each of the three algorithms. To do this, we generated a top 8 list for each of the three algorithms. We then took the union of these three lists, and randomized the order. Since the algorithms could produce common commands, the final lists could range in size, and in the study, ranged from 17 to 25 items. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer2p9">
+               Each user was sent a survey with questions about each of the commands in their customized recommendation list. For each recommended command participants were given a short description of the functionality (for example “XLINE: creates an infinite line”). Users were asked to familiarize themselves with the command as much as possible before answering any questions about it. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer2p10">
+               Participants were asked to rate the commands on the following 2 statements, using a 5-point Likert scale from strongly disagree to strongly agree: 
+            </div>
+            <div class="linespace"></div>
+             <div class="caption" id="page6layer2p11">
+                Q1. I was familiar with this command.
+            </div>
+            <div class="caption" id="page6layer2p12">
+                Q2. I will use this command.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer2p13">
+               In an initial pilot study, we found that users sometimes claimed to use a command frequently, when we could tell from their data that they did not. This was often due to two different commands sounding similar. As such, in this study, we made it clear to the participants that they had not used any of the commands.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer2p14">Results</div>
+            <div class="sectiontitle" id="page6layer2p15">Novelty and Usefulness</div>
+            <div class="paragraph" id="page6layer2p16">
+               Recall our main design considerations for the recommender system was for it to produce useful and novel recommendations. We used responses to Q1 to measure novelty, and responses to Q2 to measure usefulness. Repeated measure analysis of variance showed a significant difference in average usefulness for technique (F2,32 = 13.340, p /< .0001). The ratings were 2.82 for Linton, 3.18 for User-Based, and 3.44 for Item-Based. There was a significant difference between Linton and Item-Based (p = .0001) and UserBased and Item-Based (p = .038). The effect on technique on novelty ratings did not reach significance.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer2p17">
+               As discussed in the design considerations section we are interested in the quality of the individual recommendations (Figure 2), particularly those falling into the “good” or “poor” categories. As such we do not only want to look at usefulness ratings, but rather judge the quality of the lists which the algorithms provide by assessing the number of good and poor recommendations which they produce.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer2p18">Good and Poor Recommendations</div>
+            <div class="paragraph" id="page6layer2p19">
+               First, we consider good recommendations to be those where the user was not previously familiar with the command, but after seeing the suggestion, will use it. This corresponds to a response of strongly disagree, somewhat disagree, or neither agree nor disagree to Q1, and a response of somewhat agree, or strongly agree to Q2. We define the percentage of good recommendations as the average number of recommendations produced which were good.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer2p20">
+               Repeated measure analysis of variance showed a main effect for the algorithm (F2,32 = 12.301, p < .0001) on percentage of good recommendations. The overall percentages of good recommendations were 14.7% for Linton, 27.2% for User-Based, and 30.9% for Item-Based. Pairwise comparison using Bonferroni adjustment showed that both UserBased (p = .006) and Item-Based (p = .001) were significantly different from Linton, but the difference between Item-Based and User-Based was not significant (Figure 9).
+            </div>
+            <div class="linespace"></div>
+             <img src="../static/figure9.PNG" style="width:25vw">
+            <div class="caption" id="page6layer2p21">
+                Figure 9. Percentage of “good” suggestions by technique.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer2p22">
+               We defined poor recommendations as those where regardless command, corresponding to a response of strongly disagree, or somewhat disagree to Q2. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer2p23">
+               Repeated measure analysis of variance showed a main effect for the algorithm (F2,32 = 11.486, p < .0001). The overall percentages of poor recommendations were 41.9% for Linton, 32.4% for User-Based, and 22.1% for Item-Based. Pairwise comparison showed that Item-Based was signifi-
+            </div>
+        </div>
+        <div class="pagenumber">198</div>
+    </div>
     <!--/page6layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer3" id="page6" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page6layer3p1">
+                data for a set of real users, generated personalized recommendations for each of them, and had them evaluate their recommendations in a web-based survey. 
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer3p2">Participants</div>
+            <div class="paragraph" id="page6layer3p3">
+               We recruited 36 users (25 male, 11 female) of AutoCAD 2009 to participate in the study. To be considered for the study users were required to use AutoCAD a minimum of 20 hours per week. Participants were aged 21 to 55 and worked in varying fields including architecture, civil planning, and mechanical design, across North America. 
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer3p4">Setup</div>
+            <div class="paragraph" id="page6layer3p5">
+               To capture the participants’ command usages, we gave each participant a custom plug-in, which would give us access to their full CIP data from the time it was installed. Participants were asked to continue using AutoCAD as they normally would. Command data was recorded from each user for approximately 10 weeks. After collecting each user’s data, the recommendations were generated.  
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer3p6">
+               During the course of the study we stopped receiving data from 12 of the participants (they changed computers, lost their job, company inserted a new firewall, etc.) leaving us with 24 viable participants. Three of these were used in a preliminary pilot study. We sent out 21 surveys, with 4 participants not responding, leaving us with 17 users completing the study.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer3p7">Generating Recommendations</div>
+            <div class="paragraph" id="page6layer3p8">
+               We used a within-participant design. That is, each participant was sent recommendations from each of the three algorithms. To do this, we generated a top 8 list for each of the three algorithms. We then took the union of these three lists, and randomized the order. Since the algorithms could produce common commands, the final lists could range in size, and in the study, ranged from 17 to 25 items. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer3p9">
+               Each user was sent a survey with questions about each of the commands in their customized recommendation list. For each recommended command participants were given a short description of the functionality (for example “XLINE: creates an infinite line”). Users were asked to familiarize themselves with the command as much as possible before answering any questions about it. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer3p10">
+               Participants were asked to rate the commands on the following 2 statements, using a 5-point Likert scale from strongly disagree to strongly agree: 
+            </div>
+            <div class="linespace"></div>
+             <div class="caption" id="page6layer3p11">
+                Q1. I was familiar with this command.
+            </div>
+            <div class="caption" id="page6layer3p12">
+                Q2. I will use this command.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer3p13">
+               In an initial pilot study, we found that users sometimes claimed to use a command frequently, when we could tell from their data that they did not. This was often due to two different commands sounding similar. As such, in this study, we made it clear to the participants that they had not used any of the commands.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer3p14">Results</div>
+            <div class="sectiontitle" id="page6layer3p15">Novelty and Usefulness</div>
+            <div class="paragraph" id="page6layer3p16">
+               Recall our main design considerations for the recommender system was for it to produce useful and novel recommendations. We used responses to Q1 to measure novelty, and responses to Q2 to measure usefulness. Repeated measure analysis of variance showed a significant difference in average usefulness for technique (F2,32 = 13.340, p /< .0001). The ratings were 2.82 for Linton, 3.18 for User-Based, and 3.44 for Item-Based. There was a significant difference between Linton and Item-Based (p = .0001) and UserBased and Item-Based (p = .038). The effect on technique on novelty ratings did not reach significance.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer3p17">
+               As discussed in the design considerations section we are interested in the quality of the individual recommendations (Figure 2), particularly those falling into the “good” or “poor” categories. As such we do not only want to look at usefulness ratings, but rather judge the quality of the lists which the algorithms provide by assessing the number of good and poor recommendations which they produce.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page6layer3p18">Good and Poor Recommendations</div>
+            <div class="paragraph" id="page6layer3p19">
+               First, we consider good recommendations to be those where the user was not previously familiar with the command, but after seeing the suggestion, will use it. This corresponds to a response of strongly disagree, somewhat disagree, or neither agree nor disagree to Q1, and a response of somewhat agree, or strongly agree to Q2. We define the percentage of good recommendations as the average number of recommendations produced which were good.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer3p20">
+               Repeated measure analysis of variance showed a main effect for the algorithm (F2,32 = 12.301, p < .0001) on percentage of good recommendations. The overall percentages of good recommendations were 14.7% for Linton, 27.2% for User-Based, and 30.9% for Item-Based. Pairwise comparison using Bonferroni adjustment showed that both UserBased (p = .006) and Item-Based (p = .001) were significantly different from Linton, but the difference between Item-Based and User-Based was not significant (Figure 9).
+            </div>
+            <div class="linespace"></div>
+             <img src="../static/figure9.PNG" style="width:25vw">
+            <div class="caption" id="page6layer3p21">
+                Figure 9. Percentage of “good” suggestions by technique.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer3p22">
+               We defined poor recommendations as those where regardless command, corresponding to a response of strongly disagree, or somewhat disagree to Q2. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page6layer3p23">
+               Repeated measure analysis of variance showed a main effect for the algorithm (F2,32 = 11.486, p < .0001). The overall percentages of poor recommendations were 41.9% for Linton, 32.4% for User-Based, and 22.1% for Item-Based. Pairwise comparison showed that Item-Based was signifi-
+            </div>
+        </div>
+        <div class="pagenumber">198</div>
+    </div>
 
     <!--/page7layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+     <div class="page pagelayer1" id="page7" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page7layer1p1">
+               cantly different from both User-Based and Linton (p < .05),but User-Based was not significantly different from Linton (Figure 10).  
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer1p2">
+               Overall, these results are very encouraging. Compared to Linton’s algorithm, the item-based algorithm increased the number of good commands a user would receive by 110.2%, while reducing the number of poor commands by 47.3%, and in both cases the difference was significant. The user-based algorithm also showed promise, increasing good commands by 85.7%, and decreasing poor commands by 22.6%, although these differences were not significant. 
+            </div>
+            <div class="linespace"></div>
+             <img src="../static/figure10.PNG" style="width:25vw">
+            <div class="caption" id="page7layer1p3">
+                Figure 10. Percentage of “poor” suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page7layer1p4">Survey</div>
+            <div class="paragraph" id="page7layer1p5">
+               Participants were asked to rate 6 design properties of a command recommendation system (Figure 11). The two features considered most important were Makes Useful Recommendations and Easy To Dismiss. 
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure11.PNG" style="width:25vw">
+            <div class="caption" id="page7layer1p6">
+                Figure 11. Subjective importance ratings for properties of a command recommender system. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer1p7">
+               We also asked the participants to estimate how many total commands they use. By looking at their command data for the period of the study we are able to compare their estimated with actual command counts (Figure 12). All but one of the participants underestimated the number of commands they used, and in most cases the amount was vastly underestimated. On average our participants use more than 300% as many commands as they estimated. Part of this may have been due to users having scripts which, when executed, would call a series of commands.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer1p8">
+               In general the participants both greatly underestimated how many commands they were using while at the same time greatly overestimating what percentage of the program’s functionality they were using. These results show that users may not appreciate how many commands they need to use, and how much is still available for them to learn. This provides strong evidence for the existence of the awareness problem [15], even among professional users.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure12.PNG" style="width:25vw">
+            <div class="caption" id="page7layer1p9">
+                Figure 12. Actual vs. Estimated commands used.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer1p10">
+               However, we also asked users what percentage of all AutoCAD commands they thought they used. Taking this percentage, and the number of command they estimated they used, we can calculate how many commands they thought are in AutoCAD (Figure 13). All participants thought the number of commands in the program was much smaller than it truly is, with the average estimated size being 367, or approximately 1/5th the actual total command count.
+            </div>
+            <div class="linespace"></div>
+             <img src="../static/figure13.PNG" style="width:25vw">
+            <div class="caption" id="page7layer1p11">
+                Figure 13. Actual vs. Estimated number of commands in the entire program.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page7layer1p12">Participant Interview</div>
+            <div class="paragraph" id="page7layer1p13">
+               We went on a workplace site visit to interview two of the participants that had completed the study. The first participant is a manager who trains new employees and serves as a gatekeeper for learning new features. The second participant reports to the manager. We asked both participants to comment on every item in their personalized recommendation list of commands from the survey. In a few cases we found that a recommended command was known to the user but not used as it had a known limitation for their needs and an alternative workflow was used. We also found two cases where an upgrade rule could have been defined to prevent a poor recommendation. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer1p14">
+               In one case, the second participant was very interested in a recommended command (CANNOSCALE) and identified it as something that would be very critical for future workflows. However, since the current team project conventions had already been defined, using this new command would need to be deferred until the team transitioned to the new annotation workflow in a future project. 
+            </div>
+        </div>
+        <div class="pagenumber">199</div>
+    </div>
     <!--/page7layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+         <div class="page pagelayer2" id="page7" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page7layer2p1">
+               cantly different from both User-Based and Linton (p < .05),but User-Based was not significantly different from Linton (Figure 10).  
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer2p2">
+               Overall, these results are very encouraging. Compared to Linton’s algorithm, the item-based algorithm increased the number of good commands a user would receive by 110.2%, while reducing the number of poor commands by 47.3%, and in both cases the difference was significant. The user-based algorithm also showed promise, increasing good commands by 85.7%, and decreasing poor commands by 22.6%, although these differences were not significant. 
+            </div>
+            <div class="linespace"></div>
+             <img src="../static/figure10.PNG" style="width:25vw">
+            <div class="caption" id="page7layer2p3">
+                Figure 10. Percentage of “poor” suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page7layer2p4">Survey</div>
+            <div class="paragraph" id="page7layer2p5">
+               Participants were asked to rate 6 design properties of a command recommendation system (Figure 11). The two features considered most important were Makes Useful Recommendations and Easy To Dismiss. 
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure11.PNG" style="width:25vw">
+            <div class="caption" id="page7layer2p6">
+                Figure 11. Subjective importance ratings for properties of a command recommender system. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer2p7">
+               We also asked the participants to estimate how many total commands they use. By looking at their command data for the period of the study we are able to compare their estimated with actual command counts (Figure 12). All but one of the participants underestimated the number of commands they used, and in most cases the amount was vastly underestimated. On average our participants use more than 300% as many commands as they estimated. Part of this may have been due to users having scripts which, when executed, would call a series of commands.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer2p8">
+               In general the participants both greatly underestimated how many commands they were using while at the same time greatly overestimating what percentage of the program’s functionality they were using. These results show that users may not appreciate how many commands they need to use, and how much is still available for them to learn. This provides strong evidence for the existence of the awareness problem [15], even among professional users.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure12.PNG" style="width:25vw">
+            <div class="caption" id="page7layer2p9">
+                Figure 12. Actual vs. Estimated commands used.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer2p10">
+               However, we also asked users what percentage of all AutoCAD commands they thought they used. Taking this percentage, and the number of command they estimated they used, we can calculate how many commands they thought are in AutoCAD (Figure 13). All participants thought the number of commands in the program was much smaller than it truly is, with the average estimated size being 367, or approximately 1/5th the actual total command count.
+            </div>
+            <div class="linespace"></div>
+             <img src="../static/figure13.PNG" style="width:25vw">
+            <div class="caption" id="page7layer2p11">
+                Figure 13. Actual vs. Estimated number of commands in the entire program.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page7layer2p12">Participant Interview</div>
+            <div class="paragraph" id="page7layer2p13">
+               We went on a workplace site visit to interview two of the participants that had completed the study. The first participant is a manager who trains new employees and serves as a gatekeeper for learning new features. The second participant reports to the manager. We asked both participants to comment on every item in their personalized recommendation list of commands from the survey. In a few cases we found that a recommended command was known to the user but not used as it had a known limitation for their needs and an alternative workflow was used. We also found two cases where an upgrade rule could have been defined to prevent a poor recommendation. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer2p14">
+               In one case, the second participant was very interested in a recommended command (CANNOSCALE) and identified it as something that would be very critical for future workflows. However, since the current team project conventions had already been defined, using this new command would need to be deferred until the team transitioned to the new annotation workflow in a future project. 
+            </div>
+        </div>
+        <div class="pagenumber">199</div>
+    </div>
     <!--/page7layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+         <div class="page pagelayer3" id="page7" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page7layer3p1">
+               cantly different from both User-Based and Linton (p < .05),but User-Based was not significantly different from Linton (Figure 10).  
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer3p2">
+               Overall, these results are very encouraging. Compared to Linton’s algorithm, the item-based algorithm increased the number of good commands a user would receive by 110.2%, while reducing the number of poor commands by 47.3%, and in both cases the difference was significant. The user-based algorithm also showed promise, increasing good commands by 85.7%, and decreasing poor commands by 22.6%, although these differences were not significant. 
+            </div>
+            <div class="linespace"></div>
+             <img src="../static/figure10.PNG" style="width:25vw">
+            <div class="caption" id="page7layer3p3">
+                Figure 10. Percentage of “poor” suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page7layer3p4">Survey</div>
+            <div class="paragraph" id="page7layer3p5">
+               Participants were asked to rate 6 design properties of a command recommendation system (Figure 11). The two features considered most important were Makes Useful Recommendations and Easy To Dismiss. 
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure11.PNG" style="width:25vw">
+            <div class="caption" id="page7layer3p6">
+                Figure 11. Subjective importance ratings for properties of a command recommender system. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer3p7">
+               We also asked the participants to estimate how many total commands they use. By looking at their command data for the period of the study we are able to compare their estimated with actual command counts (Figure 12). All but one of the participants underestimated the number of commands they used, and in most cases the amount was vastly underestimated. On average our participants use more than 300% as many commands as they estimated. Part of this may have been due to users having scripts which, when executed, would call a series of commands.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer3p8">
+               In general the participants both greatly underestimated how many commands they were using while at the same time greatly overestimating what percentage of the program’s functionality they were using. These results show that users may not appreciate how many commands they need to use, and how much is still available for them to learn. This provides strong evidence for the existence of the awareness problem [15], even among professional users.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure12.PNG" style="width:25vw">
+            <div class="caption" id="page7layer3p9">
+                Figure 12. Actual vs. Estimated commands used.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer3p10">
+               However, we also asked users what percentage of all AutoCAD commands they thought they used. Taking this percentage, and the number of command they estimated they used, we can calculate how many commands they thought are in AutoCAD (Figure 13). All participants thought the number of commands in the program was much smaller than it truly is, with the average estimated size being 367, or approximately 1/5th the actual total command count.
+            </div>
+            <div class="linespace"></div>
+             <img src="../static/figure13.PNG" style="width:25vw">
+            <div class="caption" id="page7layer3p11">
+                Figure 13. Actual vs. Estimated number of commands in the entire program.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page7layer3p12">Participant Interview</div>
+            <div class="paragraph" id="page7layer3p13">
+               We went on a workplace site visit to interview two of the participants that had completed the study. The first participant is a manager who trains new employees and serves as a gatekeeper for learning new features. The second participant reports to the manager. We asked both participants to comment on every item in their personalized recommendation list of commands from the survey. In a few cases we found that a recommended command was known to the user but not used as it had a known limitation for their needs and an alternative workflow was used. We also found two cases where an upgrade rule could have been defined to prevent a poor recommendation. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page7layer3p14">
+               In one case, the second participant was very interested in a recommended command (CANNOSCALE) and identified it as something that would be very critical for future workflows. However, since the current team project conventions had already been defined, using this new command would need to be deferred until the team transitioned to the new annotation workflow in a future project. 
+            </div>
+        </div>
+        <div class="pagenumber">199</div>
+    </div>
 
     <!--/page8layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer1" id="page8" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page8layer1p1">
+               The manager was very focused on improving the team’s efficiency. While she expects the team to already be very proficient in using the AutoCAD software, she stated that it would be valuable to collect CIP data for her company and individual team to detect training opportunities on underutilized commands. She also would like the ability to create a “blocklist” of commands to block from the recommendations lists or flag with a warning that using these commands may interfere with the group’s standard procedure. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer1p2">
+               Through our interview we recognized that the recommendation list could also give team members an excuse to talk to one another in a structured way about workflow and to compare and contrast approaches. In one case, the manager heard a command mentioned (XLINE), and said that a colleague on her team would find it useful, and wrote it down. In general, we got the sense that individuals work in significantly different ways, yet their workflows are not shared or known to other team members. Thus, CommunityCommands could serve as a mechanism to expose alternative workflows from teammates and the larger community.  
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page8layer1p3">PRESENTATION UI</div>
+            <div class="paragraph" id="page8layer1p4">
+               Our study has shown that we successfully developed a new command recommendation algorithm that can significantly improve the recommendations that a user will receive. This,in itself, is an important contribution. However, we still need to consider how to present recommendations to the user. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer1p5">
+              We designed a prototype of the CommunityCommands UI (Figure 14). The interface is implemented with a WPF control inside of an AutoCAD palette using the ObjectARX plug-in architecture. The interface contains a collection of buttons and a list containing the most highly ranked recommendations. Clicking on a command button will activate the command and hovering will bring up a tooltip.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer1p6">
+               The top panel also contains buttons to access a command “notebook”, view the command suggestion history, and filter the recommendations based on category. 
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer1p7">
+               The command notebook contains all of the commands the user has ever used and a place to store relevant tips or tricks about the command. These notebook entries are presented beneath the tooltip information when hovering over a command button. Besides seeing personal notes, users could also see notes from a manager or co-workers. Using this mechanism, managers could put company policies and best practices information in their notebooks, and that information would be visible to their entire teams.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer1p8">
+               With the history mechanism the user can see what commands have been suggested in the past. Since after the command has been used once it will no longer appear in the suggestion list, this is a way to revisit previous suggestions.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure14.PNG" style="width:25vw">
+            <div class="caption" id="page8layer1p9">
+                Figure 14. CommunityCommands UI.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer1p10">
+               We have included a command category selector for when a user would like to focus their learning on a particular area of the program. For AutoCAD this list contains items such as File I/O, Rendering, and 3D Modeling. By default commands for all areas are shown. The category of the command is reflected in the color of the close box or push pin.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure15.PNG" style="width:25vw">
+            <div class="caption" id="page8layer1p11">
+                Figure 15. Overall system UI elements.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer1p12">
+               The bar on the individual command buttons (Figure 16) represents the relevance of the command to the user’s current workflow. While doing “long term” recommendations the most relevant overall items will always be at the top of the list. While in “short term” mode, the most relevant commands will be at the top of list, and the length of the bar will indicate how closely related the command is to the commands the user is currently using.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure16.PNG" style="width:25vw">
+            <div class="caption" id="page8layer1p13">
+                Figure 16. Individual suggestion UI elements.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer1p14">
+               To support the design goal of minimal cost for poor suggestions, each command button contains a close button to remove the command from the list, and prevent it from being suggested in the future. To keep a command the pin can be clicked. Clicking on the pin again unpins the item and reveals the close box.
+            </div>
+            <div class="linespace"></div>
+
+            </div>
+            <div class="linespace"></div>
+        </div>
+        <div class="pagenumber">200</div>
+    </div>
     <!--/page8layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer2" id="page8" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page8layer2p1">
+               The manager was very focused on improving the team’s efficiency. While she expects the team to already be very proficient in using the AutoCAD software, she stated that it would be valuable to collect CIP data for her company and individual team to detect training opportunities on underutilized commands. She also would like the ability to create a “blocklist” of commands to block from the recommendations lists or flag with a warning that using these commands may interfere with the group’s standard procedure. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer2p2">
+               Through our interview we recognized that the recommendation list could also give team members an excuse to talk to one another in a structured way about workflow and to compare and contrast approaches. In one case, the manager heard a command mentioned (XLINE), and said that a colleague on her team would find it useful, and wrote it down. In general, we got the sense that individuals work in significantly different ways, yet their workflows are not shared or known to other team members. Thus, CommunityCommands could serve as a mechanism to expose alternative workflows from teammates and the larger community.  
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page8layer2p3">PRESENTATION UI</div>
+            <div class="paragraph" id="page8layer2p4">
+               Our study has shown that we successfully developed a new command recommendation algorithm that can significantly improve the recommendations that a user will receive. This,in itself, is an important contribution. However, we still need to consider how to present recommendations to the user. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer2p5">
+              We designed a prototype of the CommunityCommands UI (Figure 14). The interface is implemented with a WPF control inside of an AutoCAD palette using the ObjectARX plug-in architecture. The interface contains a collection of buttons and a list containing the most highly ranked recommendations. Clicking on a command button will activate the command and hovering will bring up a tooltip.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer2p6">
+               The top panel also contains buttons to access a command “notebook”, view the command suggestion history, and filter the recommendations based on category. 
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer2p7">
+               The command notebook contains all of the commands the user has ever used and a place to store relevant tips or tricks about the command. These notebook entries are presented beneath the tooltip information when hovering over a command button. Besides seeing personal notes, users could also see notes from a manager or co-workers. Using this mechanism, managers could put company policies and best practices information in their notebooks, and that information would be visible to their entire teams.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer2p8">
+               With the history mechanism the user can see what commands have been suggested in the past. Since after the command has been used once it will no longer appear in the suggestion list, this is a way to revisit previous suggestions.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure14.PNG" style="width:25vw">
+            <div class="caption" id="page8layer2p9">
+                Figure 14. CommunityCommands UI.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer2p10">
+               We have included a command category selector for when a user would like to focus their learning on a particular area of the program. For AutoCAD this list contains items such as File I/O, Rendering, and 3D Modeling. By default commands for all areas are shown. The category of the command is reflected in the color of the close box or push pin.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure15.PNG" style="width:25vw">
+            <div class="caption" id="page8layer2p11">
+                Figure 15. Overall system UI elements.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer2p12">
+               The bar on the individual command buttons (Figure 16) represents the relevance of the command to the user’s current workflow. While doing “long term” recommendations the most relevant overall items will always be at the top of the list. While in “short term” mode, the most relevant commands will be at the top of list, and the length of the bar will indicate how closely related the command is to the commands the user is currently using.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure16.PNG" style="width:25vw">
+            <div class="caption" id="page8layer2p13">
+                Figure 16. Individual suggestion UI elements.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer2p14">
+               To support the design goal of minimal cost for poor suggestions, each command button contains a close button to remove the command from the list, and prevent it from being suggested in the future. To keep a command the pin can be clicked. Clicking on the pin again unpins the item and reveals the close box.
+            </div>
+            <div class="linespace"></div>
+
+            </div>
+            <div class="linespace"></div>
+        </div>
+        <div class="pagenumber">200</div>
+    </div>
     <!--/page8layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer3" id="page8" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page8layer3p1">
+               The manager was very focused on improving the team’s efficiency. While she expects the team to already be very proficient in using the AutoCAD software, she stated that it would be valuable to collect CIP data for her company and individual team to detect training opportunities on underutilized commands. She also would like the ability to create a “blocklist” of commands to block from the recommendations lists or flag with a warning that using these commands may interfere with the group’s standard procedure. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer3p2">
+               Through our interview we recognized that the recommendation list could also give team members an excuse to talk to one another in a structured way about workflow and to compare and contrast approaches. In one case, the manager heard a command mentioned (XLINE), and said that a colleague on her team would find it useful, and wrote it down. In general, we got the sense that individuals work in significantly different ways, yet their workflows are not shared or known to other team members. Thus, CommunityCommands could serve as a mechanism to expose alternative workflows from teammates and the larger community.  
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page8layer3p3">PRESENTATION UI</div>
+            <div class="paragraph" id="page8layer3p4">
+               Our study has shown that we successfully developed a new command recommendation algorithm that can significantly improve the recommendations that a user will receive. This,in itself, is an important contribution. However, we still need to consider how to present recommendations to the user. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer3p5">
+              We designed a prototype of the CommunityCommands UI (Figure 14). The interface is implemented with a WPF control inside of an AutoCAD palette using the ObjectARX plug-in architecture. The interface contains a collection of buttons and a list containing the most highly ranked recommendations. Clicking on a command button will activate the command and hovering will bring up a tooltip.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer3p6">
+               The top panel also contains buttons to access a command “notebook”, view the command suggestion history, and filter the recommendations based on category. 
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer3p7">
+               The command notebook contains all of the commands the user has ever used and a place to store relevant tips or tricks about the command. These notebook entries are presented beneath the tooltip information when hovering over a command button. Besides seeing personal notes, users could also see notes from a manager or co-workers. Using this mechanism, managers could put company policies and best practices information in their notebooks, and that information would be visible to their entire teams.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer3p8">
+               With the history mechanism the user can see what commands have been suggested in the past. Since after the command has been used once it will no longer appear in the suggestion list, this is a way to revisit previous suggestions.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure14.PNG" style="width:25vw">
+            <div class="caption" id="page8layer3p9">
+                Figure 14. CommunityCommands UI.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer3p10">
+               We have included a command category selector for when a user would like to focus their learning on a particular area of the program. For AutoCAD this list contains items such as File I/O, Rendering, and 3D Modeling. By default commands for all areas are shown. The category of the command is reflected in the color of the close box or push pin.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure15.PNG" style="width:25vw">
+            <div class="caption" id="page8layer3p11">
+                Figure 15. Overall system UI elements.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer3p12">
+               The bar on the individual command buttons (Figure 16) represents the relevance of the command to the user’s current workflow. While doing “long term” recommendations the most relevant overall items will always be at the top of the list. While in “short term” mode, the most relevant commands will be at the top of list, and the length of the bar will indicate how closely related the command is to the commands the user is currently using.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure16.PNG" style="width:25vw">
+            <div class="caption" id="page8layer3p13">
+                Figure 16. Individual suggestion UI elements.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page8layer3p14">
+               To support the design goal of minimal cost for poor suggestions, each command button contains a close button to remove the command from the list, and prevent it from being suggested in the future. To keep a command the pin can be clicked. Clicking on the pin again unpins the item and reveals the close box.
+            </div>
+            <div class="linespace"></div>
+
+            </div>
+            <div class="linespace"></div>
+        </div>
+        <div class="pagenumber">200</div>
+    </div>
 
     <!--/page9layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+        <div class="page pagelayer1" id="page9" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page9layer1p1">
+               To minimize the screen space used, yet remain visible for ambient awareness, the palette can be docked in the unused space beside the command line in the bottom right corner of the application (Figure 17).
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure17.PNG" style="width:25vw">
+            <div class="caption" id="page9layer1p2">
+                Figure 17. CommunityCommands UI docked in the unused space beside the command line interface
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer1p3">Initial User Feedback</div>
+            <div class="paragraph" id="page9layer1p4">
+               We demonstrated a working prototype of the CommunityCommands UI palette to both of the users described above during our on-site survey, and it was very well received. Both participants stated that a constantly updating, task sensitive recommendation list would be beneficial. Also, they agreed that being able to specify recommendations on subtopics (e.g., modeling, annotation, etc.) would allow them to focus on specific areas of improvement. Reviewing past recommendations or pinning current recommendations (as a reminder) was considered important as it would provide flexible opportunity to explore new commands when the user had spare time. We suggested the UI palette be placed beside the command line interface and this was well received, as this space was wasted, even on their 21 inch monitor.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer1p5">DISCUSSION & FUTURE WORK</div>
+            <div class="paragraph" id="page9layer1p6">
+               Our study has shown that the item-based recommendation algorithm works well over previous research approaches. However, there are a number of additional issues to consider. It may be important to have some of the recommendations on the list be unexpected or weird – the assumption being that you want to recommend items the user would not naturally progress to and instead expose a new or rare cluster of functionality. While both of these are useful options, it must be balanced with the number of recommendations a user is willing to browse at any given time. A second issue to consider is the addition of new commands to the software application – this typically happens with new releases. Software vendors may want to “push” commands into the recommendation list since essentially these commands are experiencing a “cold start” as no users have used the commands yet. Entry points could be determined by product designers or by using the beta-customer testing usage patterns that typically precede a software release. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page9layer1p7">
+              The recommendation algorithm could be more adaptive by looking at the adoption rate of commands being suggested. This specific information could be fed back into the recommender where we could overweight the commands that are more highly adopted. In addition, as often found in other recommender based systems, we could allow users to provide explicit feedback on the quality of the individual recommendations and feed this into the algorithm.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page9layer1p8">
+              A limitation of the current design is that once a command is used once, it is never recommended again. Here we could modify the algorithm to reintroduce the command after looking at how frequently and long ago it was used. The user interface could also allow users to dismiss a recommended command for the short term or forever. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page9layer1p9">
+              Future research could investigate recommending higher level tasks to the user. These tasks would contain a collection of commands and sequences of workflows. Similarly, future improvements could inspect short sequences of commands and recommend a single advanced command that could replace the sequence or even an alternative workflow strategy. Also, instead of recommending a command by presenting the command name, we could present images of the effect the command does onto application data. Lastly, a longitudinal study using the CommunityCommands UI and recommendation algorithm would be useful to measure long-term command adoption patterns.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer1p10">CONCLUSION</div>
+            <div class="paragraph" id="page9layer1p11">
+               With CommunityCommands we have adapted modern recommender collaborative filtering algorithms together with rule-based domain knowledge to address the learning problem in complex software applications. To test the algorithms offline we developed the k-tail evaluation system and then conducted a comprehensive user study by generating personalized recommendations for a group of real users. Results showed a 2.1 times improvement in the number of good recommendations over previous research. The ambient user interface was designed to present the recommendations to the user, while satisfying our outlined design principles, and considering the lessons learned from visiting our participants.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer1p12">ACKNOWLEDGEMENTS</div>
+            <div class="paragraph" id="page9layer1p13">
+               The authors thank Joe Konstan for his valuable advice, Chris Willets for collecting the CIP data, and Ramtin Attar for his help with AutoCAD.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer1p13">REFERENCES</div>
+            <div class="paragraph" id="page9layer1p14">
+                1. Abran, A., Khelifi, A., Suryn, W. and Seffah, A. Usability Meanings and Interpretations in ISO standards. Software Quality Journal. 11(4): 325-338.
+            </div>
+            <div class="paragraph" id="page9layer1p15">
+                2. Adomavicius, G., Tuzhilin, A. (2005) Toward the next generation of recommender systems: a survey of the state-of-the-art and possible extensions. Transactions on Knowledge and Data Engineering 17(6): 734-749.
+            </div>
+            <div class="paragraph" id="page9layer1p16">
+                3. Apple Computers iTunes (http://www.apple.com/itunes) Active March 2009.
+            </div>
+            <div class="paragraph" id="page9layer1p17">
+                4. Benyon, D. (1993) Adaptive Systems: a Solution to Usability Problems. Journal of User Modelling and User-Adapted Interaction, 3(1): 65-87.
+            </div>
+            <div class="paragraph" id="page9layer1p18">
+                5. Claypool, M., Le, P., Waseda, M., Brown, D. (2001) Implicit interest indicators, in ACM IUI.p.33-40.
+            </div>
+            <div class="paragraph" id="page9layer1p19">
+                6. Cutrell, E., Czerwinski, M., and Horvitz, E. (2001) Notification, Disruption, and Memory: Effects of Messaging Interruptions on Memory and Performance. ACM CHI. p.263-269.
+            </div>
+            <div class="linespace"></div>
+        </div>
+        <div class="pagenumber">201</div>
+    </div>
     <!--/page9layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer2" id="page9" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page9layer2p1">
+               To minimize the screen space used, yet remain visible for ambient awareness, the palette can be docked in the unused space beside the command line in the bottom right corner of the application (Figure 17).
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure17.PNG" style="width:25vw">
+            <div class="caption" id="page9layer2p2">
+                Figure 17. CommunityCommands UI docked in the unused space beside the command line interface
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer2p3">Initial User Feedback</div>
+            <div class="paragraph" id="page9layer2p4">
+               We demonstrated a working prototype of the CommunityCommands UI palette to both of the users described above during our on-site survey, and it was very well received. Both participants stated that a constantly updating, task sensitive recommendation list would be beneficial. Also, they agreed that being able to specify recommendations on subtopics (e.g., modeling, annotation, etc.) would allow them to focus on specific areas of improvement. Reviewing past recommendations or pinning current recommendations (as a reminder) was considered important as it would provide flexible opportunity to explore new commands when the user had spare time. We suggested the UI palette be placed beside the command line interface and this was well received, as this space was wasted, even on their 21 inch monitor.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer2p5">DISCUSSION & FUTURE WORK</div>
+            <div class="paragraph" id="page9layer2p6">
+               Our study has shown that the item-based recommendation algorithm works well over previous research approaches. However, there are a number of additional issues to consider. It may be important to have some of the recommendations on the list be unexpected or weird – the assumption being that you want to recommend items the user would not naturally progress to and instead expose a new or rare cluster of functionality. While both of these are useful options, it must be balanced with the number of recommendations a user is willing to browse at any given time. A second issue to consider is the addition of new commands to the software application – this typically happens with new releases. Software vendors may want to “push” commands into the recommendation list since essentially these commands are experiencing a “cold start” as no users have used the commands yet. Entry points could be determined by product designers or by using the beta-customer testing usage patterns that typically precede a software release. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page9layer2p7">
+              The recommendation algorithm could be more adaptive by looking at the adoption rate of commands being suggested. This specific information could be fed back into the recommender where we could overweight the commands that are more highly adopted. In addition, as often found in other recommender based systems, we could allow users to provide explicit feedback on the quality of the individual recommendations and feed this into the algorithm.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page9layer2p8">
+              A limitation of the current design is that once a command is used once, it is never recommended again. Here we could modify the algorithm to reintroduce the command after looking at how frequently and long ago it was used. The user interface could also allow users to dismiss a recommended command for the short term or forever. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page9layer2p9">
+              Future research could investigate recommending higher level tasks to the user. These tasks would contain a collection of commands and sequences of workflows. Similarly, future improvements could inspect short sequences of commands and recommend a single advanced command that could replace the sequence or even an alternative workflow strategy. Also, instead of recommending a command by presenting the command name, we could present images of the effect the command does onto application data. Lastly, a longitudinal study using the CommunityCommands UI and recommendation algorithm would be useful to measure long-term command adoption patterns.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer2p10">CONCLUSION</div>
+            <div class="paragraph" id="page9layer2p11">
+               With CommunityCommands we have adapted modern recommender collaborative filtering algorithms together with rule-based domain knowledge to address the learning problem in complex software applications. To test the algorithms offline we developed the k-tail evaluation system and then conducted a comprehensive user study by generating personalized recommendations for a group of real users. Results showed a 2.1 times improvement in the number of good recommendations over previous research. The ambient user interface was designed to present the recommendations to the user, while satisfying our outlined design principles, and considering the lessons learned from visiting our participants.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer2p12">ACKNOWLEDGEMENTS</div>
+            <div class="paragraph" id="page9layer2p13">
+               The authors thank Joe Konstan for his valuable advice, Chris Willets for collecting the CIP data, and Ramtin Attar for his help with AutoCAD.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer2p13">REFERENCES</div>
+            <div class="paragraph" id="page9layer2p14">
+                1. Abran, A., Khelifi, A., Suryn, W. and Seffah, A. Usability Meanings and Interpretations in ISO standards. Software Quality Journal. 11(4): 325-338.
+            </div>
+            <div class="paragraph" id="page9layer2p15">
+                2. Adomavicius, G., Tuzhilin, A. (2005) Toward the next generation of recommender systems: a survey of the state-of-the-art and possible extensions. Transactions on Knowledge and Data Engineering 17(6): 734-749.
+            </div>
+            <div class="paragraph" id="page9layer2p16">
+                3. Apple Computers iTunes (http://www.apple.com/itunes) Active March 2009.
+            </div>
+            <div class="paragraph" id="page9layer2p17">
+                4. Benyon, D. (1993) Adaptive Systems: a Solution to Usability Problems. Journal of User Modelling and User-Adapted Interaction, 3(1): 65-87.
+            </div>
+            <div class="paragraph" id="page9layer2p18">
+                5. Claypool, M., Le, P., Waseda, M., Brown, D. (2001) Implicit interest indicators, in ACM IUI.p.33-40.
+            </div>
+            <div class="paragraph" id="page9layer2p19">
+                6. Cutrell, E., Czerwinski, M., and Horvitz, E. (2001) Notification, Disruption, and Memory: Effects of Messaging Interruptions on Memory and Performance. ACM CHI. p.263-269.
+            </div>
+            <div class="linespace"></div>
+        </div>
+        <div class="pagenumber">201</div>
+    </div>
     <!--/page9layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer3" id="page9" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page9layer3p1">
+               To minimize the screen space used, yet remain visible for ambient awareness, the palette can be docked in the unused space beside the command line in the bottom right corner of the application (Figure 17).
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure17.PNG" style="width:25vw">
+            <div class="caption" id="page9layer3p2">
+                Figure 17. CommunityCommands UI docked in the unused space beside the command line interface
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer3p3">Initial User Feedback</div>
+            <div class="paragraph" id="page9layer3p4">
+               We demonstrated a working prototype of the CommunityCommands UI palette to both of the users described above during our on-site survey, and it was very well received. Both participants stated that a constantly updating, task sensitive recommendation list would be beneficial. Also, they agreed that being able to specify recommendations on subtopics (e.g., modeling, annotation, etc.) would allow them to focus on specific areas of improvement. Reviewing past recommendations or pinning current recommendations (as a reminder) was considered important as it would provide flexible opportunity to explore new commands when the user had spare time. We suggested the UI palette be placed beside the command line interface and this was well received, as this space was wasted, even on their 21 inch monitor.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer3p5">DISCUSSION & FUTURE WORK</div>
+            <div class="paragraph" id="page9layer3p6">
+               Our study has shown that the item-based recommendation algorithm works well over previous research approaches. However, there are a number of additional issues to consider. It may be important to have some of the recommendations on the list be unexpected or weird – the assumption being that you want to recommend items the user would not naturally progress to and instead expose a new or rare cluster of functionality. While both of these are useful options, it must be balanced with the number of recommendations a user is willing to browse at any given time. A second issue to consider is the addition of new commands to the software application – this typically happens with new releases. Software vendors may want to “push” commands into the recommendation list since essentially these commands are experiencing a “cold start” as no users have used the commands yet. Entry points could be determined by product designers or by using the beta-customer testing usage patterns that typically precede a software release. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page9layer3p7">
+              The recommendation algorithm could be more adaptive by looking at the adoption rate of commands being suggested. This specific information could be fed back into the recommender where we could overweight the commands that are more highly adopted. In addition, as often found in other recommender based systems, we could allow users to provide explicit feedback on the quality of the individual recommendations and feed this into the algorithm.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page9layer3p8">
+              A limitation of the current design is that once a command is used once, it is never recommended again. Here we could modify the algorithm to reintroduce the command after looking at how frequently and long ago it was used. The user interface could also allow users to dismiss a recommended command for the short term or forever. 
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page9layer3p9">
+              Future research could investigate recommending higher level tasks to the user. These tasks would contain a collection of commands and sequences of workflows. Similarly, future improvements could inspect short sequences of commands and recommend a single advanced command that could replace the sequence or even an alternative workflow strategy. Also, instead of recommending a command by presenting the command name, we could present images of the effect the command does onto application data. Lastly, a longitudinal study using the CommunityCommands UI and recommendation algorithm would be useful to measure long-term command adoption patterns.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer3p10">CONCLUSION</div>
+            <div class="paragraph" id="page9layer3p11">
+               With CommunityCommands we have adapted modern recommender collaborative filtering algorithms together with rule-based domain knowledge to address the learning problem in complex software applications. To test the algorithms offline we developed the k-tail evaluation system and then conducted a comprehensive user study by generating personalized recommendations for a group of real users. Results showed a 2.1 times improvement in the number of good recommendations over previous research. The ambient user interface was designed to present the recommendations to the user, while satisfying our outlined design principles, and considering the lessons learned from visiting our participants.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer3p12">ACKNOWLEDGEMENTS</div>
+            <div class="paragraph" id="page9layer3p13">
+               The authors thank Joe Konstan for his valuable advice, Chris Willets for collecting the CIP data, and Ramtin Attar for his help with AutoCAD.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page9layer3p13">REFERENCES</div>
+            <div class="paragraph" id="page9layer3p14">
+                1. Abran, A., Khelifi, A., Suryn, W. and Seffah, A. Usability Meanings and Interpretations in ISO standards. Software Quality Journal. 11(4): 325-338.
+            </div>
+            <div class="paragraph" id="page9layer3p15">
+                2. Adomavicius, G., Tuzhilin, A. (2005) Toward the next generation of recommender systems: a survey of the state-of-the-art and possible extensions. Transactions on Knowledge and Data Engineering 17(6): 734-749.
+            </div>
+            <div class="paragraph" id="page9layer3p16">
+                3. Apple Computers iTunes (http://www.apple.com/itunes) Active March 2009.
+            </div>
+            <div class="paragraph" id="page9layer3p17">
+                4. Benyon, D. (1993) Adaptive Systems: a Solution to Usability Problems. Journal of User Modelling and User-Adapted Interaction, 3(1): 65-87.
+            </div>
+            <div class="paragraph" id="page9layer3p18">
+                5. Claypool, M., Le, P., Waseda, M., Brown, D. (2001) Implicit interest indicators, in ACM IUI.p.33-40.
+            </div>
+            <div class="paragraph" id="page9layer3p19">
+                6. Cutrell, E., Czerwinski, M., and Horvitz, E. (2001) Notification, Disruption, and Memory: Effects of Messaging Interruptions on Memory and Performance. ACM CHI. p.263-269.
+            </div>
+            <div class="linespace"></div>
+        </div>
+        <div class="pagenumber">201</div>
+    </div>
 
     <!--/page10layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--<div class="page pagelayer1" id="page19" onclick="modeSelect()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page10layer1p1">
+                7. Czerwinski, M., Cutrell, E., and Horvitz, E. (2000) Instant messaging: Effects of relevance and time. People and Computers XIV: Proceedings of HCI. p.71-76.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                8. Davison, B., and Hirsh, H. (1998) Predicting Sequences of User Actions. the AAAI/ICML Workshop on Predicting the Future: AI Approaches to Time-Series Analysis. AAAI. p.5-12.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                9. Dent, L., Boticario, J., McDermott, J., Mitchell, T., and Zabowski, D. (1992) A Personal Learning Apprentice. AAAI. p.96-103.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                10.Farzan, R., and Brusilovsky, P.. (2006) Social Navigation Support in a Course Recommendation System. Proceedings of Hypermedia and Adaptive WebBased Systems. p.91-100.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                11. Fischer, G. (2001). User Modeling in Human–Computer Interaction. UMUAI. 11(1-2): p.65-86.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                12. Fogarty, J., Hudson, S. E., Atkeson, C. G., Avrahami, D., Forlizzi, J., Kiesler, S., Lee, J. C., and Yang, J. (2005). Predicting human interruptibility with sensors. ACM TOCHI. 12(1): p.119-146.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                13.Gajos, K. Z., Everitt, K., Tan, D.S., Czerwinski, M., and Weld D.S. (2008) Predictability and Accuracy in Adaptive User Interfaces. ACM CHI. p.1271-1274.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                14.Grossman, T., Fitzmaurice, G., and Attar, R. (2009) A Survey of Software Learnability: Metrics, Methodologies and Guidelines. ACM CHI.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                15. Hermens, L.A., and Schlimmer, J.C. (1994) A MachineLearning Apprentice for the Completion of Repetitive Forms. IEEE Expert 9(1): p.28-33.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                16.Hill, W., Stead, L., Rosenstein, M., and Furnas, G. (1995) Recommending And Evaluating Choices in a Virtual Community of Use. ACM CHI. 194 - 201.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                17.Horvitz, E. (1999) Principles of Mixed-Initiative User Interfaces. ACM CHI. p.159-166.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                18.Hsi, I. and Potts, C. (2000). Studying the Evolution and Enhancement of Software Features. IEEE SM. 143-151.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                19.Hsu, Mei-Hua. (2008) A Personalized English Learning Recommender System for ESL Students. Expert Systems with Applications, 34(1): 683-688.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                20.Igarashi, E., and Hughes, J.F. (2001) A Suggestive Interface for 3D Drawing. UIST. p.173-181.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                21.Jones, Karen Spärck (1972) A statistical interpretation of term specificity and its application in retrieval. Journal of Documentation, 60(5): p.493-502.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                22.Knabe, K. (1995). Apple guide: a case study in useraided design of online help. ACM CHI. p.286-287.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                23.Linden, G., Smith, B., and York, J. (2003) Amazon.com recommendations: item-to-item collaborative filtering. Internet Computing, 7(1): p.76-80.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                24.Linton, F., and Schaefer, H. (2000) Recommender Systems for Learning: Building User and Expert Models through Long-Term Observation of Application Use. UMUAI. 10(2-3): p.181-208.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                25.Linton, F., Joy, D., Schaefer, H., and Charron, A.. (2000) OWL: A Recommender System for Organization-Wide Learning. Educational Technology and Society, 3(1): 62-76.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                26. Liu, J., Wong, C.K., and Hui, K.K. (2003) An Adaptive User Interface Based On Personalized Learning. Intelligent Systems, 18(2): 52-57.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                27.McCrickard, S.D., Czerwinski, M., and Bartram, L. (2003) Introduction: design and evaluation of notification user interfaces. Int. J. Human-Computer Studies 8(5): p.509-514.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                28.McGrenere, J., Baecker, R. M., and Booth, K. S. (2007) A Field Evaluation of An Adaptable Two-Interface Design for Feature-Rich Software. TOCHI. 14(1): #3
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                29. McNee, S.M., Kapoor, N., and Konstan, J.A. (2007) Don't look stupid: avoiding pitfalls when recommending research papers. CSCW. p.171-180.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                30.Miller B. N., Albert, I., Lam, S. K., Konstan, J. A., Riedl, J. (2003) MovieLens unplugged: experiences with an occasionally connected recommender system, ACM IUI. p.263-266.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                31. Mitchell, J., and Shneiderman, B. (1989). Dynamic versus static menus: an exploratory comparison. SIGCHI Bull. 20(4): p.33-37
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                32. Owen, D. (1986), Answers first, then questions. In: D. A. Norman and S. W. Draper (eds.), User-Centered System Design, New Perspectives on Human-Computer Interaction. p.361-375
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                33.Paymans, T.F., Lindenberg, J. and Neerincx, M. (2004). Usability trade-offs for adaptive user interfaces: ease of use and learnability, ACM IUI. p.301-303
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                34.Resnick, P., Iacovou, N., Suchak, M., Bergstrom, P., and Riedl, J. (1994) GroupLens: An Open Architecture for Collaborative Filtering of Netnews. CSCW. p.175-186.    
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                35.Salton G., McGill M.J., (1983), Introduction to Modern Information Retrieval'. McGraw-Hill, New York
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                36.Sarwar, B., George, K., Konstan, J., and Riedl, J. (2000) Analysis of Recommendation Algorithms for ECommerce. ACM Electronic Commerce. p.158 - 167.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                37.Shardanand, U., and Maes, P. (1995) Social Information Filtering: Algorithms for Automating Word of Mouth''. ACM CHI. p.210 - 217.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                38.Shen, J., Li, L., Dietterich, T.G., and Herlocker J.L. (2006) A Hybrid Learning System for Recognizing User Tasks from Desktop Activities and Email Messages. IUI. p.86-92
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                39. Shneiderman, B. (1983). Direct Manipulation: A Step Beyond Programming Languages. Computer. 16(8): 57-69.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                40.Shneiderman, B., (1997) Designing the User Interface: Strategies for Effective Human-Computer Interaction. Addison-Wesley Longman Publishing Co., Inc.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                41.Witten I., Cleary, J., and Greenberg, S. (1984). On frequency-based menu-splitting algorithms. Intl. Journal of Man-Machine Studies 21(2): 135-148.
+            </div>
+            <div class="paragraph" id="page10layer1p1">
+                42.Xiao, J., Stasko, J. and Catrambone, R. (2004). An Empirical Study of the Effect of Agent Competence on User Performance and Perception. Joint Conference on Autonomous Agents and Multiagent Systems. p.178-185.
+            </div>
+            <div class="linespace"></div>
+        </div>
+        <div class="pagenumber">202</div>
+    </div>-->
     <!--/page10layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
     <!--/page10layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 </body>
