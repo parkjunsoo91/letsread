@@ -95,10 +95,12 @@ def login():
         user = query_db('select * from users where username = ?', [the_username], one=True)
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
         json_url = os.path.join(SITE_ROOT,'templates', 'TotalHighlight.json')
-        token = open(json_url)
-        stored_json = token.readlines()
-        token.close()
-        db.execute('insert into highlights (uid, pid, json) values (?)', [user['id'], 1, stored_json])
+        f = open(json_url)
+        jsonstring=""
+        for l in f:
+            jsonstring = jsonstring + l.strip()
+        f.close()
+        db.execute('insert into highlights (uid, pid, json) values (?,?,?)', [user['id'], 1, jsonstring])
 
     print the_username, 'has the id', user['id']
 
