@@ -55,30 +55,31 @@
   pointer-events: none;
 }
 
-#page2 {
+.page2 {
   top: 95vw;
 }
-#page3 {
+.page3 {
   top: 182vw;
 }
-#page4 {
+.page4 {
   top: 269vw;
 }
-#page5 {
+.page5 {
   top: 356vw;
 }
-#page6 {
+.page6 {
   top: 443vw;
 }
-#page7 {
+.page7 {
   top: 530vw;
 }
-#page8 {
+.page8 {
   top: 617vw;
 }
-#page9 {
+.page9 {
   top: 704vw;
 }
-#page10 {
+.page10 {
   top: 791vw;
 }
+
