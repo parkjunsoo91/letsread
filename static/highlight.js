@@ -8,24 +8,7 @@ var obj = {
     "p1l1p7":[{"start":0,"end":0,"style":"highlight"},{"start":873,"end":873,"style":"highlight"}]
 };
 
-//Json파일 불러오기
-function loadJSON(uid) {
-    var clientTotal = new XMLHttpRequest();
-    clientTotal.open('GET', '/templates/TotalHighlight.json');
-    clientTotal.onreadystatechange = function() {
-        var totalJSONtxt = clientTotal.responseText;
-    }
-    clientTotal.send();
-    var clientUser = new XMLHttpRequest();
-    clientUser.open('GET', '/templates/' + uid + '.json');
-    clientTotal.onreadystatechange = function() {
-        var userJSONtxt = clientUser.responseText;
-    }
-    clientUser.send();
-
-    totalJSON = JSON.parse(totalJSONtxt);
-    userJSON = JSON.parse(userJSONtxt);
-}
+var totalObj = {"p1l1p1":[{"start":0,"end":0,"style":"grey1"},{"start":178,"end":223,"style":"grey2"},{"start":233,"end":382,"style":"grey2"},{"start":384,"end":520,"style":"grey3"},{"start":679,"end":679,"style":"grey1"}],"p1l1p2":[{"start":0,"end":0,"style":"grey1"},{"start":385,"end":494,"style":"grey1"},{"start":507,"end":507,"style":"grey1"}],"p1l1p3":[{"start":0,"end":0,"style":"grey1"},{"start":145,"end":294,"style":"grey3"},{"start":421,"end":421,"style":"grey1"}],"p1l1p4":[{"start":0,"end":0,"style":"grey1"},{"start":6,"end":29,"style":"grey2"},{"start":71,"end":179,"style":"grey1"},{"start":183,"end":183,"style":"grey1"}],"p1l1p5":[{"start":0,"end":20,"style":"grey1"},{"start":274,"end":274,"style":"grey2"}],"p1l1p6":[{"start":0,"end":0,"style":"grey1"},{"start":343,"end":493,"style":"grey3"},{"start":494,"end":494,"style":"grey1"}],"p1l1p7":[{"start":0,"end":0,"style":"grey1"},{"start":16,"end":33,"style":"grey1"},{"start":35,"end":199,"style":"grey1"},{"start":873,"end":873,"style":"grey1"}]};
 
 //클릭 selection을 둘러싸는 span을 만들어준다.
 //문제점: highlight 된 부분과 안 된 부분을 포함하는 selection에는 적용이 되지 않는다.
@@ -80,6 +63,31 @@ function highlightJSON(pid) {
     var highlightPid = pid.replace("l1","l2");
     document.getElementById(highlightPid).innerHTML = innerHTML;
 }
+
+//JSON 기반으로 template HTML에 highlight넣어주는 함수
+function highlightTotalJSON() {
+    var keys = Object.keys(totalObj);
+    for(i=0;i<keys.length;i++){
+        var pid = keys[i];
+        var len = totalObj[pid].length;
+        var innerHTML = document.getElementById(pid).innerHTML;
+        for (j = len - 2; j >= 0; j--) {
+            var start = totalObj[pid][j].start;
+            var end = totalObj[pid][j].end;
+            //console.log("DEBUG: "+j+ "  "+totalObj[pid][j].style.substring  (0,3));
+            if(totalObj[pid][j].style.substring(0,4) == "grey"){
+                console.log("DEBUG: "+totalObj[pid][j].style);
+                var alpha = Number(totalObj[pid][j].style[4]) * 0.1;
+                console.log("alpha: "+alpha);
+                innerHTML = innerHTML.substring(0, start) + '<span style="background-color:rgba(0, 0, 0, '+alpha+')">' + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
+            }
+            
+        }
+        var highlightPid = pid.replace("l1","l3");
+        document.getElementById(highlightPid).innerHTML = innerHTML;
+    }
+}
+
 //마우스 드래그로 선택시 JSON으로 변환해주는 함수
 function selectToHighlight() {
     var sel = window.getSelection();
@@ -132,7 +140,8 @@ function selectToHighlight() {
 
     obj[pid].splice(spliceIdx, spliceLength, {
         start: newStart,
-        end: newEnd
+        end: newEnd,
+        style: "highlight"
     });
     console.log(spliceIdx + " " + spliceLength + " " + newStart + " " + newEnd + " " + obj[pid].length);
     pushHighlights(pid);
@@ -162,6 +171,7 @@ function modeSelect(){
 
  function loadHighlights()
 {
+    highlightTotalJSON();
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
