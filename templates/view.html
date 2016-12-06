@@ -21,25 +21,6 @@
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
 
     <script>
-        var highlightMode = true;
-        function setHighlightMode(){
-            // @영보 mode 정보 JSON에 넣기
-            highlightMode = true;
-        }
-        function setEraserMode(){
-            // @영보 mode 정보 JSON에 넣기
-            highlightMode = false;
-        }
-
-        function modeSelect(){
-            if(highlightMode){
-                highlighter();
-            }
-            else{
-                eraser();
-            }
-        }
-
         //currently unused.
         var sendID = function() {
             var userid = document.getElementById("userid").value;
@@ -110,7 +91,7 @@
     </div>
 
    <!--/page1layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page" id="page1layer1" onclick="selectToHighlight()">
+    <div class="page" id="page1layer1" onclick="modeSelect()">
         <div class="title" style="font-style: italic">CommunityCommands:</div>
         <div class="title">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
@@ -164,7 +145,7 @@
 
 
 <!--/page1layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page" id="page1layer2" onclick="surroundHighlight()">
+    <div class="page" id="page1layer2" onclick="modeSelect()">
         <div class="title" style="font-style: italic">CommunityCommands:</div>
         <div class="title">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
@@ -217,7 +198,7 @@
     </div>
 
 <!--/page1layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page" id="page1layer3" onclick="surroundHighlight()">
+    <div class="page" id="page1layer3" onclick="modeSelect()">
         <div class="title" style="font-style: italic">CommunityCommands:</div>
         <div class="title">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
