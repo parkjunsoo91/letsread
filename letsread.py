@@ -120,7 +120,7 @@ def logout():
 @app.route('/updateHighlight', methods=['POST'])
 def highlight():
     uid = session['id']
-    high = request.args.get('dochigh')
+    high = request.form.get('dochigh')
     db = get_db()
     db.execute('update highlights set json = () where uid = ()', [high, uid])
     db.commit()
@@ -129,21 +129,25 @@ def highlight():
 #load all highlights when session page loads.
 @app.route('/loadHighlight', methods=['POST'])
 def loadHighlights():
-    uid = session['id']
+    uid = 0
+    if session.get('id'):
+        uid = session['id']
     pid = 1
-    total = request.args.get('total')
-    print "uid is " + uid
-    print "pid is " + pid
-    print "total is " + total
+    total = request.form.get('total')
+    print "uid is " + str(uid)
+    print "pid is " + str(pid)
+    print "total is " + str(total)
     if total == 1:
         highlights = query_db('select * from highlights where pid=?', [pid], one=False)
         if not highlights:
             return jsonify(ok = False, content = None)
         #TODO: combine all highlight data and send the bunch.
-        return jsonify(ok = False, content = None)
+        return jsonify(ok = True, content = None)
     else:
         highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
         if not highlights:
+            print('break1')
             return jsonify(ok = False, content = None)
-    return jsonify(ok = True, content = highlights['json'])
+        print('break2')
+        return jsonify(ok = True, content = highlights['json'])
 

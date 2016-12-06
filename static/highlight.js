@@ -205,7 +205,7 @@ function modeSelect(){
             }
         }
     };
-    xhttp.open("POST", "{{url_for('loadHighlight')}}", true);
+    xhttp.open("POST", "/loadHighlight", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
     xhttp.send("total=1&pid=1");
 }
