@@ -207,5 +207,5 @@ function modeSelect(){
     };
     xhttp.open("POST", "/loadHighlight", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
-    xhttp.send("total=1&pid=1");
+    xhttp.send("total=0&pid=1");
 }

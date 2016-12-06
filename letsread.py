@@ -101,6 +101,7 @@ def login():
             jsonstring = jsonstring + l.strip()
         f.close()
         db.execute('insert into highlights (uid, pid, json) values (?,?,?)', [user['id'], 1, jsonstring])
+        db.commit()
 
     print the_username, 'has the id', user['id']
 
@@ -146,8 +147,7 @@ def loadHighlights():
     else:
         highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
         if not highlights:
-            print('break1')
+            #should be unlogged in person
             return jsonify(ok = False, content = None)
-        print('break2')
         return jsonify(ok = True, content = highlights['json'])
 
