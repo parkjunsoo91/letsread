@@ -136,10 +136,14 @@ def loadHighlights():
     print "pid is " + pid
     print "total is " + total
     if total == 1:
-        highlights = query_db('select * from highlights where pid=?', [pid], one=True)
+        highlights = query_db('select * from highlights where pid=?', [pid], one=False)
+        if not highlights:
+            return jsonify(ok = False, content = None)
+        #TODO: combine all highlight data and send the bunch.
+        return jsonify(ok = False, content = None)
     else:
         highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
-    if not highlights:
-        return jsonify(ok = False, content = None)
+        if not highlights:
+            return jsonify(ok = False, content = None)
     return jsonify(ok = True, content = highlights['json'])
 
