@@ -14,7 +14,9 @@
     <p id="p2"> An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks, but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user works with an expert next to them, who can recommend commands when appropriate.</p>
     <p id="demo"> </p>
     <script>
-    var json = '{"user":{"Aramshim":{"p1":[{"start":0,"end":0},{"start":10,"end":15}]}}}';
+
+    var json = {"p1":[{"start":0,"end":0},{"start":673,"end":673}],
+    "p2":[{"start":0,"end":0},{"start":508,"end":508}]};
     var obj = JSON.parse(json);
     obj.user.Aramshim.p1.push({
         "start": 20,
@@ -47,19 +49,15 @@
     }
 
     //JSON 기반으로 template HTML에 highlight넣어주는 함수
-    function highlightJSON() {
-        var p1 = "p1";
-        var p2 = "p2"; //TODO: json기반으로 있는 id들 모두 인식하기
-        for (i = 0; i < 1; i++) {
-            var len = obj.user.Aramshim.p1.length;
-            console.log("length: " + len);
-            var innerHTML = p1Content
-            for (j = len - 2; j >= 1; j--) {
-                var start = obj.user.Aramshim.p1[j].start;
-                var end = obj.user.Aramshim.p1[j].end;
-                innerHTML = innerHTML.substring(0, start) + "<span class='highlight'>" + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
-                document.getElementById("p1").innerHTML = innerHTML;
-            }
+    function highlightJSON(pid) {
+        var len = obj.user.Aramshim.p1.length;
+        console.log("length: " + len);
+        var innerHTML = p1Content
+        for (j = len - 2; j >= 1; j--) {
+            var start = obj.user.Aramshim.p1[j].start;
+            var end = obj.user.Aramshim.p1[j].end;
+            innerHTML = innerHTML.substring(0, start) + "<span class='highlight'>" + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
+            document.getElementById("p1").innerHTML = innerHTML;
         }
     }
     //마우스 드래그로 선택시 JSON으로 변환해주는 함수
