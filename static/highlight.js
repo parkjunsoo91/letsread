@@ -55,22 +55,20 @@ function eraseHighlight() {
     var range = sel.getRangeAt(0);
     var pid = sel.anchorNode.parentElement.id;
     var eraseIdx = -1;
-    if (range.startOffset == range.endOffset) {
-        var erasePoint = range.startOffset;
-        for (i = 0; i < obj[pid].length; i++) {
-            if(obj[pid][i].start <= erasePoint && erasePoint <= obj[pid][i].end){
-                eraseIdx = i;
-            }
+    var erasePoint = range.startOffset;
+    for (i = 0; i < obj[pid].length; i++) {
+        if(obj[pid][i].start <= erasePoint && erasePoint <= obj[pid][i].end){
+            eraseIdx = i;
         }
-        if(eraseIdx == 0){
-            obj[pid].splice(0, 1, {
-                start: 0,
-                end: 0
-            });
-        }
-        else if(eraseIdx != -1){
-            obj[pid].splice(eraseIdx,1)
-        }
+    }
+    if(eraseIdx == 0){
+        obj[pid].splice(0, 1, {
+            start: 0,
+            end: 0
+        });
+    }
+    else if(eraseIdx != -1){
+        obj[pid].splice(eraseIdx,1)
     }
     highlightJSON(pid);    
 }
