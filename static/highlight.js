@@ -60,7 +60,9 @@ function highlightJSON(pid) {
         var end = obj[pid][j].end;
         innerHTML = innerHTML.substring(0, start) + "<span class='highlight'>" + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
     }
-    var highlightPid = pid.replace("l1","l2");
+    var highlightPid = pid.replace("layer1","layer2");
+    console.log(highlightPid);
+    //console.log(document.getElementById(highlightPid).innerHTML);
     document.getElementById(highlightPid).innerHTML = innerHTML;
 }
 
@@ -83,7 +85,7 @@ function highlightTotalJSON() {
             }
             
         }
-        var highlightPid = pid.replace("l1","l3");
+        var highlightPid = pid.replace("layer1","layer3");
         document.getElementById(highlightPid).innerHTML = innerHTML;
     }
 }
@@ -171,7 +173,7 @@ function modeSelect(){
 
  function loadHighlights()
 {
-    highlightTotalJSON();
+    //highlightTotalJSON();
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -185,6 +187,7 @@ function modeSelect(){
                 console.log(JSON.stringify(obj));
                 var keys = Object.keys(obj);
                 for(i=0;i<keys.length;i++){
+                    console.log("idx: "+i);
                     var pid = keys[i];
                     highlightJSON(pid);
                 }
