@@ -20,12 +20,24 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
 
-    <script>
-        var setHighlightMode = function() {
+    <!-- <script>
+        var highlightMode = true;
+        function setHighlightMode(){
             // @영보 mode 정보 JSON에 넣기
+            highlightMode = true;
         }
-        var setEraserMode = function() {
+        function setEraserMode(){
             // @영보 mode 정보 JSON에 넣기
+            highlightMode = false;
+        }
+
+        function modeSelect(){
+            if(highlightMode){
+                highlighter();
+            }
+            else{
+                eraser();
+            }
         }
 
         //currently unused.
@@ -67,7 +79,7 @@
             xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
             xhttp.send("uid=" + uid + "&pid=" + pid);
         }
-    </script>
+    </script> -->
     <style>
     .highlight {
         background-color: yellow;
@@ -97,7 +109,7 @@
         </span>
     </div>
 
-    <div class="page" onclick="sampleWrapper()">
+    <div class="page" onclick="surroundHighlight()">
         <div class="title" style="font-style: italic">CommunityCommands:</div>
         <div class="title">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
