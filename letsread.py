@@ -42,6 +42,21 @@ def query_db(query, args=(), one=False):
     cur.close()
     return (rv[0] if rv else None) if one else rv
 
+def insert(table, fields=(), values=()):
+    # g.db is the database connection
+    db = get.db()
+    cur = db.cursor()
+    query = 'INSERT INTO %s (%s) VALUES (%s)' % (
+        table,
+        ', '.join(fields),
+        ', '.join(['?'] * len(values))
+    )
+    cur.execute(query, values)
+    db.commit()
+    id = cur.lastrowid
+    cur.close()
+    return id
+
 @app.cli.command('initdb')
 def initdb_command():
     """Initializes the database."""
@@ -78,6 +93,13 @@ def login():
         db.execute('insert into users (username) values (?)', [the_username])
         db.commit()
         user = query_db('select * from users where username = ?', [the_username], one=True)
+        SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
+        json_url = os.path.join(SITE_ROOT,'templates', 'TotalHighlight.json')
+        token = open(json_url)
+        stored_json = token.readlines()
+        token.close()
+        db.execute('insert into highlights (uid, pid, json) values (?)', [user['id'], 1, stored_json])
+
     print the_username, 'has the id', user['id']
 
     session['id'] = user['id']
@@ -93,60 +115,29 @@ def logout():
 
 #client sends highlight request in AJAX.
 #server responds with the same data.
-@app.route('/highlight', methods=['POST'])
+@app.route('/updateHighlight', methods=['POST'])
 def highlight():
-    uid = request.args.get('uid')
-    pid = request.args.get('pid')
-    #TODO: decide what data should be included to indicate highlight location.
-    high = request.args.get('high')
+    uid = session['id']
+    high = request.args.get('dochigh')
     db = get_db()
-    db.execute('insert into highlights (uid, pid, nodeid) values (?,?,?)', 
-                [uid, pid, high])
+    db.execute('update highlights set json = () where uid = ()', [high, uid])
     db.commit()
-    return jsonify(uid=uid, pid=pid, high=high)
+    return jsonify(ok = True)
 
 #load all highlights when session page loads.
-@app.route('/loadHighlights', methods=['POST'])
+@app.route('/loadHighlight', methods=['POST'])
 def loadHighlights():
-    uid = request.args.get('uid')
-    pid = request.args.get('pid')
+    uid = session['id']
+    pid = 1
+    total = request.args.get('total')
     print "uid is " + uid
     print "pid is " + pid
-    highlights = query_db('select * from highlights where pid=?', [pid], one=False)
-    #TODO: decide how to load all highlights.
-    return jsonify(uid=uid, pid=pid) #placeholder return string.
-
-
-'''
-def show_entries():
-    db = get_db()
-    cur = db.execute('select title, text from entries order by id desc')
-    entries = cur.fetchall()
-    return render_template('reader.html', entries=entries)
-
-@app.route('/add', methods=['POST'])
-def add_entry():
-    if not session.get('logged_in'):
-        abort(401)
-    db = get_db()
-    db.execute('insert into entries (title, text) values (?, ?)',
-                 [request.form['title'], request.form['text']])
-    db.commit()
-    flash('New entry was successfully posted')
-    return redirect(url_for('show_entries'))
-
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    error = None
-    if request.method == 'POST':
-        if request.form['username'] != app.config['USERNAME']:
-            error = 'Invalid username'
-        elif request.form['password'] != app.config['PASSWORD']:
-            error = 'Invalid password'
-        else:
-            session['logged_in'] = True
-            flash('You were logged in')
-            return redirect(url_for('show_entries'))
-    return render_template('login.html', error=error)
-'''
+    print "total is " + total
+    if total == 1:
+        highlights = query_db('select * from highlights where pid=?', [pid], one=True)
+    else:
+        highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
+    if not highlights:
+        return jsonify(ok = False, content = None)
+    return jsonify(ok = True, content = highlights['json'])
 
