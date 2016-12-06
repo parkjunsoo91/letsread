@@ -14,12 +14,72 @@
 
     <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='paper.css') }}">  
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='paper.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ui.css') }}">-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
 
+    <script>
+        var highlightMode = true;
+        function setHighlightMode(){
+            // @영보 mode 정보 JSON에 넣기
+            highlightMode = true;
+        }
+        function setEraserMode(){
+            // @영보 mode 정보 JSON에 넣기
+            highlightMode = false;
+        }
+
+        function modeSelect(){
+            if(highlightMode){
+                highlighter();
+            }
+            else{
+                eraser();
+            }
+        }
+
+        //currently unused.
+        var sendID = function() {
+            var userid = document.getElementById("userid").value;
+            var url = "/view"
+            var params = "uid="+userid+"&pid=0&high=0";
+            var http = new XMLHttpRequest();
+            var welcomeString = "  Hi, " + userid + ". Let's read!";
+            http.open("POST", url+"?"+params, true);
+            http.onreadystatechange = function(){
+                if(http.readyState == 4 && http.status == 200) {
+                    //alert(http.responseText);
+                }
+            }
+            http.send(null);
+            $(document).ready(function(){
+                $("#userid").val(welcomeString);
+                $("#loginbutton").html(":)");
+            });
+        }
+
+        function loadHighlights()
+        {
+            //code doesn't work
+            return;
+            var uid = {{session.id}};
+            var pid = 0
+            document.getElementById("")
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                    //get json of all highlights and draw them accordingly
+                    alert("placeholder alert." + this.responseText);
+                    //document.getElementById("demo").innerHTML = this.responseText;
+                }
+            };
+            xhttp.open("POST", "{{url_for('loadHighlights')}}", true);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
+            xhttp.send("uid=" + uid + "&pid=" + pid);
+        }
+    </script>
     <style>
         .highlight {
             background-color: yellow;
@@ -48,20 +108,20 @@
         </span>
     </div>
 
-<!--/page1layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page" id="page1layer1" onclick="surroundHighlight()">
-        <div class="title" style="font-style: italic">CommunityCommands:</div>
-        <div class="title">Command Recommendations for Software Applications</div>
+    <!--/page1layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer1" id="page1" onclick="surroundHighlight()">
+        <div class="title" style="font-style: italic" id="page1layer1p1">CommunityCommands:</div>
+        <div class="title" id="page1layer1p2">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
-        <div class="author">Justin Matejka, Wei Li, Tovi Grossman, George Fitzmaurice</div>
+        <div class="author" id="page1layer1p3">Justin Matejka, Wei Li, Tovi Grossman, George Fitzmaurice</div>
         <div class="linespace"></div>
-        <div class="affiliation">Autodesk Research</div>
-        <div class="affiliation">210 King St. East, Toronto, Ontario, Canada, M5A 1J7</div>
-        <div class="affiliation">{firstname.lastname}@autodesk.com</div>
+        <div class="affiliation" id="page1layer1p4">Autodesk Research</div>
+        <div class="affiliation" id="page1layer1p5">210 King St. East, Toronto, Ontario, Canada, M5A 1J7</div>
+        <div class="affiliation" id="page1layer1p6">{firstname.lastname}@autodesk.com</div>
         <div class="largelinespace"></div>
         <div class="twocolumn">
-            <div class="sectiontitle">ABSTRACT</div>
-            <div class="paragraph" id="p1">
+            <div class="sectiontitle" id="page1layer1p7">ABSTRACT</div>
+            <div class="paragraph" id="page1layer1p8">
                 We explore the use of modern recommender system technology to address the problem of learning software applications. Before
                 describing our new command recommender system, we first define relevant design considerations. We then discuss
                 a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized
@@ -70,14 +130,14 @@
                 to ambiently present command recommendations to users, which has received promising initial user feedback.
             </div>
             <div class="linespace"></div>
-            <div class="sectiontitle">
+            <div class="sectiontitle" id="page1layer1p9">
                 ACM Classification: <span class="paragraph">H5.2 [Information interfaces and presentation]: User Interfaces. - Graphical user interfaces.</span>
             </div>
             <div class="linespace"></div>
-            <div class="sectiontitle">General terms: <span class="paragraph">Design, Human Factors.</span> </div>
+            <div class="sectiontitle" id="page1layer1p10">General terms: <span class="paragraph">Design, Human Factors.</span> </div>
             <div class="linespace"></div>
-            <div class="sectiontitle">INTRODUCTION</div>
-            <div class="paragraph" id="p2">
+            <div class="sectiontitle" id="page1layer1p11">INTRODUCTION</div>
+            <div class="paragraph" id="page1layer1p12">
                 Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each
                 release, more commands might be added, and without explicit effort on the part of the user to learn about
                 new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has
@@ -85,25 +145,25 @@
                 group of users only use between 31 and 40 of them (Figure 1).
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p3">
+            <div class="paragraph" id="page1layer1p13">
                 An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific
                 goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks,
                 but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user
                 works with an expert next to them, who can recommend commands when appropriate.
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p4">
+            <div class="paragraph" id="page1layer1p14">
                 While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current
                 state a user is in, if they require assistance, and how
             </div>
             <div class="extremelinespace"></div>
-            <div class="paragraph" id="p5">
+            <div class="paragraph" id="page1layer1p15">
                 to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on
                 recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented
                 or evaluated, and has important limitations.
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p6">
+            <div class="paragraph" id="page1layer1p16">
                 Systems which recommend content to users, known as “recommender systems” are very popular today in other domains. Some of
                 the most popular movie, shopping, and music websites provide users with personalized recommendations [23,
                 29, 34, 36], and research in improving recommendation algorithms is an active field of research [2]. In this
@@ -111,13 +171,14 @@
                 ommand awareness problem in software applications.
             </div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">
-            <div class="caption" id="c1">
+            <!--<img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">-->
+            <img src="../static/figure1.PNG" style="width:25vw">
+            <div class="caption" id="page1layer1p17">
                 Figure 1. Histogram of the number of commands used by AutoCAD users. The largest group of users only use between 31 and 40
                 commands.
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p7">
+            <div class="paragraph" id="page1layer1p18">
                 Our new system, CommunityCommands, collects usage data from a software system’s user community, and applies recommender system
                 algorithms to generate personalized command recommendations to each user. With CommunityCommands we hope
                 to expose users to commands they are not currently familiar with that will help them use the software more
@@ -142,20 +203,20 @@
     </div>
 
 
-<!--/page1layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page" id="page1layer2" onclick="surroundHighlight()">
-        <div class="title" style="font-style: italic">CommunityCommands:</div>
-        <div class="title">Command Recommendations for Software Applications</div>
+    <!--/page1layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer1" id="page1" onclick="surroundHighlight()">
+        <div class="title" style="font-style: italic" id="page1layer2p1">CommunityCommands:</div>
+        <div class="title" id="page1layer2p2">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
-        <div class="author">Justin Matejka, Wei Li, Tovi Grossman, George Fitzmaurice</div>
+        <div class="author" id="page1layer2p3">Justin Matejka, Wei Li, Tovi Grossman, George Fitzmaurice</div>
         <div class="linespace"></div>
-        <div class="affiliation">Autodesk Research</div>
-        <div class="affiliation">210 King St. East, Toronto, Ontario, Canada, M5A 1J7</div>
-        <div class="affiliation">{firstname.lastname}@autodesk.com</div>
+        <div class="affiliation" id="page1layer2p4">Autodesk Research</div>
+        <div class="affiliation" id="page1layer2p5">210 King St. East, Toronto, Ontario, Canada, M5A 1J7</div>
+        <div class="affiliation" id="page1layer2p6">{firstname.lastname}@autodesk.com</div>
         <div class="largelinespace"></div>
         <div class="twocolumn">
-            <div class="sectiontitle">ABSTRACT</div>
-            <div class="paragraph" id="p1">
+            <div class="sectiontitle" id="page1layer2p7">ABSTRACT</div>
+            <div class="paragraph" id="page1layer2p8">
                 We explore the use of modern recommender system technology to address the problem of learning software applications. Before
                 describing our new command recommender system, we first define relevant design considerations. We then discuss
                 a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized
@@ -164,14 +225,14 @@
                 to ambiently present command recommendations to users, which has received promising initial user feedback.
             </div>
             <div class="linespace"></div>
-            <div class="sectiontitle">
+            <div class="sectiontitle" id="page1layer2p9">
                 ACM Classification: <span class="paragraph">H5.2 [Information interfaces and presentation]: User Interfaces. - Graphical user interfaces.</span>
             </div>
             <div class="linespace"></div>
-            <div class="sectiontitle">General terms: <span class="paragraph">Design, Human Factors.</span> </div>
+            <div class="sectiontitle" id="page1layer2p10">General terms: <span class="paragraph">Design, Human Factors.</span> </div>
             <div class="linespace"></div>
-            <div class="sectiontitle">INTRODUCTION</div>
-            <div class="paragraph" id="p2">
+            <div class="sectiontitle" id="page1layer2p11">INTRODUCTION</div>
+            <div class="paragraph" id="page1layer2p12">
                 Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each
                 release, more commands might be added, and without explicit effort on the part of the user to learn about
                 new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has
@@ -179,25 +240,25 @@
                 group of users only use between 31 and 40 of them (Figure 1).
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p3">
+            <div class="paragraph" id="page1layer2p13">
                 An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific
                 goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks,
                 but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user
                 works with an expert next to them, who can recommend commands when appropriate.
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p4">
+            <div class="paragraph" id="page1layer2p14">
                 While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current
                 state a user is in, if they require assistance, and how
             </div>
             <div class="extremelinespace"></div>
-            <div class="paragraph" id="p5">
+            <div class="paragraph" id="page1layer2p15">
                 to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on
                 recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented
                 or evaluated, and has important limitations.
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p6">
+            <div class="paragraph" id="page1layer2p16">
                 Systems which recommend content to users, known as “recommender systems” are very popular today in other domains. Some of
                 the most popular movie, shopping, and music websites provide users with personalized recommendations [23,
                 29, 34, 36], and research in improving recommendation algorithms is an active field of research [2]. In this
@@ -205,13 +266,14 @@
                 ommand awareness problem in software applications.
             </div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">
-            <div class="caption" id="c1">
+            <!--<img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">-->
+            <img src="../static/figure1.PNG" style="width:25vw">
+            <div class="caption" id="page1layer2p17">
                 Figure 1. Histogram of the number of commands used by AutoCAD users. The largest group of users only use between 31 and 40
                 commands.
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p7">
+            <div class="paragraph" id="page1layer2p18">
                 Our new system, CommunityCommands, collects usage data from a software system’s user community, and applies recommender system
                 algorithms to generate personalized command recommendations to each user. With CommunityCommands we hope
                 to expose users to commands they are not currently familiar with that will help them use the software more
@@ -235,20 +297,20 @@
         <div class="pagenumber">193</div>
     </div>
 
-<!--/page1layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page" id="page1layer3" onclick="surroundHighlight()">
-        <div class="title" style="font-style: italic">CommunityCommands:</div>
-        <div class="title">Command Recommendations for Software Applications</div>
+    <!--/page1layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer3" id="page1" onclick="surroundHighlight()">
+        <div class="title" style="font-style: italic" id="page1layer3p1">CommunityCommands:</div>
+        <div class="title" id="page1layer3p2">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
-        <div class="author">Justin Matejka, Wei Li, Tovi Grossman, George Fitzmaurice</div>
+        <div class="author" id="page1layer3p3">Justin Matejka, Wei Li, Tovi Grossman, George Fitzmaurice</div>
         <div class="linespace"></div>
-        <div class="affiliation">Autodesk Research</div>
-        <div class="affiliation">210 King St. East, Toronto, Ontario, Canada, M5A 1J7</div>
-        <div class="affiliation">{firstname.lastname}@autodesk.com</div>
+        <div class="affiliation" id="page1layer3p4">Autodesk Research</div>
+        <div class="affiliation" id="page1layer3p5">210 King St. East, Toronto, Ontario, Canada, M5A 1J7</div>
+        <div class="affiliation" id="page1layer3p6">{firstname.lastname}@autodesk.com</div>
         <div class="largelinespace"></div>
         <div class="twocolumn">
-            <div class="sectiontitle">ABSTRACT</div>
-            <div class="paragraph" id="p1">
+            <div class="sectiontitle" id="page1layer3p7">ABSTRACT</div>
+            <div class="paragraph" id="page1layer3p8">
                 We explore the use of modern recommender system technology to address the problem of learning software applications. Before
                 describing our new command recommender system, we first define relevant design considerations. We then discuss
                 a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized
@@ -257,14 +319,14 @@
                 to ambiently present command recommendations to users, which has received promising initial user feedback.
             </div>
             <div class="linespace"></div>
-            <div class="sectiontitle">
+            <div class="sectiontitle" id="page1layer3p9">
                 ACM Classification: <span class="paragraph">H5.2 [Information interfaces and presentation]: User Interfaces. - Graphical user interfaces.</span>
             </div>
             <div class="linespace"></div>
-            <div class="sectiontitle">General terms: <span class="paragraph">Design, Human Factors.</span> </div>
+            <div class="sectiontitle" id="page1layer3p10">General terms: <span class="paragraph">Design, Human Factors.</span> </div>
             <div class="linespace"></div>
-            <div class="sectiontitle">INTRODUCTION</div>
-            <div class="paragraph" id="p2">
+            <div class="sectiontitle" id="page1layer3p11">INTRODUCTION</div>
+            <div class="paragraph" id="page1layer3p12">
                 Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each
                 release, more commands might be added, and without explicit effort on the part of the user to learn about
                 new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has
@@ -272,25 +334,25 @@
                 group of users only use between 31 and 40 of them (Figure 1).
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p3">
+            <div class="paragraph" id="page1layer3p13">
                 An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific
                 goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks,
                 but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user
                 works with an expert next to them, who can recommend commands when appropriate.
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p4">
+            <div class="paragraph" id="page1layer3p14">
                 While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current
                 state a user is in, if they require assistance, and how
             </div>
             <div class="extremelinespace"></div>
-            <div class="paragraph" id="p5">
+            <div class="paragraph" id="page1layer3p15">
                 to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on
                 recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented
                 or evaluated, and has important limitations.
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p6">
+            <div class="paragraph" id="page1layer3p16">
                 Systems which recommend content to users, known as “recommender systems” are very popular today in other domains. Some of
                 the most popular movie, shopping, and music websites provide users with personalized recommendations [23,
                 29, 34, 36], and research in improving recommendation algorithms is an active field of research [2]. In this
@@ -298,13 +360,14 @@
                 ommand awareness problem in software applications.
             </div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">
-            <div class="caption" id="c1">
+            <!--<img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">-->
+            <img src="../static/figure1.PNG" style="width:25vw">
+            <div class="caption" id="page1layer3p17">
                 Figure 1. Histogram of the number of commands used by AutoCAD users. The largest group of users only use between 31 and 40
                 commands.
             </div>
             <div class="linespace"></div>
-            <div class="paragraph" id="p7">
+            <div class="paragraph" id="page1layer3p18">
                 Our new system, CommunityCommands, collects usage data from a software system’s user community, and applies recommender system
                 algorithms to generate personalized command recommendations to each user. With CommunityCommands we hope
                 to expose users to commands they are not currently familiar with that will help them use the software more
@@ -327,8 +390,699 @@
         </div>
         <div class="pagenumber">193</div>
     </div>
+    <!--/page2layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer1" id="page2" onclick="surroundHighlight()">
+        <div class="twocolumn">
+            <div class="sectiontitle" id="page2layer1p1">RELATED WORK</div>
+            <div class="sectiontitle" id="page2layer1p2">Adaptive and Intelligent User Interfaces</div>
+            <div class="paragraph" id="page2layer1p3">
+                Previous research has focused on adapting and optimizing the interface to the current user and context [4, 13, 29, 31], and
+                inferring possible operations based on the user's behavior [20]. The domain knowledge base of such systems
+                is often pre-designed and self-contained, and as such requires a large effort to build and maintain. With
+                Community-Commands, the knowledge base is acquired automatically from a large user community and evolves
+                over time.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer1p4">
+                Other intelligent user interfaces are designed to observe and learn from users' actions, and accomplish personalized tasks.
+                Examples include predicting the user's next command [8], automatically completing forms [15], maintaining
+                calendars and emails [9, 17, 38], and assisting users in word processing tasks [26]. Most personal assistance
+                programs analyze repetitive user behaviors, and automate the repetitions; in contrast, our system suggests
+                useful commands that users usually have never used.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer1p5">Notifications and Interuptability</div>
+            <div class="paragraph" id="page2layer1p6">
+                Previous research [6, 7, 27] has demonstrated the harmful effects that notifications can have on a user's task performance.
+                To compensate, there is a large body of work on determining when and how to best interrupt a user [12]. However
+                this is a problem which remains open. CommunityCommands uses an ambient display, where the user can get the
+                information when they are ready, thus avoiding the problems associated with interrupting the user's work
+                flow.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer1p7">Recommender Systems</div>
+            <div class="paragraph" id="page2layer1p8">
+                Recommender systems have become an important approach to help users deal with information overload and provide personalized
+                suggestions [16, 34, 37], and have been successfully applied in both industry and academia. Recommender systems
+                support users by identifying interesting products and services, when the number and diversity of choices
+                outstrips the user's capability of making good decisions. One of the most promising recommending technologies
+                is collaborative filtering [16, 37]. Essentially a nearestneighbor method is applied to a user's ratings,
+                and provides the user with recommendations based on how her likes and dislikes relate to a large user community.
+                Examples of such applications include recommending movies [30], news [34], books [23, 36], music [3], research
+                papers [29], and school courses [10, 19]. However, research has shown that users may be reluctant to provide
+                explicit ratings [5], and so our research considers an implicit rating system for software commands.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer1p9">Recommending Commands</div>
+            <div class="paragraph" id="page2layer1p10">
+                Little research has been conducted to help users learn and explore a complicated software package using a recommender system.
+                Typical approaches to proactively introducing functionality to a user include "Tip of the day", and “Did
+                you know” [32], but these are often irrelevant to the user and are presented in a decontextualized way [11].
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer1p11">
+                The OWL System [24, 25] is one of the few systems we have identified as going beyond these simple solutions. The system,
+                which is meant to run within an organization, compares a user’s command usage to the average usages across
+                the organization. The system would then make a recommendation if a command is being under-utilized or overutilized
+                by an individual in comparison to the group. This algorithm produces recommendations based on the assumption
+                that all users in the community should share the same command usage distribution. It remains arguable whether
+                this is a safe assumption to make, even within an organization, and the OWL system was never fully implemented
+                or evaluated. But across an entire user community, this assumption is unlikely to hold. Users have different
+                tasks, goals, and preferences, and so their recommendations should be personalized [31]. The system which
+                Linton described is the exact type of system which recommender systems were developed to improve upon. Community-Commands
+                uses collaborative filtering to recommend the most relevant commands for each individual user.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer1p12">DESIGN CONSIDERATIONS</div>
+            <div class="paragraph" id="page2layer1p13">
+                There are a number of important design goals to consider when developing a command recommendation system.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer1p14">User Interface Considerations</div>
+            <div class="paragraph" id="page2layer1p15">
+                Unobtrusive. The interface should stay out of the user's way. We avoid a system that pops-up or forces the user to respond
+                to the recommendation before continuing to work, since this type of system could be frustrating [12, 42].
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer1p16">
+                In Context. The system should provide the recommendations within the application [22]. This way a recommendation can be viewed
+                and tested with minimal switching cost.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer1p17">
+                Minimal Cost for Poor Suggestions. The interface should make the task of dealing with poor suggestions, if they do occur,
+                lightweight to minimize frustration, allowing the user to spend more time looking at the good suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer1p18">
+                Self Paced. The user should be able to act on the recommendations when it is convenient for them.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer1p19">Recommender System Considerations</div>
+            <div class="paragraph" id="page2layer1p20">
+                Novel Recommendations. The recommendations should be commands that the user is unfamiliar with. This is in contrast to Linton’s
+                work, where recommendations were also made to increase or decrease existing command usages.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer1p21">
+                Useful Recommendations. The recommended commands also need to be useful for the user. This could mean that the command is
+                useful immediately, or useful at some point in the future given the type of work the user does.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer1p22">
+                The combination of novel and useful recommendations leads to a two-dimensional space (Figure 2).
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure2.PNG" style="width:25vw">
+            <div class="caption" id="page2layer1p23">
+                Figure 2. Map of Good, Poor, and Unnecessary Recommendations.
+            </div>
+        </div>
+        <div class="pagenumber">194</div>
+    </div>
 
+    <!--/page2layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer2" id="page2" onclick="surroundHighlight()">
+        <div class="twocolumn">
+            <div class="sectiontitle" id="page2layer2p1">RELATED WORK</div>
+            <div class="sectiontitle" id="page2layer2p2">Adaptive and Intelligent User Interfaces</div>
+            <div class="paragraph" id="page2layer2p3">
+                Previous research has focused on adapting and optimizing the interface to the current user and context [4, 13, 29, 31], and
+                inferring possible operations based on the user's behavior [20]. The domain knowledge base of such systems
+                is often pre-designed and self-contained, and as such requires a large effort to build and maintain. With
+                Community-Commands, the knowledge base is acquired automatically from a large user community and evolves
+                over time.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer2p4">
+                Other intelligent user interfaces are designed to observe and learn from users' actions, and accomplish personalized tasks.
+                Examples include predicting the user's next command [8], automatically completing forms [15], maintaining
+                calendars and emails [9, 17, 38], and assisting users in word processing tasks [26]. Most personal assistance
+                programs analyze repetitive user behaviors, and automate the repetitions; in contrast, our system suggests
+                useful commands that users usually have never used.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer2p5">Notifications and Interuptability</div>
+            <div class="paragraph" id="page2layer2p6">
+                Previous research [6, 7, 27] has demonstrated the harmful effects that notifications can have on a user's task performance.
+                To compensate, there is a large body of work on determining when and how to best interrupt a user [12]. However
+                this is a problem which remains open. CommunityCommands uses an ambient display, where the user can get the
+                information when they are ready, thus avoiding the problems associated with interrupting the user's work
+                flow.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer2p7">Recommender Systems</div>
+            <div class="paragraph" id="page2layer2p8">
+                Recommender systems have become an important approach to help users deal with information overload and provide personalized
+                suggestions [16, 34, 37], and have been successfully applied in both industry and academia. Recommender systems
+                support users by identifying interesting products and services, when the number and diversity of choices
+                outstrips the user's capability of making good decisions. One of the most promising recommending technologies
+                is collaborative filtering [16, 37]. Essentially a nearestneighbor method is applied to a user's ratings,
+                and provides the user with recommendations based on how her likes and dislikes relate to a large user community.
+                Examples of such applications include recommending movies [30], news [34], books [23, 36], music [3], research
+                papers [29], and school courses [10, 19]. However, research has shown that users may be reluctant to provide
+                explicit ratings [5], and so our research considers an implicit rating system for software commands.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer2p9">Recommending Commands</div>
+            <div class="paragraph" id="page2layer2p10">
+                Little research has been conducted to help users learn and explore a complicated software package using a recommender system.
+                Typical approaches to proactively introducing functionality to a user include "Tip of the day", and “Did
+                you know” [32], but these are often irrelevant to the user and are presented in a decontextualized way [11].
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer2p11">
+                The OWL System [24, 25] is one of the few systems we have identified as going beyond these simple solutions. The system,
+                which is meant to run within an organization, compares a user’s command usage to the average usages across
+                the organization. The system would then make a recommendation if a command is being under-utilized or overutilized
+                by an individual in comparison to the group. This algorithm produces recommendations based on the assumption
+                that all users in the community should share the same command usage distribution. It remains arguable whether
+                this is a safe assumption to make, even within an organization, and the OWL system was never fully implemented
+                or evaluated. But across an entire user community, this assumption is unlikely to hold. Users have different
+                tasks, goals, and preferences, and so their recommendations should be personalized [31]. The system which
+                Linton described is the exact type of system which recommender systems were developed to improve upon. Community-Commands
+                uses collaborative filtering to recommend the most relevant commands for each individual user.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer2p12">DESIGN CONSIDERATIONS</div>
+            <div class="paragraph" id="page2layer2p13">
+                There are a number of important design goals to consider when developing a command recommendation system.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer2p14">User Interface Considerations</div>
+            <div class="paragraph" id="page2layer2p15">
+                Unobtrusive. The interface should stay out of the user's way. We avoid a system that pops-up or forces the user to respond
+                to the recommendation before continuing to work, since this type of system could be frustrating [12, 42].
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer2p16">
+                In Context. The system should provide the recommendations within the application [22]. This way a recommendation can be viewed
+                and tested with minimal switching cost.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer2p17">
+                Minimal Cost for Poor Suggestions. The interface should make the task of dealing with poor suggestions, if they do occur,
+                lightweight to minimize frustration, allowing the user to spend more time looking at the good suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer2p18">
+                Self Paced. The user should be able to act on the recommendations when it is convenient for them.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer2p19">Recommender System Considerations</div>
+            <div class="paragraph" id="page2layer2p20">
+                Novel Recommendations. The recommendations should be commands that the user is unfamiliar with. This is in contrast to Linton’s
+                work, where recommendations were also made to increase or decrease existing command usages.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer2p21">
+                Useful Recommendations. The recommended commands also need to be useful for the user. This could mean that the command is
+                useful immediately, or useful at some point in the future given the type of work the user does.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer2p22">
+                The combination of novel and useful recommendations leads to a two-dimensional space (Figure 2).
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure2.PNG" style="width:25vw">
+            <div class="caption" id="page2layer2p23">
+                Figure 2. Map of Good, Poor, and Unnecessary Recommendations.
+            </div>
+        </div>
+        <div class="pagenumber">194</div>
+    </div>
 
+    <!--/page2layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer3" id="page2" onclick="surroundHighlight()">
+        <div class="twocolumn">
+            <div class="sectiontitle" id="page2layer3p1">RELATED WORK</div>
+            <div class="sectiontitle" id="page2layer3p2">Adaptive and Intelligent User Interfaces</div>
+            <div class="paragraph" id="page2layer3p3">
+                Previous research has focused on adapting and optimizing the interface to the current user and context [4, 13, 29, 31], and
+                inferring possible operations based on the user's behavior [20]. The domain knowledge base of such systems
+                is often pre-designed and self-contained, and as such requires a large effort to build and maintain. With
+                Community-Commands, the knowledge base is acquired automatically from a large user community and evolves
+                over time.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer3p4">
+                Other intelligent user interfaces are designed to observe and learn from users' actions, and accomplish personalized tasks.
+                Examples include predicting the user's next command [8], automatically completing forms [15], maintaining
+                calendars and emails [9, 17, 38], and assisting users in word processing tasks [26]. Most personal assistance
+                programs analyze repetitive user behaviors, and automate the repetitions; in contrast, our system suggests
+                useful commands that users usually have never used.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer3p5">Notifications and Interuptability</div>
+            <div class="paragraph" id="page2layer3p6">
+                Previous research [6, 7, 27] has demonstrated the harmful effects that notifications can have on a user's task performance.
+                To compensate, there is a large body of work on determining when and how to best interrupt a user [12]. However
+                this is a problem which remains open. CommunityCommands uses an ambient display, where the user can get the
+                information when they are ready, thus avoiding the problems associated with interrupting the user's work
+                flow.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer3p7">Recommender Systems</div>
+            <div class="paragraph" id="page2layer3p8">
+                Recommender systems have become an important approach to help users deal with information overload and provide personalized
+                suggestions [16, 34, 37], and have been successfully applied in both industry and academia. Recommender systems
+                support users by identifying interesting products and services, when the number and diversity of choices
+                outstrips the user's capability of making good decisions. One of the most promising recommending technologies
+                is collaborative filtering [16, 37]. Essentially a nearestneighbor method is applied to a user's ratings,
+                and provides the user with recommendations based on how her likes and dislikes relate to a large user community.
+                Examples of such applications include recommending movies [30], news [34], books [23, 36], music [3], research
+                papers [29], and school courses [10, 19]. However, research has shown that users may be reluctant to provide
+                explicit ratings [5], and so our research considers an implicit rating system for software commands.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer3p9">Recommending Commands</div>
+            <div class="paragraph" id="page2layer3p10">
+                Little research has been conducted to help users learn and explore a complicated software package using a recommender system.
+                Typical approaches to proactively introducing functionality to a user include "Tip of the day", and “Did
+                you know” [32], but these are often irrelevant to the user and are presented in a decontextualized way [11].
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer3p11">
+                The OWL System [24, 25] is one of the few systems we have identified as going beyond these simple solutions. The system,
+                which is meant to run within an organization, compares a user’s command usage to the average usages across
+                the organization. The system would then make a recommendation if a command is being under-utilized or overutilized
+                by an individual in comparison to the group. This algorithm produces recommendations based on the assumption
+                that all users in the community should share the same command usage distribution. It remains arguable whether
+                this is a safe assumption to make, even within an organization, and the OWL system was never fully implemented
+                or evaluated. But across an entire user community, this assumption is unlikely to hold. Users have different
+                tasks, goals, and preferences, and so their recommendations should be personalized [31]. The system which
+                Linton described is the exact type of system which recommender systems were developed to improve upon. Community-Commands
+                uses collaborative filtering to recommend the most relevant commands for each individual user.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer3p12">DESIGN CONSIDERATIONS</div>
+            <div class="paragraph" id="page2layer3p13">
+                There are a number of important design goals to consider when developing a command recommendation system.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer3p14">User Interface Considerations</div>
+            <div class="paragraph" id="page2layer3p15">
+                Unobtrusive. The interface should stay out of the user's way. We avoid a system that pops-up or forces the user to respond
+                to the recommendation before continuing to work, since this type of system could be frustrating [12, 42].
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer3p16">
+                In Context. The system should provide the recommendations within the application [22]. This way a recommendation can be viewed
+                and tested with minimal switching cost.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer3p17">
+                Minimal Cost for Poor Suggestions. The interface should make the task of dealing with poor suggestions, if they do occur,
+                lightweight to minimize frustration, allowing the user to spend more time looking at the good suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer3p18">
+                Self Paced. The user should be able to act on the recommendations when it is convenient for them.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page2layer3p19">Recommender System Considerations</div>
+            <div class="paragraph" id="page2layer3p20">
+                Novel Recommendations. The recommendations should be commands that the user is unfamiliar with. This is in contrast to Linton’s
+                work, where recommendations were also made to increase or decrease existing command usages.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer3p21">
+                Useful Recommendations. The recommended commands also need to be useful for the user. This could mean that the command is
+                useful immediately, or useful at some point in the future given the type of work the user does.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page2layer3p22">
+                The combination of novel and useful recommendations leads to a two-dimensional space (Figure 2).
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure2.PNG" style="width:25vw">
+            <div class="caption" id="page2layer3p23">
+                Figure 2. Map of Good, Poor, and Unnecessary Recommendations.
+            </div>
+        </div>
+        <div class="pagenumber">194</div>
+    </div>
+
+    <!--/page3layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer1" id="page3" onclick="surroundHighlight()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page3layer1p1">
+                We consider a good recommendation to be a command that is both useful and novel to the user. A poor recommendation is a command
+                that is not useful to the user. An unnecessary recommendation is a command which is useful to the user, but
+                the user was already familiar with. Unnecessary recommendations can actually be helpful in improving the
+                user's confidence in the system [29], but this is very dependent on the user's expectations. If the expectation
+                is that the system will be suggesting "new" commands which may be useful, commands with which the user is
+                already familiar may be seen as poor suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer1p2">
+                Global and Opportunistic Suggestions. The system should be able to provide global suggestions, based on the user’s entire
+                command history. However, the system could also have some knowledge about what the user is doing at the current
+                moment so it is able to highlight suggestions which may be particularly relevant in the current context.
+                Our work focuses mostly on global suggestions, but we will also discuss issues with opportunistic suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer1p3">
+                Support Different User Communities. The recommender system should be able to base its recommendations on different collections
+                of users. Users may want to see recommendations generated from known expert users, a group of co-workers,
+                or the entire user community of the software.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer1p4">COMMUNITYCOMMANDS</div>
+            <div class="paragraph" id="page3layer1p5">
+                We now describe CommunityCommands, a new system that provides personalized command recommendations using collaborative filtering
+                algorithms. The general idea is to first compare a user’s command frequencies to the entire user population.
+                Our system then generates a top 10 list (although the list size could vary) of recommendations for that user.
+                This top 10 list is presented in an ambient window within the user interface that the user can refer to when
+                convenient (Figure 3).
+            </div>
+            <div class="linespace"></div>
+            <div class="linespace"></div>
+            <img src="../static/figure3.PNG" style="width:25vw">
+            <div class="caption" id="page3layer1p6">
+                Figure 3. CommunityCommands system overview.
+            </div>
+            <div class="linespace"></div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer1p7">Target Application</div>
+            <div class="paragraph" id="page3layer1p8">
+                CommunityCommands is implemented within AutoCAD, a widely used architecture and design software application, made by Autodesk.
+                We felt AutoCAD would be an excellent software package to work with, since it not only has thousands of commands,
+                but also numerous domains of usages. While our work is implemented within AutoCAD, the concepts map to any
+                software where command awareness may be an issue, and its usage varies across users.
+            </div>
+            <div class="linespace"></div>
+            <div class="linespace"></div>
+
+            <div class="sectiontitle" id="page3layer1p9">Command Database</div>
+            <div class="paragraph" id="page3layer1p10">
+                CommunityCommands requires usage data for its users to provide personalized commands. In AutoCAD, command usage histories
+                are collected using a Customer Involvement Program (CIP). The data set we obtained is composed of 40 million
+                {User, Command, Time} tuples collected from 16,000 AutoCAD users over a period of 6 months.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer1p11">The “Ratings”</div>
+            <div class="paragraph" id="page3layer1p12" style="letter-spacing: -0.03vw;">
+                Typical recommender systems depend on a rating system for the items which it recommends. For example, a recommender system
+                for movies may base its recommendations on the number of stars that user’s have assigned to various titles.
+                These ratings can be used to find similar users, identify similar items, and ultimately, make recommendations
+                based on what it predicts would be highly rated by a user.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer1p13" style="letter-spacing: -0.055vw;">
+                Unfortunately, in our domain, no such explicit rating system exists. Instead, we implicitly base a user’s “rating” for any
+                command on the frequency for which that command is used. Our collaborative filtering algorithm then predicts
+                how the user would “rate” the commands which they do not use. In other words, we take a user’s observed commandfrequency
+                table as input, and produce an expected command-frequency table as output.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer1p14">Generating Recommendations</div>
+            <div class="paragraph" id="page3layer1p15">
+                We explored two of the most commonly used collaborative filtering techniques: user-based [34] and item-based [36]. Both of
+                the algorithms discussed have two inputs: the command history for each user in the community, and the command
+                history for the user we are generating a recommendation, which we refer to as the active user.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer1p16">User-Based Collaborative Filtering</div>
+            <div class="paragraph" id="page3layer1p17" style="letter-spacing: -0.03vw;">
+                User-based collaborative filtering generates recommendations for an active user-based on the group of individuals from the
+                community that he/she is most similar to (Figure 4). The algorithm averages this group’s command frequencies,
+                to generate an expected command-frequency table for the active user. The algorithm details are described
+                below.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure4.PNG" style="width:25vw">
+            <div class="caption" id="page3layer1p18">
+                Figure 4. The active user is in red, and his expected frequency table will be compiled from his most similar neighbors (in
+                yellow).
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer1p19">1. Defining Command Vectors</div>
+            <div class="paragraph" id="page3layer1p20">
+                For user-based collaborative filtering we require a method to measure the similarity between two users. A common approach
+                for doing this is to first define a representative vector for each user, and then compare the vectors.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer1p21">
+                A basic method is to define the command vector Vj such that each cell, Vj(i), contains the frequency for which the
+            </div>
+        </div>
+        <div class="pagenumber">195</div>
+    </div>
+    <!--/page3layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer2" id="page3" onclick="surroundHighlight()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page3layer2p1">
+                We consider a good recommendation to be a command that is both useful and novel to the user. A poor recommendation is a command
+                that is not useful to the user. An unnecessary recommendation is a command which is useful to the user, but
+                the user was already familiar with. Unnecessary recommendations can actually be helpful in improving the
+                user's confidence in the system [29], but this is very dependent on the user's expectations. If the expectation
+                is that the system will be suggesting "new" commands which may be useful, commands with which the user is
+                already familiar may be seen as poor suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer2p2">
+                Global and Opportunistic Suggestions. The system should be able to provide global suggestions, based on the user’s entire
+                command history. However, the system could also have some knowledge about what the user is doing at the current
+                moment so it is able to highlight suggestions which may be particularly relevant in the current context.
+                Our work focuses mostly on global suggestions, but we will also discuss issues with opportunistic suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer2p3">
+                Support Different User Communities. The recommender system should be able to base its recommendations on different collections
+                of users. Users may want to see recommendations generated from known expert users, a group of co-workers,
+                or the entire user community of the software.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer2p4">COMMUNITYCOMMANDS</div>
+            <div class="paragraph" id="page3layer2p5">
+                We now describe CommunityCommands, a new system that provides personalized command recommendations using collaborative filtering
+                algorithms. The general idea is to first compare a user’s command frequencies to the entire user population.
+                Our system then generates a top 10 list (although the list size could vary) of recommendations for that user.
+                This top 10 list is presented in an ambient window within the user interface that the user can refer to when
+                convenient (Figure 3).
+            </div>
+            <div class="linespace"></div>
+            <div class="linespace"></div>
+            <img src="../static/figure3.PNG" style="width:25vw">
+            <div class="caption" id="page3layer2p6">
+                Figure 3. CommunityCommands system overview.
+            </div>
+            <div class="linespace"></div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer2p7">Target Application</div>
+            <div class="paragraph" id="page3layer2p8">
+                CommunityCommands is implemented within AutoCAD, a widely used architecture and design software application, made by Autodesk.
+                We felt AutoCAD would be an excellent software package to work with, since it not only has thousands of commands,
+                but also numerous domains of usages. While our work is implemented within AutoCAD, the concepts map to any
+                software where command awareness may be an issue, and its usage varies across users.
+            </div>
+            <div class="linespace"></div>
+            <div class="linespace"></div>
+
+            <div class="sectiontitle" id="page3layer2p9">Command Database</div>
+            <div class="paragraph" id="page3layer2p10">
+                CommunityCommands requires usage data for its users to provide personalized commands. In AutoCAD, command usage histories
+                are collected using a Customer Involvement Program (CIP). The data set we obtained is composed of 40 million
+                {User, Command, Time} tuples collected from 16,000 AutoCAD users over a period of 6 months.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer2p11">The “Ratings”</div>
+            <div class="paragraph" id="page3layer2p12" style="letter-spacing: -0.03vw;">
+                Typical recommender systems depend on a rating system for the items which it recommends. For example, a recommender system
+                for movies may base its recommendations on the number of stars that user’s have assigned to various titles.
+                These ratings can be used to find similar users, identify similar items, and ultimately, make recommendations
+                based on what it predicts would be highly rated by a user.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer2p13" style="letter-spacing: -0.055vw;">
+                Unfortunately, in our domain, no such explicit rating system exists. Instead, we implicitly base a user’s “rating” for any
+                command on the frequency for which that command is used. Our collaborative filtering algorithm then predicts
+                how the user would “rate” the commands which they do not use. In other words, we take a user’s observed commandfrequency
+                table as input, and produce an expected command-frequency table as output.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer2p14">Generating Recommendations</div>
+            <div class="paragraph" id="page3layer2p15">
+                We explored two of the most commonly used collaborative filtering techniques: user-based [34] and item-based [36]. Both of
+                the algorithms discussed have two inputs: the command history for each user in the community, and the command
+                history for the user we are generating a recommendation, which we refer to as the active user.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer2p16">User-Based Collaborative Filtering</div>
+            <div class="paragraph" id="page3layer2p17" style="letter-spacing: -0.03vw;">
+                User-based collaborative filtering generates recommendations for an active user-based on the group of individuals from the
+                community that he/she is most similar to (Figure 4). The algorithm averages this group’s command frequencies,
+                to generate an expected command-frequency table for the active user. The algorithm details are described
+                below.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure4.PNG" style="width:25vw">
+            <div class="caption" id="page3layer2p18">
+                Figure 4. The active user is in red, and his expected frequency table will be compiled from his most similar neighbors (in
+                yellow).
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer2p19">1. Defining Command Vectors</div>
+            <div class="paragraph" id="page3layer2p20">
+                For user-based collaborative filtering we require a method to measure the similarity between two users. A common approach
+                for doing this is to first define a representative vector for each user, and then compare the vectors.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer2p21">
+                A basic method is to define the command vector Vj such that each cell, Vj(i), contains the frequency for which the
+            </div>
+        </div>
+        <div class="pagenumber">195</div>
+    </div>
+
+    <!--/page3layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer3" id="page3" onclick="surroundHighlight()">
+        <div class="twocolumn">
+            <div class="paragraph" id="page3layer3p1">
+                We consider a good recommendation to be a command that is both useful and novel to the user. A poor recommendation is a command
+                that is not useful to the user. An unnecessary recommendation is a command which is useful to the user, but
+                the user was already familiar with. Unnecessary recommendations can actually be helpful in improving the
+                user's confidence in the system [29], but this is very dependent on the user's expectations. If the expectation
+                is that the system will be suggesting "new" commands which may be useful, commands with which the user is
+                already familiar may be seen as poor suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer3p2">
+                Global and Opportunistic Suggestions. The system should be able to provide global suggestions, based on the user’s entire
+                command history. However, the system could also have some knowledge about what the user is doing at the current
+                moment so it is able to highlight suggestions which may be particularly relevant in the current context.
+                Our work focuses mostly on global suggestions, but we will also discuss issues with opportunistic suggestions.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer3p3">
+                Support Different User Communities. The recommender system should be able to base its recommendations on different collections
+                of users. Users may want to see recommendations generated from known expert users, a group of co-workers,
+                or the entire user community of the software.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer3p4">COMMUNITYCOMMANDS</div>
+            <div class="paragraph" id="page3layer3p5">
+                We now describe CommunityCommands, a new system that provides personalized command recommendations using collaborative filtering
+                algorithms. The general idea is to first compare a user’s command frequencies to the entire user population.
+                Our system then generates a top 10 list (although the list size could vary) of recommendations for that user.
+                This top 10 list is presented in an ambient window within the user interface that the user can refer to when
+                convenient (Figure 3).
+            </div>
+            <div class="linespace"></div>
+            <div class="linespace"></div>
+            <img src="../static/figure3.PNG" style="width:25vw">
+            <div class="caption" id="page3layer3p6">
+                Figure 3. CommunityCommands system overview.
+            </div>
+            <div class="linespace"></div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer3p7">Target Application</div>
+            <div class="paragraph" id="page3layer3p8">
+                CommunityCommands is implemented within AutoCAD, a widely used architecture and design software application, made by Autodesk.
+                We felt AutoCAD would be an excellent software package to work with, since it not only has thousands of commands,
+                but also numerous domains of usages. While our work is implemented within AutoCAD, the concepts map to any
+                software where command awareness may be an issue, and its usage varies across users.
+            </div>
+            <div class="linespace"></div>
+            <div class="linespace"></div>
+
+            <div class="sectiontitle" id="page3layer3p9">Command Database</div>
+            <div class="paragraph" id="page3layer3p10">
+                CommunityCommands requires usage data for its users to provide personalized commands. In AutoCAD, command usage histories
+                are collected using a Customer Involvement Program (CIP). The data set we obtained is composed of 40 million
+                {User, Command, Time} tuples collected from 16,000 AutoCAD users over a period of 6 months.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer3p11">The “Ratings”</div>
+            <div class="paragraph" id="page3layer3p12" style="letter-spacing: -0.03vw;">
+                Typical recommender systems depend on a rating system for the items which it recommends. For example, a recommender system
+                for movies may base its recommendations on the number of stars that user’s have assigned to various titles.
+                These ratings can be used to find similar users, identify similar items, and ultimately, make recommendations
+                based on what it predicts would be highly rated by a user.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer3p13" style="letter-spacing: -0.055vw;">
+                Unfortunately, in our domain, no such explicit rating system exists. Instead, we implicitly base a user’s “rating” for any
+                command on the frequency for which that command is used. Our collaborative filtering algorithm then predicts
+                how the user would “rate” the commands which they do not use. In other words, we take a user’s observed commandfrequency
+                table as input, and produce an expected command-frequency table as output.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer3p14">Generating Recommendations</div>
+            <div class="paragraph" id="page3layer3p15">
+                We explored two of the most commonly used collaborative filtering techniques: user-based [34] and item-based [36]. Both of
+                the algorithms discussed have two inputs: the command history for each user in the community, and the command
+                history for the user we are generating a recommendation, which we refer to as the active user.
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer3p16">User-Based Collaborative Filtering</div>
+            <div class="paragraph" id="page3layer3p17" style="letter-spacing: -0.03vw;">
+                User-based collaborative filtering generates recommendations for an active user-based on the group of individuals from the
+                community that he/she is most similar to (Figure 4). The algorithm averages this group’s command frequencies,
+                to generate an expected command-frequency table for the active user. The algorithm details are described
+                below.
+            </div>
+            <div class="linespace"></div>
+            <img src="../static/figure4.PNG" style="width:25vw">
+            <div class="caption" id="page3layer3p18">
+                Figure 4. The active user is in red, and his expected frequency table will be compiled from his most similar neighbors (in
+                yellow).
+            </div>
+            <div class="linespace"></div>
+            <div class="sectiontitle" id="page3layer3p19">1. Defining Command Vectors</div>
+            <div class="paragraph" id="page3layer3p20">
+                For user-based collaborative filtering we require a method to measure the similarity between two users. A common approach
+                for doing this is to first define a representative vector for each user, and then compare the vectors.
+            </div>
+            <div class="linespace"></div>
+            <div class="paragraph" id="page3layer3p21">
+                A basic method is to define the command vector Vj such that each cell, Vj(i), contains the frequency for which the
+            </div>
+        </div>
+        <div class="pagenumber">195</div>
+    </div>
+
+    <!--/page4layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <div class="page pagelayer1" id="page4" onclick="surroundHighlight()">
+        <div class="twocolumn">
+            <div class="sectiontitle" id="page4layer1p1">COMMUNITYCOMMANDS</div>
+            <div class="paragraph" id="page4layer1p2">
+                We now describe CommunityCommands, a new system that provides personalized command recommendations using collaborative filtering
+                algorithms. The general idea is to first compare a user’s command frequencies to the entire user population.
+                Our system then generates a top 10 list (although the list size could vary) of recommendations for that user.
+                This top 10 list is presented in an ambient window within the user interface that the user can refer to when
+                convenient (Figure 3).
+            </div>
+        </div>
+        <div class="pagenumber">195</div>
+    </div>
+    <!--/page4layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page4layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page5layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page5layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page5layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page6layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page6layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page6layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page7layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page7layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page7layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page8layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page8layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page8layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page9layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page9layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page9layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+
+    <!--/page10layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page10layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+    <!--/page10layer3!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
 </body>
 
 </html>
