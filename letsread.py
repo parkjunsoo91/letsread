@@ -121,9 +121,9 @@ def logout():
 @app.route('/updateHighlight', methods=['POST'])
 def highlight():
     uid = session['id']
-    high = request.form.get('dochigh')
+    high = request.form.get('content')
     db = get_db()
-    db.execute('update highlights set json = () where uid = ()', [high, uid])
+    db.execute('update highlights set json = ? where uid = ?', [high, uid])
     db.commit()
     return jsonify(ok = True)
 

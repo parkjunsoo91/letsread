@@ -6,7 +6,7 @@ var obj = {
     "p1l1p4":[{"start":0,"end":0,"style":"highlight"},{"start":183,"end":183,"style":"highlight"}],
     "p1l1p5":[{"start":0,"end":0,"style":"highlight"},{"start":274,"end":274,"style":"highlight"}],
     "p1l1p6":[{"start":0,"end":0,"style":"highlight"},{"start":494,"end":494,"style":"highlight"}],
-    "p1l1p7":[{"start":0,"end":0,"style":"highlight"},{"start":873,"end":873,"style":"highlight"}],
+    "p1l1p7":[{"start":0,"end":0,"style":"highlight"},{"start":873,"end":873,"style":"highlight"}]
 };
 
 function loadContents() {
@@ -70,6 +70,7 @@ function eraseHighlight() {
     else if(eraseIdx != -1){
         obj[pid].splice(eraseIdx,1)
     }
+    pushHighlights(pid);
     highlightJSON(pid);    
 }
 
@@ -97,7 +98,6 @@ function spanToJSON(pid) {
 //JSON 기반으로 template HTML에 highlight넣어주는 함수
 function highlightJSON(pid) {
     var len = obj[pid].length;
-    console.log("length: " + len);
     var innerHTML = document.getElementById(pid).innerHTML;
     for (j = len - 2; j >= 0; j--) {
         var start = obj[pid][j].start;
@@ -105,7 +105,6 @@ function highlightJSON(pid) {
         innerHTML = innerHTML.substring(0, start) + "<span class='highlight'>" + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
     }
     var highlightPid = pid.replace("l1","l2");
-    console.log("layerpid: "+highlightPid);
     document.getElementById(highlightPid).innerHTML = innerHTML;
 }
 //마우스 드래그로 선택시 JSON으로 변환해주는 함수
@@ -163,6 +162,7 @@ function selectToHighlight() {
         end: newEnd
     });
     console.log(spliceIdx + " " + spliceLength + " " + newStart + " " + newEnd + " " + obj[pid].length);
+    pushHighlights(pid);
     highlightJSON(pid);
 }
 
@@ -198,7 +198,13 @@ function modeSelect(){
             if(loadedJson.ok){
                 console.log("Load complete!");
                 obj = loadedJson.content;
+                obj = JSON.parse(obj);
                 console.log(JSON.stringify(obj));
+                var keys = Object.keys(obj);
+                for(i=0;i<keys.length;i++){
+                    var pid = keys[i];
+                    highlightJSON(pid);
+                }
             }
             else{
                 console.log("Load Error");
@@ -208,4 +214,16 @@ function modeSelect(){
     xhttp.open("POST", "/loadHighlight", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
     xhttp.send("total=0&pid=1");
+}
+
+function pushHighlights(pid){
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            log.console("Push done");
+        }
+    };
+    xhttp.open("POST", "/updateHighlight", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
+    xhttp.send("pid="+pid+"&content="+JSON.stringify(obj));
 }
