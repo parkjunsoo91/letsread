@@ -41,25 +41,27 @@
             });
         }
 
-        // function loadHighlights()
-        // {
-        //     //code doesn't work
-        //     return;
-        //     var uid = {{session.id}};
-        //     var pid = 0
-        //     document.getElementById("")
-        //     var xhttp = new XMLHttpRequest();
-        //     xhttp.onreadystatechange = function() {
-        //         if (this.readyState == 4 && this.status == 200) {
-        //             //get json of all highlights and draw them accordingly
-        //             alert("placeholder alert." + this.responseText);
-        //             //document.getElementById("demo").innerHTML = this.responseText;
-        //         }
-        //     };
-        //     xhttp.open("POST", "{{url_for('loadHighlights')}}", true);
-        //     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
-        //     xhttp.send("uid=" + uid + "&pid=" + pid);
-        // }
+        function scrapJSON(){
+            var obj = {};
+            var page = "page";
+            var paragraph = "p"
+            var str = '{';
+            for(i=1;i<=9;i++){
+                j=1;
+                while(document.getElementById(page+i+"layer1"+paragraph+j) != null){
+                    console.log("running");
+                    str += '"'+page+i+"layer1"+paragraph+j+'":';
+                    var ele = document.getElementById(page+i+"layer1"+paragraph+j);
+                    var innerHTML = ele.innerHTML;
+                    var pLength = innerHTML.length + 1;
+                    var pStart=innerHTML.indexOf(ele.innerText.substring(0,1));
+                    str+='[{"start":'+pStart+',"end":'+pStart+',"style":"highlight"},{"start":'+pLength+',"end":'+pLength+',"style":"highlight"}],'
+                    j++;
+                }
+            }
+            str += '}'
+            console.log(str);
+        }
     </script>
     <style>
         .highlight {
@@ -68,7 +70,7 @@
     </style>
 </head>
 
-<body onload="loadHighlights()">
+<body onload="scrapJSON()">
     <div class="toppanel">
         <span class="buttonpanel">
             <button class="uitext button" onclick="setHighlightMode()">Highlighter</button>
@@ -102,8 +104,7 @@
         <div class="largelinespace"></div>
         <div class="twocolumn">
             <div class="sectiontitle" id="page1layer1p7">ABSTRACT</div>
-            <div class="paragraph" id="page1layer1p8">
-                We explore the use of modern recommender system technology to address the problem of learning software applications. Before describing our new command recommender system, we first define relevant design considerations. We then discuss a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates 2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface to ambiently present command recommendations to users, which has received promising initial user feedback.
+            <div class="paragraph" id="page1layer1p8">We explore the use of modern recommender system technology to address the problem of learning software applications. Before describing our new command recommender system, we first define relevant design considerations. We then discuss a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates 2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface to ambiently present command recommendations to users, which has received promising initial user feedback.
             </div>
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer1p9">
@@ -113,16 +114,19 @@
             <div class="sectiontitle" id="page1layer1p10">General terms: <span class="paragraph">Design, Human Factors.</span> </div>
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer1p11">INTRODUCTION</div>
-            <div class="paragraph" id="page1layer1p12">
-                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each release, more commands might be added, and without explicit effort on the part of the user to learn about new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has being growing linearly over time. And even with the thousands of commands available in AutoCAD, the larges group of users only use between 31 and 40 of them (Figure 1).
+            <div class="paragraph" id="page1layer1p12">Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each release, more commands might be added, and without explicit effort on the part of the user to learn about new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has being growing linearly over time. And even with the thousands of commands available in AutoCAD, the largest group of users only use between 31 and 40 of them (Figure 1).
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer1p13">
-                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks, but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user works with an expert next to them, who can recommend commands when appropriate.
+                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific
+                goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks,
+                but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user
+                works with an expert next to them, who can recommend commands when appropriate.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer1p14">
-                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current state a user is in, if they require assistance, and how
+                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current
+                state a user is in, if they require assistance, and how
             </div>
             <div class="extremelinespace"></div>
             <div class="paragraph" id="page1layer1p15">
@@ -185,7 +189,12 @@
         <div class="twocolumn">
             <div class="sectiontitle" id="page1layer2p7">ABSTRACT</div>
             <div class="paragraph" id="page1layer2p8">
-                We explore the use of modern recommender system technology to address the problem of learning software applications. Before describing our new command recommender system, we first define relevant design considerations. We then discuss a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates 2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface to ambiently present command recommendations to users, which has received promising initial user feedback.
+                We explore the use of modern recommender system technology to address the problem of learning software applications. Before
+                describing our new command recommender system, we first define relevant design considerations. We then discuss
+                a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized
+                recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates
+                2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface
+                to ambiently present command recommendations to users, which has received promising initial user feedback.
             </div>
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer2p9">
@@ -196,19 +205,29 @@
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer2p11">INTRODUCTION</div>
             <div class="paragraph" id="page1layer2p12">
-                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each release, more commands might be added, and without explicit effort on the part of the user to learn about new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has being growing linearly over time. And even with the thousands of commands available in AutoCAD, the larges group of users only use between 31 and 40 of them (Figure 1).
+                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each
+                release, more commands might be added, and without explicit effort on the part of the user to learn about
+                new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has
+                being growing linearly over time. And even with the thousands of commands available in AutoCAD, the largest
+                group of users only use between 31 and 40 of them (Figure 1).
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer2p13">
-                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks, but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user works with an expert next to them, who can recommend commands when appropriate.
+                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific
+                goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks,
+                but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user
+                works with an expert next to them, who can recommend commands when appropriate.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer2p14">
-                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current state a user is in, if they require assistance, and how
+                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current
+                state a user is in, if they require assistance, and how
             </div>
             <div class="extremelinespace"></div>
             <div class="paragraph" id="page1layer2p15">
-                to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented or evaluated, and has important limitations.
+                to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on
+                recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented
+                or evaluated, and has important limitations.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer2p16">
@@ -264,7 +283,12 @@
         <div class="twocolumn">
             <div class="sectiontitle" id="page1layer3p7">ABSTRACT</div>
             <div class="paragraph" id="page1layer3p8">
-                We explore the use of modern recommender system technology to address the problem of learning software applications. Before describing our new command recommender system, we first define relevant design considerations. We then discuss a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates 2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface to ambiently present command recommendations to users, which has received promising initial user feedback.
+                We explore the use of modern recommender system technology to address the problem of learning software applications. Before
+                describing our new command recommender system, we first define relevant design considerations. We then discuss
+                a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized
+                recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates
+                2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface
+                to ambiently present command recommendations to users, which has received promising initial user feedback.
             </div>
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer3p9">
@@ -275,19 +299,29 @@
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer3p11">INTRODUCTION</div>
             <div class="paragraph" id="page1layer3p12">
-                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each release, more commands might be added, and without explicit effort on the part of the user to learn about new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has being growing linearly over time. And even with the thousands of commands available in AutoCAD, the larges group of users only use between 31 and 40 of them (Figure 1).
+                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each
+                release, more commands might be added, and without explicit effort on the part of the user to learn about
+                new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has
+                being growing linearly over time. And even with the thousands of commands available in AutoCAD, the largest
+                group of users only use between 31 and 40 of them (Figure 1).
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer3p13">
-                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks, but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user works with an expert next to them, who can recommend commands when appropriate.
+                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific
+                goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks,
+                but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user
+                works with an expert next to them, who can recommend commands when appropriate.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer3p14">
-                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current state a user is in, if they require assistance, and how
+                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current
+                state a user is in, if they require assistance, and how
             </div>
             <div class="extremelinespace"></div>
             <div class="paragraph" id="page1layer3p15">
-                to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented or evaluated, and has important limitations.
+                to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on
+                recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented
+                or evaluated, and has important limitations.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer3p16">
@@ -2204,7 +2238,6 @@
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer1p6">
                The top panel also contains buttons to access a command “notebook”, view the command suggestion history, and filter the recommendations based on category. 
-            </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer1p7">
                The command notebook contains all of the commands the user has ever used and a place to store relevant tips or tricks about the command. These notebook entries are presented beneath the tooltip information when hovering over a command button. Besides seeing personal notes, users could also see notes from a manager or co-workers. Using this mechanism, managers could put company policies and best practices information in their notebooks, and that information would be visible to their entire teams.
@@ -2272,7 +2305,6 @@
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer2p6">
                The top panel also contains buttons to access a command “notebook”, view the command suggestion history, and filter the recommendations based on category. 
-            </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer2p7">
                The command notebook contains all of the commands the user has ever used and a place to store relevant tips or tricks about the command. These notebook entries are presented beneath the tooltip information when hovering over a command button. Besides seeing personal notes, users could also see notes from a manager or co-workers. Using this mechanism, managers could put company policies and best practices information in their notebooks, and that information would be visible to their entire teams.
@@ -2340,7 +2372,6 @@
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer3p6">
                The top panel also contains buttons to access a command “notebook”, view the command suggestion history, and filter the recommendations based on category. 
-            </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer3p7">
                The command notebook contains all of the commands the user has ever used and a place to store relevant tips or tricks about the command. These notebook entries are presented beneath the tooltip information when hovering over a command button. Besides seeing personal notes, users could also see notes from a manager or co-workers. Using this mechanism, managers could put company policies and best practices information in their notebooks, and that information would be visible to their entire teams.
