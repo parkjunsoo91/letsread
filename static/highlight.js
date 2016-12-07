@@ -62,7 +62,6 @@ function highlightJSON(pid) {
     }
     var highlightPid = pid.replace("layer1","layer2");
     console.log(highlightPid);
-    //console.log(document.getElementById(highlightPid).innerHTML);
     document.getElementById(highlightPid).innerHTML = innerHTML;
 }
 
