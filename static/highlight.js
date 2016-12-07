@@ -61,7 +61,7 @@ function highlightJSON(pid) {
         innerHTML = innerHTML.substring(0, start) + "<span class='highlight'>" + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
     }
     var highlightPid = pid.replace("layer1","layer2");
-    console.log(highlightPid);
+    //console.log(highlightPid);
     document.getElementById(highlightPid).innerHTML = innerHTML;
 }
 
@@ -94,15 +94,16 @@ function selectToHighlight() {
     var sel = window.getSelection();
     var range = sel.getRangeAt(0);
     var pid = sel.anchorNode.parentElement.id;
+    var pidEnd = sel.focusNode.parentElement.id;
     var paragraph = sel.anchorNode.parentElement;
     
     var selStart = range.startOffset;
     var selEnd = range.endOffset;
-    if (pid != sel.focusNode.parentElement.id) {
+    if (pid != pidEnd) {
         return;
     }
     sel.removeAllRanges();
-    console.log("selStart: "+selStart+"  selEnd: "+selEnd);
+    console.log("pid: " + pid + "  selStart: "+selStart+"  selEnd: "+selEnd);
     var spliceIdx = 0; //splice시작하는 인덱스
     var spliceLength = 0; //새로운 항목 추가를 위해 삭제하는 엔트리 개수
     var startFix = false;
@@ -186,7 +187,7 @@ function modeSelect(){
                 console.log(JSON.stringify(obj));
                 var keys = Object.keys(obj);
                 for(i=0;i<keys.length;i++){
-                    console.log("idx: "+i);
+                    //console.log("idx: "+i);
                     var pid = keys[i];
                     highlightJSON(pid);
                 }
@@ -205,7 +206,7 @@ function pushHighlights(pid){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
-            log.console("Push done");
+            console.log("Push done");
         }
     };
     xhttp.open("POST", "/updateHighlight", true);
