@@ -92,6 +92,7 @@ def login():
         db = get_db()
         db.execute('insert into users (username) values (?)', [the_username])
         db.commit()
+        '''
         user = query_db('select * from users where username = ?', [the_username], one=True)
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
         json_url = os.path.join(SITE_ROOT,'templates', 'TotalHighlight.json')
@@ -102,6 +103,7 @@ def login():
         f.close()
         db.execute('insert into highlights (uid, pid, json) values (?,?,?)', [user['id'], 1, jsonstring])
         db.commit()
+        '''
 
     print the_username, 'has the id', user['id']
 
@@ -143,11 +145,72 @@ def loadHighlights():
         if not highlights:
             return jsonify(ok = False, content = None)
         #TODO: combine all highlight data and send the bunch.
-        return jsonify(ok = True, content = None)
+        aggregateJsonObject = aggregate(highlights)
+        return jsonify(ok = True, content = jsonify(aggregateJsonObject))
     else:
         highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
         if not highlights:
             #should be unlogged in person
             return jsonify(ok = False, content = None)
+        aggregate([highlights])
         return jsonify(ok = True, content = highlights['json'])
 
+
+#highlightlist is a list of db entries retrieved. each entry is all highlights of a single user.
+#returns aggregateObject, which is totalDict.
+def aggregate(highlightList):
+    totalDict = {}
+    for paragId, highList in highlightList[0]
+    for entry in highlightList:        #for every user
+        print(entry['json'])
+        paragLength = 0
+        for paragId, highList in entry:     #for every paragraph
+            #get paragraph length
+            for high in highList:
+                paragLength = max(high['end'], paraglength)
+            paragChars = [0] * paragLength
+
+            #fill array paragChars with highlight occurence
+            for high in highList:
+                for i in range(high['start'], high['end']):
+                    paragChars[i] += 1
+
+            #proces paragChars into paragHighlightList
+            newHighList = []
+            val = 0
+            newHigh = {}
+            for i in range(len(paragChars)):
+                if val == paragChars[i]:
+                    continue
+                elif val == 0 and paragChars[i] != 0:
+                    #start new highlight
+                    newHigh[start] = i
+                elif val != 0 and paragChars[i] == 0:
+                    #end highlight
+                    newHigh[end] = i-1
+                    newHighList.append(newHigh)
+                    newHigh = {}
+                else:
+                    #end and start highlight
+                    newHigh[end] = i-1
+                    newHighList.append(newHigh)
+                    newHigh = {}
+                    newHigh[start] = i
+                val = paragChars[i]
+                #if unfinished highlight exists, finish it.
+            if val != 0:
+                newHigh[end] = len(paragChars) - 1
+                newHighList.append(newHigh)
+            #now we got the newHighList, add it to totalDict
+
+
+
+
+                
+
+
+
+            for highlight in highList:
+                pass
+    totalJsonObject = json.dumps(totalDict)
+    return totalJsonObject
