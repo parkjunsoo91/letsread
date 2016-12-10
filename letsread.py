@@ -123,6 +123,8 @@ def logout():
 #server responds with the same data.
 @app.route('/updateHighlight', methods=['POST'])
 def highlight():
+    if not session.get('id'):
+        return jsonify(ok = False)
     uid = session['id']
     high = request.form.get('content')
     db = get_db()
@@ -137,107 +139,79 @@ def loadHighlights():
     if session.get('id'):
         uid = session['id']
     pid = 1
-    total = request.form.get('total')
-    print "uid is " + str(uid)
-    print "pid is " + str(pid)
-    print "total is " + total
-    if total == '1':
+    total = int(request.form.get('total'))
+    #layer = int(request.form.get('layer'))
+    print "uid: %d, pid: %d, total %d" % (uid, pid, total)
+    if total == 1:
+        #highlights = query_db('select * from highlights where pid=? and layer=?', [pid, layer], one=False)
         highlights = query_db('select * from highlights where pid=?', [pid], one=False)
-        print type(highlights)
         if not highlights:
             return jsonify(ok = False, content = None)
-        #TODO: combine all highlight data and send the bunch.
-        #test code
         obj = RowsToObj(highlights, uid)
-        #
-        #aggregateJsonObject = aggregate(highlights)
         return jsonify(ok = True, content = obj)
     else:
         highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
         if not highlights:
-            #should be unlogged in person
-            return jsonify(ok = False, content = None)
-        
+            return jsonify(ok = False, content = None)        
         return jsonify(ok = True, content = json.loads(highlights['json']))
-
-
-#highlightlist is a list of db entries retrieved. each entry is all highlights of a single user.
-#returns aggregateObject, which is totalDict.
-def aggregate(highlightList):
-    totalDict = {}
 
 #function that aggregates multiple overlapping highlight data into one weighted highlight data
 #each row is a user highlight about a document on a particular layer.
 #all rows are about the same layer.
 def RowsToObj(rows, uid):
-    print "type(rows) : " + str(type(rows))
-    totalObj = {}
+    HO = {}
+    FO = {}
+    initFOHO(FO, rows)
+    fillFO(FO, rows, uid)
+    FrequencyToHighlight(FO, HO)
+    return HO
+
+def initFOHO(frequencyObj, rows):
+    obj = json.loads(rows[0]['json'])
+    for paragId in obj:
+        frequencyObj[paragId] = {'head': 0, 'tail': 0}
+        head = 65000
+        tail = 0
+        for hl in obj[paragId]:
+            tail = max(hl['end'], tail)
+            head = min(hl['start'], head)
+        frequencyObj[paragId]['histogram'] = [0] * tail
+        frequencyObj[paragId]['head'] = head
+        frequencyObj[paragId]['tail'] = tail
+
+
+def fillFO(frequencyObj, rows, uid):
     for row in rows:
-        print "type(row) : " + str(type(row))
-        print "type(row['json']) : " + str(type(row['json']))
+        if row['uid'] != uid:
+            continue
         obj = json.loads(row['json'])
-        print "type(obj) : "+ str(type(obj))
-        for key in obj:
-            print key
-            print obj[key]
-        if row['uid'] == uid:
-            totalObj = obj
-    return totalObj
+        for paragId in obj:
+            for hl in obj[paragId]:
+                for i in range(hl['start'], hl['end']):
+                    frequencyObj[paragId]['histogram'][i] += 1
 
+def FrequencyToHighlight(FO, HO):
+    for paragId in FO:
+        HO[paragId] = []
+        hist = FO[paragId]['histogram']
+        head = FO[paragId]['head']
+        tail = FO[paragId]['tail']
+        print "head: %d, tail: %d" % (head, tail)
+        thresh = max(hist) / 3
+        start = 0
+        value = 0
+        for i in range(len(hist)):
+            if hist[i] <= thresh:
+                if value > thresh:
+                    HO[paragId].append({'start': start, 'end': i})
+            else:
+                if value <= thresh:
+                    start = i
+                if i == len(hist) - 1:
+                    HO[paragId].append({'start': start, 'end': i + 1})
+            value = hist[i]
 
-'''
-    #for paragId, highList in highlightList[0]
-    for entry in highlightList:        #for every user
-        print(entry['json'])
-        paragLength = 0
-        for paragId, highList in entry:     #for every paragraph
-            #get paragraph length
-            for high in highList:
-                paragLength = max(high['end'], paraglength)
-            paragChars = [0] * paragLength
-
-            #fill array paragChars with highlight occurence
-            for high in highList:
-                for i in range(high['start'], high['end']):
-                    paragChars[i] += 1
-
-            #proces paragChars into paragHighlightList
-            newHighList = []
-            val = 0
-            newHigh = {}
-            for i in range(len(paragChars)):
-                if val == paragChars[i]:
-                    continue
-                elif val == 0 and paragChars[i] != 0:
-                    #start new highlight
-                    newHigh[start] = i
-                elif val != 0 and paragChars[i] == 0:
-                    #end highlight
-                    newHigh[end] = i-1
-                    newHighList.append(newHigh)
-                    newHigh = {}
-                else:
-                    #end and start highlight
-                    newHigh[end] = i-1
-                    newHighList.append(newHigh)
-                    newHigh = {}
-                    newHigh[start] = i
-                val = paragChars[i]
-                #if unfinished highlight exists, finish it.
-            if val != 0:
-                newHigh[end] = len(paragChars) - 1
-                newHighList.append(newHigh)
-            #now we got the newHighList, add it to totalDict
-
-
-
-
-                
-
-
-
-            for highlight in highList:
-                pass
-    totalJsonObject = json.dumps(totalDict)
-    return totalJsonObject
-'''
+        if len(HO[paragId]) == 0 or HO[paragId][0]['start'] > head:
+            HO[paragId].insert(0, {'start': head, 'end': head})
+        if HO[paragId][-1]['end'] < tail:
+            HO[paragId].append({'start': tail, 'end': tail})
