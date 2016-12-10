@@ -1,0 +1,31 @@
+.point {
+    background-color: rgba(255,255,0,0.7);
+}
+
+.like {
+    background-color: rgba(0,255,0,0.7);
+}
+
+.dislike {
+    background-color: rgba(255,102,100,0.7);
+}
+
+.questionable {
+    background-color: rgba(255,153,51,0.7);
+}
+
+.point-bg {
+    background-color: rgba(255,255,0,0.3);
+}
+
+.like-bg {
+    background-color: rgba(0,255,0,0.3);
+}
+
+.dislike-bg {
+    background-color: rgba(255,102,100,0.3);
+}
+
+.questionable-bg {
+    background-color: rgba(255,153,51,0.3);
+}
