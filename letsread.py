@@ -140,17 +140,24 @@ def loadHighlights():
         uid = session['id']
     pid = 1
     total = int(request.form.get('total'))
-    #layer = int(request.form.get('layer'))
+    layer = request.form.get('layer')
+    if layer:
+        layer = int(layer)
     print "uid: %d, pid: %d, total %d" % (uid, pid, total)
     if total == 1:
-        #highlights = query_db('select * from highlights where pid=? and layer=?', [pid, layer], one=False)
-        highlights = query_db('select * from highlights where pid=?', [pid], one=False)
+        if layer:
+            highlights = query_db('select * from highlights where pid=? and layer=?', [pid, layer], one=False)
+        else:
+            highlights = query_db('select * from highlights where pid=?', [pid], one=False)
         if not highlights:
             return jsonify(ok = False, content = None)
         obj = RowsToObj(highlights)
         return jsonify(ok = True, content = obj)
     else:
-        highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
+        if layer:
+            highlights = query_db('select * from highlights where pid=? and uid=? and layer=?', [pid, uid, layer], one=True)
+        else:
+            highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
         if not highlights:
             return jsonify(ok = False, content = None)        
         return jsonify(ok = True, content = json.loads(highlights['json']))
