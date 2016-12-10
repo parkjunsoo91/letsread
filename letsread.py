@@ -147,7 +147,7 @@ def loadHighlights():
         highlights = query_db('select * from highlights where pid=?', [pid], one=False)
         if not highlights:
             return jsonify(ok = False, content = None)
-        obj = RowsToObj(highlights, uid)
+        obj = RowsToObj(highlights)
         return jsonify(ok = True, content = obj)
     else:
         highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
@@ -158,7 +158,7 @@ def loadHighlights():
 #function that aggregates multiple overlapping highlight data into one weighted highlight data
 #each row is a user highlight about a document on a particular layer.
 #all rows are about the same layer.
-def RowsToObj(rows, uid):
+def RowsToObj(rows, uid = 0):
     HO = {}
     FO = {}
     initFOHO(FO, rows)
@@ -180,9 +180,9 @@ def initFOHO(frequencyObj, rows):
         frequencyObj[paragId]['tail'] = tail
 
 
-def fillFO(frequencyObj, rows, uid):
+def fillFO(frequencyObj, rows, uid = 0):
     for row in rows:
-        if row['uid'] != uid:
+        if uid != 0 and row['uid'] != uid:
             continue
         obj = json.loads(row['json'])
         for paragId in obj:
