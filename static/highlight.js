@@ -157,7 +157,7 @@ function modeSelect(){
             if(loadedJson.ok){
                 console.log("Load complete!");
                 obj = loadedJson.content;
-                obj = JSON.parse(obj);
+                //obj = JSON.parse(obj);
                 console.log(JSON.stringify(obj));
                 var keys = Object.keys(obj);
                 for(i=0;i<keys.length;i++){

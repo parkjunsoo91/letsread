@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import json
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, jsonify
 # create our little application :)
@@ -92,7 +93,7 @@ def login():
         db = get_db()
         db.execute('insert into users (username) values (?)', [the_username])
         db.commit()
-        '''
+        
         user = query_db('select * from users where username = ?', [the_username], one=True)
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
         json_url = os.path.join(SITE_ROOT,'templates', 'TotalHighlight.json')
@@ -103,7 +104,7 @@ def login():
         f.close()
         db.execute('insert into highlights (uid, pid, json) values (?,?,?)', [user['id'], 1, jsonstring])
         db.commit()
-        '''
+        
 
     print the_username, 'has the id', user['id']
 
@@ -139,28 +140,53 @@ def loadHighlights():
     total = request.form.get('total')
     print "uid is " + str(uid)
     print "pid is " + str(pid)
-    print "total is " + str(total)
-    if total == 1:
+    print "total is " + total
+    if total == '1':
         highlights = query_db('select * from highlights where pid=?', [pid], one=False)
+        print type(highlights)
         if not highlights:
             return jsonify(ok = False, content = None)
         #TODO: combine all highlight data and send the bunch.
-        aggregateJsonObject = aggregate(highlights)
-        return jsonify(ok = True, content = jsonify(aggregateJsonObject))
+        #test code
+        obj = RowsToObj(highlights, uid)
+        #
+        #aggregateJsonObject = aggregate(highlights)
+        return jsonify(ok = True, content = obj)
     else:
         highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
         if not highlights:
             #should be unlogged in person
             return jsonify(ok = False, content = None)
-        aggregate([highlights])
-        return jsonify(ok = True, content = highlights['json'])
+        
+        return jsonify(ok = True, content = json.loads(highlights['json']))
 
 
 #highlightlist is a list of db entries retrieved. each entry is all highlights of a single user.
 #returns aggregateObject, which is totalDict.
 def aggregate(highlightList):
     totalDict = {}
-    for paragId, highList in highlightList[0]
+
+#function that aggregates multiple overlapping highlight data into one weighted highlight data
+#each row is a user highlight about a document on a particular layer.
+#all rows are about the same layer.
+def RowsToObj(rows, uid):
+    print "type(rows) : " + str(type(rows))
+    totalObj = {}
+    for row in rows:
+        print "type(row) : " + str(type(row))
+        print "type(row['json']) : " + str(type(row['json']))
+        obj = json.loads(row['json'])
+        print "type(obj) : "+ str(type(obj))
+        for key in obj:
+            print key
+            print obj[key]
+        if row['uid'] == uid:
+            totalObj = obj
+    return totalObj
+
+
+'''
+    #for paragId, highList in highlightList[0]
     for entry in highlightList:        #for every user
         print(entry['json'])
         paragLength = 0
@@ -214,3 +240,4 @@ def aggregate(highlightList):
                 pass
     totalJsonObject = json.dumps(totalDict)
     return totalJsonObject
+'''
