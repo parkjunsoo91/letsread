@@ -79,7 +79,6 @@ def root():
 
 @app.route('/tutorial')
 def tutorial():
-    print("fuuuuuuuuuuuuuuuuuuuuuuuuck")
     return render_template('tutorial.html')
 
 @app.route('/view')
@@ -109,7 +108,8 @@ def login():
         for l in f:
             jsonstring = jsonstring + l.strip()
         f.close()
-        db.execute('insert into highlights (uid, pid, json) values (?,?,?)', [user['id'], 1, jsonstring])
+        for i in [1,2,3,4]:
+            db.execute('insert into highlights (uid, pid, layer, json) values (?,?,?,?)', [user['id'], 1, i, jsonstring])
         db.commit()
         
 
