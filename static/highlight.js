@@ -138,7 +138,7 @@ function setHighlightMode(num){
     // @영보 mode 정보 JSON에 넣기
     toolNum = num;
     highlightMode = true;
-    console.log("Mode: Highlight" + num);
+    console.log("Mode: Highlight" + toolNum);
 }
 function setEraserMode(){
     // @영보 mode 정보 JSON에 넣기
@@ -163,27 +163,23 @@ function modeSelect(){
         if (this.readyState == 4 && this.status == 200) {
             //get json of all highlights and draw them accordingly
             alert("placeholder alert." + this.responseText);
-            var loadedJson = JSON.parse(this.responseText);
-            if(loadedJson.ok){
-                console.log("Load complete!");
-                obj[0] = loadedJson.content;
-                obj[1] = loadedJson.content;
-                obj[2] = loadedJson.content;
-                obj[3] = loadedJson.content;
-                //obj = JSON.parse(obj);
-                //console.log(JSON.stringify(obj));
-                var layers = Object.keys(obj);
-                for(layerIdx = 0;layerIdx<layers.length;layerIdx++){
-                    var keys = Object.keys(obj[layerIdx]);
+            for(objNum=0;objNum<4;objNum++){
+                var loadedJson = JSON.parse(this.responseText);
+                if(loadedJson.ok){
+                    console.log("Load complete!");
+                    obj[objNum] = loadedJson.content;
+                    //obj = JSON.parse(obj);
+                    //console.log(JSON.stringify(obj));
+                    var keys = Object.keys(obj[objNum]);
                     for(i=0;i<keys.length;i++){
                         var pid = keys[i];
                         console.log("pid: "+pid) ;
-                        highlightJSON(pid, layerIdx + 2);
+                        highlightJSON(pid, objNum + 2);
                     }
                 }
-            }
-            else{
-                console.log("Load Error");
+                else{
+                    console.log("Load Error");
+                }
             }
         }
     };
