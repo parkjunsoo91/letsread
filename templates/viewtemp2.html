@@ -66,6 +66,7 @@
                 event.preventDefault();
             }, true);
         };        
+        enableColor();
     </script>
     <script>
         var changecurrentcolor1 = function(){
@@ -163,7 +164,7 @@
         {% if not session.id %}
             <!--input class="uitext textinput" type="text" id="userid"></input>
             <button class="uitext button login" id="loginbutton" onclick="sendID()">Login</button-->
-            <form action="" method=post class="inline" onsubmit="enableColor()">
+            <form action="" method=post class="inline">
                 <input class="uitext textinput" type="text" id="userid" name="username">
                 <input class="uitext button login" id="loginbutton" type="submit" value="Login">
             </form>
