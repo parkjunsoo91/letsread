@@ -1,5 +1,7 @@
-var obj;
-
+var obj = [0,0,0,0];
+var highlightMode = true;
+var toolNum = 0;
+var className = ["point", "like", "dislike", "questionable", "point-bg", "like-bg", "dislike-bg", "questionable-bg"];
 var totalObj;
 
 function eraseHighlight() {
@@ -8,35 +10,43 @@ function eraseHighlight() {
     var pid = sel.anchorNode.parentElement.id;
     var eraseIdx = -1;
     var erasePoint = range.startOffset;
-    for (i = 0; i < obj[pid].length; i++) {
-        if(obj[pid][i].start <= erasePoint && erasePoint <= obj[pid][i].end){
-            eraseIdx = i;
+    for(allNum = 0;allNum<4;allNum++){
+        for (i = 0; i < obj[allNum][pid].length; i++) {
+            if(obj[allNum][pid][i].start <= erasePoint && erasePoint <= obj[allNum][pid][i].end){
+                eraseIdx = i;
+            }
+        }
+        if(eraseIdx == 0){
+            obj[allNum][pid].splice(0, 1, {
+                start: 0,
+                end: 0
+            });
+        }
+        else if(eraseIdx != -1){
+            obj[allNum][pid].splice(eraseIdx,1)
         }
     }
-    if(eraseIdx == 0){
-        obj[pid].splice(0, 1, {
-            start: 0,
-            end: 0
-        });
-    }
-    else if(eraseIdx != -1){
-        obj[pid].splice(eraseIdx,1)
-    }
     pushHighlights(pid);
-    highlightJSON(pid);    
+    for(i = 2;i<=5;i++){
+        highlightJSON(pid,i); 
+    }   
 }
 
 //JSON 기반으로 template HTML에 highlight넣어주는 함수
-function highlightJSON(pid) {
-    var len = obj[pid].length;
+function highlightJSON(pid, layerNum) {
+    console.log("pid: " + pid + "  layerNum: " + layerNum);
+    var len = obj[layerNum-2][pid].length;
+    console.log("len: " + len);
     var innerHTML = document.getElementById(pid).innerHTML;
     for (j = len - 2; j >= 0; j--) {
-        var start = obj[pid][j].start;
-        var end = obj[pid][j].end;
-        innerHTML = innerHTML.substring(0, start) + "<span class='questionable'>" + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
+        var start = obj[layerNum-2][pid][j].start;
+        var end = obj[layerNum-2][pid][j].end;
+        innerHTML = innerHTML.substring(0, start) + "<span class='"+className[layerNum-2]+"'>" + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
     }
-    var highlightPid = pid.replace("layer1","layer2");
-    //console.log(highlightPid);
+    console.log("innerHTML: " + innerHTML);
+    var highlightPid = pid.replace("layer1","layer"+layerNum);
+    console.log("highlightPid: " + highlightPid);
+    console.log("null?: " + document.getElementById(highlightPid).innerHTML);
     document.getElementById(highlightPid).innerHTML = innerHTML;
 }
 
@@ -87,48 +97,48 @@ function selectToHighlight() {
     var newEnd = selEnd;
 
     console.log(selStart + " " + selEnd);
-    for (i = 0; i < obj[pid].length; i++) {
-        console.log(i + "th " + obj[pid][i].start + " " + obj[pid][i].end);
-        if (!startFix && obj[pid][i].start <= selStart) {
-            if (obj[pid][i].end >= selStart) {
-                newStart = obj[pid][i].start;
+    for (i = 0; i < obj[toolNum][pid].length; i++) {
+        console.log(i + "th " + obj[toolNum][pid][i].start + " " + obj[toolNum][pid][i].end);
+        if (!startFix && obj[toolNum][pid][i].start <= selStart) {
+            if (obj[toolNum][pid][i].end >= selStart) {
+                newStart = obj[toolNum][pid][i].start;
             }
-        } else if (!startFix && obj[pid][i].start > selStart) {
+        } else if (!startFix && obj[toolNum][pid][i].start > selStart) {
             startFix = true;
         }
-        if (!endFix && obj[pid][i].end >= selEnd) {
-            if (obj[pid][i].start <= selEnd) {
-                newEnd = obj[pid][i].end;
+        if (!endFix && obj[toolNum][pid][i].end >= selEnd) {
+            if (obj[toolNum][pid][i].start <= selEnd) {
+                newEnd = obj[toolNum][pid][i].end;
             }
             endFix = true;
         }
     }
     startFix = false;
-    for (i = 0; i < obj[pid].length; i++) {
-        if (!startFix && newStart <= obj[pid][i].start) {
+    for (i = 0; i < obj[toolNum][pid].length; i++) {
+        if (!startFix && newStart <= obj[toolNum][pid][i].start) {
             spliceIdx = i;
             startFix = true;
         }
-        if (newEnd >= obj[pid][i].end) {
+        if (newEnd >= obj[toolNum][pid][i].end) {
             spliceLength = i + 1;
         }
     }
     spliceLength -= spliceIdx;
 
-    obj[pid].splice(spliceIdx, spliceLength, {
+    obj[toolNum][pid].splice(spliceIdx, spliceLength, {
         start: newStart,
         end: newEnd
     });
-    console.log(spliceIdx + " " + spliceLength + " " + newStart + " " + newEnd + " " + obj[pid].length);
+    console.log(spliceIdx + " " + spliceLength + " " + newStart + " " + newEnd + " " + obj[toolNum][pid].length);
     pushHighlights(pid);
-    highlightJSON(pid);
+    highlightJSON(pid, toolNum+2);
 }
 
-var highlightMode = true;
-function setHighlightMode(){
+function setHighlightMode(num){
     // @영보 mode 정보 JSON에 넣기
+    toolNum = num;
     highlightMode = true;
-    console.log("Mode: Highlight");
+    console.log("Mode: Highlight" + toolNum);
 }
 function setEraserMode(){
     // @영보 mode 정보 JSON에 넣기
@@ -153,21 +163,23 @@ function modeSelect(){
         if (this.readyState == 4 && this.status == 200) {
             //get json of all highlights and draw them accordingly
             alert("placeholder alert." + this.responseText);
-            var loadedJson = JSON.parse(this.responseText);
-            if(loadedJson.ok){
-                console.log("Load complete!");
-                obj = loadedJson.content;
-                //obj = JSON.parse(obj);
-                console.log(JSON.stringify(obj));
-                var keys = Object.keys(obj);
-                for(i=0;i<keys.length;i++){
-                    //console.log("idx: "+i);
-                    var pid = keys[i];
-                    highlightJSON(pid);
+            for(objNum=0;objNum<4;objNum++){
+                var loadedJson = JSON.parse(this.responseText);
+                if(loadedJson.ok){
+                    console.log("Load complete!");
+                    obj[objNum] = loadedJson.content;
+                    //obj = JSON.parse(obj);
+                    //console.log(JSON.stringify(obj));
+                    var keys = Object.keys(obj[objNum]);
+                    for(i=0;i<keys.length;i++){
+                        var pid = keys[i];
+                        console.log("pid: "+pid) ;
+                        highlightJSON(pid, objNum + 2);
+                    }
                 }
-            }
-            else{
-                console.log("Load Error");
+                else{
+                    console.log("Load Error");
+                }
             }
         }
     };
@@ -185,5 +197,5 @@ function pushHighlights(pid){
     };
     xhttp.open("POST", "/updateHighlight", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
-    xhttp.send("pid="+pid+"&content="+JSON.stringify(obj));
+    xhttp.send("pid="+pid+"&content="+JSON.stringify(obj[toolNum]));
 }
