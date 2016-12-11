@@ -8,7 +8,6 @@
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='highlight.css') }}">
 
     <script>
         //currently unused.
@@ -32,40 +31,36 @@
         }
     </script>
     <script>
-        var isLoggedIn = 0;
-        var enableColor = function(){
-            isLoggedIn = 1;
-        }
         window.addEventListener("keydown", function (event) {
-            if (event.defaultPrevented) {
-                return; // Do nothing if the event was already processed
-            }
-            switch (event.key) {
-                case "1":
-                    setHighlightMode(0);
-                    changecurrentcolor1();
-                break;
-                case "2":
-                    setHighlightMode(1);
-                    changecurrentcolor2(); 
-                break;
-                case "3":
-                    setHighlightMode(2);
-                    changecurrentcolor3();
-                break;
-                case "4":
-                    setHighlightMode(3);
-                    changecurrentcolor4();
-                break;
-                case "5":
-                    setEraserMode();
-                    changecurrentcolor5();
-                break;
-                default:
-                return; // Quit when this doesn't handle the key event.
-            }
-            // Cancel the default action to avoid it being handled twice
-            event.preventDefault();
+        if (event.defaultPrevented) {
+            return; // Do nothing if the event was already processed
+        }
+        switch (event.key) {
+            case "1":
+                // Do something 
+                changecurrentcolor1();
+            break;
+            case "2":
+                // Do something
+                changecurrentcolor2(); 
+            break;
+            case "3":
+                // Do something 
+                changecurrentcolor3();
+            break;
+            case "4":
+                // Do something 
+                changecurrentcolor4();
+            break;
+            case "5":
+                // Do something 
+                changecurrentcolor5();
+            break;
+            default:
+            return; // Quit when this doesn't handle the key event.
+        }
+        // Cancel the default action to avoid it being handled twice
+        event.preventDefault();
         }, true);
     </script>
     <script>
@@ -95,14 +90,14 @@
         margin-bottom: 2vw;padding-top: 6vw;padding-left: 5.7vw;padding-right: 5.7vw;padding-bottom: 1vw;position: absolute;left: 15vw;}
         .twocolumn {-webkit-column-count: 2;-moz-column-count: 2;column-count: 2;-moz-column-fill: auto;column-fill: auto;column-gap: 2.5vw;line-height: 1.25vw;}
         .pagelayer1 {z-index: 8;box-shadow: 0px 0px 10px #000000;}
-        .pagelayer2 {z-index: 7;color:white;pointer-events: none; opacity:1;}
-        .pagelayer3 {z-index: 6;color: white;pointer-events: none; opacity:1;}
-        .pagelayer4 {z-index: 5;color: white;pointer-events: none; opacity:1;}
-        .pagelayer5 {z-index: 4;color: white;pointer-events: none; opacity:1;}
-        .pagelayer6 {z-index: 3;color: white;pointer-events: none; opacity:1;}
-        .pagelayer7 {z-index: 2;color: white;pointer-events: none; opacity:1;}
-        .pagelayer8 {z-index: 1;color: white;pointer-events: none; opacity:1;}
-        .pagelayer9 {z-index: 0;background-color: white;color: white;pointer-events: none; opacity:1;}
+        .pagelayer2 {z-index: 7;color:white;pointer-events: none;}
+        .pagelayer3 {z-index: 6;color: white;pointer-events: none;}
+        .pagelayer4 {z-index: 5;color: white;pointer-events: none;}
+        .pagelayer5 {z-index: 4;color: white;pointer-events: none;}
+        .pagelayer6 {z-index: 3;color: white;pointer-events: none;}
+        .pagelayer7 {z-index: 2;color: white;pointer-events: none;}
+        .pagelayer8 {z-index: 1;color: white;pointer-events: none;}
+        .pagelayer9 {z-index: 0;background-color: white;color: white;pointer-events: none;}
         .page2 {top: 94vw;}
         .page3 {top: 181vw;} /*87vw*/
         .page4 {top: 268vw;}
@@ -152,10 +147,10 @@
 
 <body onload="loadHighlights()">
     <div>
-        <button class="uitext2 sidebutton buttonhigh1" onclick="changecurrentcolor1();setHighlightMode(0);">   <span style="color:grey;">[1]</span></button>
-        <button class="uitext2 sidebutton buttonhigh2" onclick="changecurrentcolor2();setHighlightMode(1);">:) <span style="color:grey;">[2]</span></button>
-        <button class="uitext2 sidebutton buttonhigh3" onclick="changecurrentcolor3();setHighlightMode(2);">:( <span style="color:grey;">[3]</span></button>
-        <button class="uitext2 sidebutton buttonhigh4" onclick="changecurrentcolor4();setHighlightMode(3);">? <span style="color:grey;">[4]</span></button>
+        <button class="uitext2 sidebutton buttonhigh1" onclick="changecurrentcolor1();setHighlightMode();">   <span style="color:grey;">[1]</span></button>
+        <button class="uitext2 sidebutton buttonhigh2" onclick="changecurrentcolor2();setHighlightMode();">:) <span style="color:grey;">[2]</span></button>
+        <button class="uitext2 sidebutton buttonhigh3" onclick="changecurrentcolor3();setHighlightMode();">:( <span style="color:grey;">[3]</span></button>
+        <button class="uitext2 sidebutton buttonhigh4" onclick="changecurrentcolor4();setHighlightMode();">? <span style="color:grey;">[4]</span></button>
         <button class="uitext2 sidebutton buttonerase" onclick="changecurrentcolor5();setEraserMode();">X <span style="color:grey;">[5]</span></button>
         <button class="uitext2 sidebutton buttonhigh5" id="currentcolorbutton"></button>
     </div>
@@ -166,7 +161,7 @@
             <button class="uitext button login" id="loginbutton" onclick="sendID()">Login</button-->
             <form action="{{url_for('login') }}" method=post class="inline">
                 <input class="uitext textinput" type="text" id="userid" name="username">
-                <input class="uitext button login" id="loginbutton" type="submit" value="Login" onclick="enableColor()">
+                <input class="uitext button login" id="loginbutton" type="submit" value="Login">
             </form>
         {% else %}
             <span class="uitext textinput">welcome, {{name}}!
