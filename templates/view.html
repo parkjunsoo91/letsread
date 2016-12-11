@@ -32,37 +32,39 @@
         }
     </script>
     <script>
-        window.addEventListener("keydown", function (event) {
-        if (event.defaultPrevented) {
-            return; // Do nothing if the event was already processed
+        var enableColor = function(){
+            window.addEventListener("keydown", function (event) {
+                if (event.defaultPrevented) {
+                    return; // Do nothing if the event was already processed
+                }
+                switch (event.key) {
+                    case "1":
+                        setHighlightMode(0);
+                        changecurrentcolor1();
+                    break;
+                    case "2":
+                        setHighlightMode(1);
+                        changecurrentcolor2(); 
+                    break;
+                    case "3":
+                        setHighlightMode(2);
+                        changecurrentcolor3();
+                    break;
+                    case "4":
+                        setHighlightMode(3);
+                        changecurrentcolor4();
+                    break;
+                    case "5":
+                        setEraserMode();
+                        changecurrentcolor5();
+                    break;
+                    default:
+                    return; // Quit when this doesn't handle the key event.
+                }
+                // Cancel the default action to avoid it being handled twice
+                event.preventDefault();
+            }, true);
         }
-        switch (event.key) {
-            case "1":
-                setHighlightMode(0);
-                changecurrentcolor1();
-            break;
-            case "2":
-                setHighlightMode(1);
-                changecurrentcolor2(); 
-            break;
-            case "3":
-                setHighlightMode(2);
-                changecurrentcolor3();
-            break;
-            case "4":
-                setHighlightMode(3);
-                changecurrentcolor4();
-            break;
-            case "5":
-                setEraserMode();
-                changecurrentcolor5();
-            break;
-            default:
-            return; // Quit when this doesn't handle the key event.
-        }
-        // Cancel the default action to avoid it being handled twice
-        event.preventDefault();
-        }, true);
     </script>
     <script>
         var changecurrentcolor1 = function(){
@@ -160,7 +162,7 @@
         {% if not session.id %}
             <!--input class="uitext textinput" type="text" id="userid"></input>
             <button class="uitext button login" id="loginbutton" onclick="sendID()">Login</button-->
-            <form action="{{url_for('login') }}" method=post class="inline">
+            <form action="{{url_for('login') }}" method=post class="inline" onsubmit="enableColor()">
                 <input class="uitext textinput" type="text" id="userid" name="username">
                 <input class="uitext button login" id="loginbutton" type="submit" value="Login">
             </form>
