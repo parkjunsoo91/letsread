@@ -7,39 +7,20 @@
     <meta name="description" content="Crowdsourced reading platform">
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
 
-    <link rel="stylesheet" href="../static/default.css">
+    <!--<link rel="stylesheet" href="../static/default.css">
     <link rel="stylesheet" href="../static/font.css">
     <link rel="stylesheet" href="../static/paper.css">
-    <link rel="stylesheet" href="../static/ui.css">
+    <link rel="stylesheet" href="../static/ui.css">-->
 
-    <!--<link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='paper.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ui.css') }}">-->
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ui.css') }}">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
 
     <script>
-        var highlightMode = true;
-        function setHighlightMode(){
-            // @영보 mode 정보 JSON에 넣기
-            highlightMode = true;
-        }
-        function setEraserMode(){
-            // @영보 mode 정보 JSON에 넣기
-            highlightMode = false;
-        }
-
-        function modeSelect(){
-            if(highlightMode){
-                highlighter();
-            }
-            else{
-                eraser();
-            }
-        }
-
         //currently unused.
         var sendID = function() {
             var userid = document.getElementById("userid").value;
@@ -60,25 +41,25 @@
             });
         }
 
-        function loadHighlights()
-        {
-            //code doesn't work
-            return;
-            var uid = {{session.id}};
-            var pid = 0
-            document.getElementById("")
-            var xhttp = new XMLHttpRequest();
-            xhttp.onreadystatechange = function() {
-                if (this.readyState == 4 && this.status == 200) {
-                    //get json of all highlights and draw them accordingly
-                    alert("placeholder alert." + this.responseText);
-                    //document.getElementById("demo").innerHTML = this.responseText;
-                }
-            };
-            xhttp.open("POST", "{{url_for('loadHighlights')}}", true);
-            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
-            xhttp.send("uid=" + uid + "&pid=" + pid);
-        }
+        // function loadHighlights()
+        // {
+        //     //code doesn't work
+        //     return;
+        //     var uid = {{session.id}};
+        //     var pid = 0
+        //     document.getElementById("")
+        //     var xhttp = new XMLHttpRequest();
+        //     xhttp.onreadystatechange = function() {
+        //         if (this.readyState == 4 && this.status == 200) {
+        //             //get json of all highlights and draw them accordingly
+        //             alert("placeholder alert." + this.responseText);
+        //             //document.getElementById("demo").innerHTML = this.responseText;
+        //         }
+        //     };
+        //     xhttp.open("POST", "{{url_for('loadHighlights')}}", true);
+        //     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
+        //     xhttp.send("uid=" + uid + "&pid=" + pid);
+        // }
     </script>
     <style>
         .highlight {
@@ -108,7 +89,7 @@
         </span>
     </div>
 
-    <!--/page1layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
+ <!--/page1layer1!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
     <div class="page pagelayer1 page1" id="page1layer1" onclick="modeSelect()">
         <div class="title" style="font-style: italic" id="page1layer1p1">CommunityCommands:</div>
         <div class="title" id="page1layer1p2">Command Recommendations for Software Applications</div>
@@ -122,12 +103,7 @@
         <div class="twocolumn">
             <div class="sectiontitle" id="page1layer1p7">ABSTRACT</div>
             <div class="paragraph" id="page1layer1p8">
-                We explore the use of modern recommender system technology to address the problem of learning software applications. Before
-                describing our new command recommender system, we first define relevant design considerations. We then discuss
-                a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized
-                recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates
-                2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface
-                to ambiently present command recommendations to users, which has received promising initial user feedback.
+                We explore the use of modern recommender system technology to address the problem of learning software applications. Before describing our new command recommender system, we first define relevant design considerations. We then discuss a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates 2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface to ambiently present command recommendations to users, which has received promising initial user feedback.
             </div>
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer1p9">
@@ -138,23 +114,15 @@
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer1p11">INTRODUCTION</div>
             <div class="paragraph" id="page1layer1p12">
-                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each
-                release, more commands might be added, and without explicit effort on the part of the user to learn about
-                new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has
-                being growing linearly over time. And even with the thousands of commands available in AutoCAD, the largest
-                group of users only use between 31 and 40 of them (Figure 1).
+                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each release, more commands might be added, and without explicit effort on the part of the user to learn about new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has being growing linearly over time. And even with the thousands of commands available in AutoCAD, the larges group of users only use between 31 and 40 of them (Figure 1).
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer1p13">
-                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific
-                goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks,
-                but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user
-                works with an expert next to them, who can recommend commands when appropriate.
+                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks, but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user works with an expert next to them, who can recommend commands when appropriate.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer1p14">
-                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current
-                state a user is in, if they require assistance, and how
+                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current state a user is in, if they require assistance, and how
             </div>
             <div class="extremelinespace"></div>
             <div class="paragraph" id="page1layer1p15">
@@ -171,8 +139,8 @@
                 ommand awareness problem in software applications.
             </div>
             <div class="linespace"></div>
-            <!--<img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">-->
-            <img src="../static/figure1.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure1.PNG" style="width:25vw">-->
             <div class="caption" id="page1layer1p17">
                 Figure 1. Histogram of the number of commands used by AutoCAD users. The largest group of users only use between 31 and 40
                 commands.
@@ -204,7 +172,7 @@
 
 
     <!--/page1layer2!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!-->
-    <div class="page pagelayer1 page1" id="page1layer2" onclick="modeSelect()">
+    <div class="page pagelayer2 page1" id="page1layer2" onclick="modeSelect()">
         <div class="title" style="font-style: italic" id="page1layer2p1">CommunityCommands:</div>
         <div class="title" id="page1layer2p2">Command Recommendations for Software Applications</div>
         <div class="largelinespace"></div>
@@ -217,12 +185,7 @@
         <div class="twocolumn">
             <div class="sectiontitle" id="page1layer2p7">ABSTRACT</div>
             <div class="paragraph" id="page1layer2p8">
-                We explore the use of modern recommender system technology to address the problem of learning software applications. Before
-                describing our new command recommender system, we first define relevant design considerations. We then discuss
-                a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized
-                recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates
-                2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface
-                to ambiently present command recommendations to users, which has received promising initial user feedback.
+                We explore the use of modern recommender system technology to address the problem of learning software applications. Before describing our new command recommender system, we first define relevant design considerations. We then discuss a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates 2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface to ambiently present command recommendations to users, which has received promising initial user feedback.
             </div>
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer2p9">
@@ -233,29 +196,19 @@
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer2p11">INTRODUCTION</div>
             <div class="paragraph" id="page1layer2p12">
-                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each
-                release, more commands might be added, and without explicit effort on the part of the user to learn about
-                new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has
-                being growing linearly over time. And even with the thousands of commands available in AutoCAD, the largest
-                group of users only use between 31 and 40 of them (Figure 1).
+                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each release, more commands might be added, and without explicit effort on the part of the user to learn about new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has being growing linearly over time. And even with the thousands of commands available in AutoCAD, the larges group of users only use between 31 and 40 of them (Figure 1).
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer2p13">
-                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific
-                goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks,
-                but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user
-                works with an expert next to them, who can recommend commands when appropriate.
+                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks, but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user works with an expert next to them, who can recommend commands when appropriate.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer2p14">
-                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current
-                state a user is in, if they require assistance, and how
+                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current state a user is in, if they require assistance, and how
             </div>
             <div class="extremelinespace"></div>
             <div class="paragraph" id="page1layer2p15">
-                to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on
-                recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented
-                or evaluated, and has important limitations.
+                to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented or evaluated, and has important limitations.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer2p16">
@@ -266,8 +219,8 @@
                 ommand awareness problem in software applications.
             </div>
             <div class="linespace"></div>
-            <!--<img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">-->
-            <img src="../static/figure1.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure1.PNG" style="width:25vw">-->
             <div class="caption" id="page1layer2p17">
                 Figure 1. Histogram of the number of commands used by AutoCAD users. The largest group of users only use between 31 and 40
                 commands.
@@ -311,12 +264,7 @@
         <div class="twocolumn">
             <div class="sectiontitle" id="page1layer3p7">ABSTRACT</div>
             <div class="paragraph" id="page1layer3p8">
-                We explore the use of modern recommender system technology to address the problem of learning software applications. Before
-                describing our new command recommender system, we first define relevant design considerations. We then discuss
-                a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized
-                recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates
-                2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface
-                to ambiently present command recommendations to users, which has received promising initial user feedback.
+                We explore the use of modern recommender system technology to address the problem of learning software applications. Before describing our new command recommender system, we first define relevant design considerations. We then discuss a 3 month user study we conducted with professional users to evaluate our algorithms which generated customized recommendations for each user. Analysis shows that our item-based collaborative filtering algorithm generates 2.1 times as many good suggestions as existing techniques. In addition we present a prototype user interface to ambiently present command recommendations to users, which has received promising initial user feedback.
             </div>
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer3p9">
@@ -327,29 +275,19 @@
             <div class="linespace"></div>
             <div class="sectiontitle" id="page1layer3p11">INTRODUCTION</div>
             <div class="paragraph" id="page1layer3p12">
-                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each
-                release, more commands might be added, and without explicit effort on the part of the user to learn about
-                new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has
-                being growing linearly over time. And even with the thousands of commands available in AutoCAD, the largest
-                group of users only use between 31 and 40 of them (Figure 1).
+                Many of today’s programs have not hundreds, but thousands of commands for a user to become aware of and learn [18]. In each release, more commands might be added, and without explicit effort on the part of the user to learn about new functionality, they are left untouched. For example, in Autodesk's AutoCAD, the number of commands has being growing linearly over time. And even with the thousands of commands available in AutoCAD, the larges group of users only use between 31 and 40 of them (Figure 1).
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer3p13">
-                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific
-                goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks,
-                but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user
-                works with an expert next to them, who can recommend commands when appropriate.
+                An inherent challenge with such systems is a user’s awareness [14, 39] of the functionality which is relevant to their specific goals and needs. Awareness of functionality is not only important for learning how to accomplish new tasks, but also learning how to better accomplish existing tasks. In a potential “best case scenario”, the user works with an expert next to them, who can recommend commands when appropriate.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer3p14">
-                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current
-                state a user is in, if they require assistance, and how
+                While previous HCI literature has looked at intelligent online agents, most of this work is focused on predicting what current state a user is in, if they require assistance, and how
             </div>
             <div class="extremelinespace"></div>
             <div class="paragraph" id="page1layer3p15">
-                to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on
-                recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented
-                or evaluated, and has important limitations.
+                to overcome problems [4, 8, 9, 15, 17, 20, 31]. To our knowledge, here are few examples of systems specifically focused on recommending new commands to users [24, 25]. Furthermore, such work has never been thoroughly implemented or evaluated, and has important limitations.
             </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page1layer3p16">
@@ -360,8 +298,8 @@
                 ommand awareness problem in software applications.
             </div>
             <div class="linespace"></div>
-            <!--<img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">-->
-            <img src="../static/figure1.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure1.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure1.PNG" style="width:25vw">-->
             <div class="caption" id="page1layer3p17">
                 Figure 1. Histogram of the number of commands used by AutoCAD users. The largest group of users only use between 31 and 40
                 commands.
@@ -493,7 +431,8 @@
                 The combination of novel and useful recommendations leads to a two-dimensional space (Figure 2).
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure2.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure2.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure2.PNG" style="width:25vw">-->
             <div class="caption" id="page2layer1p23">
                 Figure 2. Map of Good, Poor, and Unnecessary Recommendations.
             </div>
@@ -604,7 +543,8 @@
                 The combination of novel and useful recommendations leads to a two-dimensional space (Figure 2).
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure2.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure2.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure2.PNG" style="width:25vw">-->
             <div class="caption" id="page2layer2p23">
                 Figure 2. Map of Good, Poor, and Unnecessary Recommendations.
             </div>
@@ -715,7 +655,8 @@
                 The combination of novel and useful recommendations leads to a two-dimensional space (Figure 2).
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure2.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure2.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure2.PNG" style="width:25vw">-->
             <div class="caption" id="page2layer3p23">
                 Figure 2. Map of Good, Poor, and Unnecessary Recommendations.
             </div>
@@ -758,7 +699,8 @@
             </div>
             <div class="linespace"></div>
             <div class="linespace"></div>
-            <img src="../static/figure3.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure3.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure3.PNG" style="width:25vw">-->
             <div class="caption" id="page3layer1p6">
                 Figure 3. CommunityCommands system overview.
             </div>
@@ -811,7 +753,8 @@
                 below.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure4.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure4.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure4.PNG" style="width:25vw">-->
             <div class="caption" id="page3layer1p18">
                 Figure 4. The active user is in red, and his expected frequency table will be compiled from his most similar neighbors (in
                 yellow).
@@ -864,7 +807,8 @@
             </div>
             <div class="linespace"></div>
             <div class="linespace"></div>
-            <img src="../static/figure3.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure3.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure3.PNG" style="width:25vw">-->
             <div class="caption" id="page3layer2p6">
                 Figure 3. CommunityCommands system overview.
             </div>
@@ -917,7 +861,8 @@
                 below.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure4.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure4.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure4.PNG" style="width:25vw">-->
             <div class="caption" id="page3layer2p18">
                 Figure 4. The active user is in red, and his expected frequency table will be compiled from his most similar neighbors (in
                 yellow).
@@ -971,7 +916,8 @@
             </div>
             <div class="linespace"></div>
             <div class="linespace"></div>
-            <img src="../static/figure3.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure3.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure3.PNG" style="width:25vw">-->
             <div class="caption" id="page3layer3p6">
                 Figure 3. CommunityCommands system overview.
             </div>
@@ -1024,7 +970,8 @@
                 below.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure4.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure4.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure4.PNG" style="width:25vw">-->
             <div class="caption" id="page3layer3p18">
                 Figure 4. The active user is in red, and his expected frequency table will be compiled from his most similar neighbors (in
                 yellow).
@@ -1054,7 +1001,8 @@
                 issued, and the top 100 commands make up 93% of all commands issued.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure5.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure5.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure5.PNG" style="width:25vw">-->
             <div class="caption" id="page4layer1p2">
                 Figure 5. Cumulative percentage of command counts for the 2000 AutoCAD commands
             </div>
@@ -1070,7 +1018,8 @@
                 of the command ci to the particular user uj.
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq1.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq1.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq1.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer1p4">
                 where nij is the number of occurrences of the considered command of user uj, and the denominator is the number of occurrences
@@ -1082,9 +1031,11 @@
                 users that use it:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq2.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq2.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq2.PNG" style="width:25vw">-->
             <div class="linespace"></div>
-            <img src="../static/eq3.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq3.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq3.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer1p6">
                 A high weight in cf–iuf is obtained when a command is used frequently by a particular user, but is used by a relatively small
@@ -1103,7 +1054,8 @@
                 two users uA and uB with command vectors VA and VB.
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq4.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq4.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq4.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer1p10">
                 Thus, when similarity is near 0, the vectors VA and VB are substantially orthogonal (and the users are determined to be not
@@ -1118,7 +1070,8 @@
                 parameter.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure6.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure6.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure6.PNG" style="width:25vw">-->
             <div class="caption" id="page4layer1p12">
                 Figure 6. Simplified example of user similarity. Alice and Bob are more similar than Bob and Cindy as the angle between their
                 command vectors is smaller.
@@ -1130,7 +1083,8 @@
                 user’s n similar users. We define the expected frequency, efij, for command ci and user uj:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq5.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq5.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq5.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer1p15">
                 where wjk is any weighting function (which can be tuned) and cfik is the frequency of command ci and user k.
@@ -1161,7 +1115,8 @@
                 issued, and the top 100 commands make up 93% of all commands issued.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure5.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure5.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure5.PNG" style="width:25vw">-->
             <div class="caption" id="page4layer2p2">
                 Figure 5. Cumulative percentage of command counts for the 2000 AutoCAD commands
             </div>
@@ -1177,7 +1132,8 @@
                 of the command ci to the particular user uj.
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq1.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq1.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq1.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer2p4">
                 where nij is the number of occurrences of the considered command of user uj, and the denominator is the number of occurrences
@@ -1189,9 +1145,11 @@
                 users that use it:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq2.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq2.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq2.PNG" style="width:25vw">-->
             <div class="linespace"></div>
-            <img src="../static/eq3.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq3.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq3.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer2p6">
                 A high weight in cf–iuf is obtained when a command is used frequently by a particular user, but is used by a relatively small
@@ -1210,7 +1168,8 @@
                 two users uA and uB with command vectors VA and VB.
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq4.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq4.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq4.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer2p10">
                 Thus, when similarity is near 0, the vectors VA and VB are substantially orthogonal (and the users are determined to be not
@@ -1225,7 +1184,8 @@
                 parameter.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure6.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure6.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure6.PNG" style="width:25vw">-->
             <div class="caption" id="page4layer2p12">
                 Figure 6. Simplified example of user similarity. Alice and Bob are more similar than Bob and Cindy as the angle between their
                 command vectors is smaller.
@@ -1237,7 +1197,8 @@
                 user’s n similar users. We define the expected frequency, efij, for command ci and user uj:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq5.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq5.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq5.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer2p15">
                 where wjk is any weighting function (which can be tuned) and cfik is the frequency of command ci and user k.
@@ -1268,7 +1229,8 @@
                 issued, and the top 100 commands make up 93% of all commands issued.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure5.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure5.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure5.PNG" style="width:25vw">-->
             <div class="caption" id="page4layer3p2">
                 Figure 5. Cumulative percentage of command counts for the 2000 AutoCAD commands
             </div>
@@ -1284,7 +1246,8 @@
                 of the command ci to the particular user uj.
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq1.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq1.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq1.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer3p4">
                 where nij is the number of occurrences of the considered command of user uj, and the denominator is the number of occurrences
@@ -1296,9 +1259,11 @@
                 users that use it:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq2.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq2.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq2.PNG" style="width:25vw">-->
             <div class="linespace"></div>
-            <img src="../static/eq3.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq3.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq3.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer3p6">
                 A high weight in cf–iuf is obtained when a command is used frequently by a particular user, but is used by a relatively small
@@ -1317,7 +1282,8 @@
                 two users uA and uB with command vectors VA and VB.
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq4.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq4.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq4.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer3p10">
                 Thus, when similarity is near 0, the vectors VA and VB are substantially orthogonal (and the users are determined to be not
@@ -1332,7 +1298,8 @@
                 parameter.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure6.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure6.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure6.PNG" style="width:25vw">-->
             <div class="caption" id="page4layer3p12">
                 Figure 6. Simplified example of user similarity. Alice and Bob are more similar than Bob and Cindy as the angle between their
                 command vectors is smaller.
@@ -1344,7 +1311,8 @@
                 user’s n similar users. We define the expected frequency, efij, for command ci and user uj:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq5.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq5.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq5.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page4layer3p15">
                 where wjk is any weighting function (which can be tuned) and cfik is the frequency of command ci and user k.
@@ -1385,21 +1353,24 @@
                 Next, we generate a command-to-command similarity matrix, M. Mik is defined for each pair of commands i and k as:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq6.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq6.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq6.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="sectiontitle" id="page5layer1p6">3. Create an “active list”</div>
             <div class="paragraph" id="page5layer1p7">
                 For the active user, uj, we create an “active list” L, which contains all of the commands that the active user has used.
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq7.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq7.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq7.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="sectiontitle" id="page5layer1p8">4. Find similar unused commands</div>
             <div class="paragraph" id="page5layer1p9">
                 Next, we define a similarity score, si, for each command ci which is not in the active user’s active list:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq8.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq8.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq8.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="sectiontitle" id="page5layer1p10">5. Generate Top 10 List</div>
             <div class="paragraph" id="page5layer1p11">
@@ -1455,7 +1426,8 @@
                 and 3DROTATE, which have never appeared in the training set.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure7.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure7.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure7.PNG" style="width:25vw">-->
             <div class="caption" id="page5layer1p23">
                 Figure 7. k-Tail evaluation of a command sequence.
             </div>
@@ -1465,7 +1437,8 @@
                 their testing set Stest,i. We define the evaluation result of k-tail as hitk:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq9.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq9.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq9.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page5layer1p25">
                 where n is the size of community.
@@ -1486,7 +1459,8 @@
                 new command correctly for 850 users, about 240 more than Linton's.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure8.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure8.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure8.PNG" style="width:25vw">-->
             <div class="caption" id="page5layer1p30">
                 Figure 8. Offline results showing the percentage of times the next new command was predicted in a list of 10 by each algorithm.
             </div>
@@ -1518,21 +1492,24 @@
                 Next, we generate a command-to-command similarity matrix, M. Mik is defined for each pair of commands i and k as:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq6.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq6.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq6.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="sectiontitle" id="page5layer2p6">3. Create an “active list”</div>
             <div class="paragraph" id="page5layer2p7">
                 For the active user, uj, we create an “active list” L, which contains all of the commands that the active user has used.
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq7.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq7.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq7.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="sectiontitle" id="page5layer2p8">4. Find similar unused commands</div>
             <div class="paragraph" id="page5layer2p9">
                 Next, we define a similarity score, si, for each command ci which is not in the active user’s active list:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq8.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq8.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq8.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="sectiontitle" id="page5layer2p10">5. Generate Top 10 List</div>
             <div class="paragraph" id="page5layer2p11">
@@ -1588,7 +1565,8 @@
                 and 3DROTATE, which have never appeared in the training set.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure7.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure7.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure7.PNG" style="width:25vw">-->
             <div class="caption" id="page5layer2p23">
                 Figure 7. k-Tail evaluation of a command sequence.
             </div>
@@ -1598,7 +1576,8 @@
                 their testing set Stest,i. We define the evaluation result of k-tail as hitk:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq9.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq9.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq9.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page5layer2p25">
                 where n is the size of community.
@@ -1619,7 +1598,8 @@
                 new command correctly for 850 users, about 240 more than Linton's.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure8.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure8.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure8.PNG" style="width:25vw">-->
             <div class="caption" id="page5layer2p30">
                 Figure 8. Offline results showing the percentage of times the next new command was predicted in a list of 10 by each algorithm.
             </div>
@@ -1651,21 +1631,24 @@
                 Next, we generate a command-to-command similarity matrix, M. Mik is defined for each pair of commands i and k as:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq6.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq6.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq6.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="sectiontitle" id="page5layer3p6">3. Create an “active list”</div>
             <div class="paragraph" id="page5layer3p7">
                 For the active user, uj, we create an “active list” L, which contains all of the commands that the active user has used.
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq7.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq7.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq7.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="sectiontitle" id="page5layer3p8">4. Find similar unused commands</div>
             <div class="paragraph" id="page5layer3p9">
                 Next, we define a similarity score, si, for each command ci which is not in the active user’s active list:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq8.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq8.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq8.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="sectiontitle" id="page5layer3p10">5. Generate Top 10 List</div>
             <div class="paragraph" id="page5layer3p11">
@@ -1721,7 +1704,8 @@
                 and 3DROTATE, which have never appeared in the training set.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure7.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure7.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure7.PNG" style="width:25vw">-->
             <div class="caption" id="page5layer3p23">
                 Figure 7. k-Tail evaluation of a command sequence.
             </div>
@@ -1731,7 +1715,8 @@
                 their testing set Stest,i. We define the evaluation result of k-tail as hitk:
             </div>
             <div class="linespace"></div>
-            <img src="../static/eq9.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='eq9.PNG')}}" style="width:25vw">
+            <!--<img src="../static/eq9.PNG" style="width:25vw">-->
             <div class="linespace"></div>
             <div class="paragraph" id="page5layer3p25">
                 where n is the size of community.
@@ -1752,7 +1737,8 @@
                 new command correctly for 850 users, about 240 more than Linton's.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure8.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure8.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure8.PNG" style="width:25vw">-->
             <div class="caption" id="page5layer3p30">
                 Figure 8. Offline results showing the percentage of times the next new command was predicted in a list of 10 by each algorithm.
             </div>
@@ -1829,7 +1815,8 @@
                Repeated measure analysis of variance showed a main effect for the algorithm (F2,32 = 12.301, p < .0001) on percentage of good recommendations. The overall percentages of good recommendations were 14.7% for Linton, 27.2% for User-Based, and 30.9% for Item-Based. Pairwise comparison using Bonferroni adjustment showed that both UserBased (p = .006) and Item-Based (p = .001) were significantly different from Linton, but the difference between Item-Based and User-Based was not significant (Figure 9).
             </div>
             <div class="linespace"></div>
-             <img src="../static/figure9.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure9.PNG')}}" style="width:25vw">
+             <!--<img src="../static/figure9.PNG" style="width:25vw">-->
             <div class="caption" id="page6layer1p21">
                 Figure 9. Percentage of “good” suggestions by technique.
             </div>
@@ -1908,7 +1895,8 @@
                Repeated measure analysis of variance showed a main effect for the algorithm (F2,32 = 12.301, p < .0001) on percentage of good recommendations. The overall percentages of good recommendations were 14.7% for Linton, 27.2% for User-Based, and 30.9% for Item-Based. Pairwise comparison using Bonferroni adjustment showed that both UserBased (p = .006) and Item-Based (p = .001) were significantly different from Linton, but the difference between Item-Based and User-Based was not significant (Figure 9).
             </div>
             <div class="linespace"></div>
-             <img src="../static/figure9.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure9.PNG')}}" style="width:25vw">
+             <!--<img src="../static/figure9.PNG" style="width:25vw">-->
             <div class="caption" id="page6layer2p21">
                 Figure 9. Percentage of “good” suggestions by technique.
             </div>
@@ -1987,7 +1975,8 @@
                Repeated measure analysis of variance showed a main effect for the algorithm (F2,32 = 12.301, p < .0001) on percentage of good recommendations. The overall percentages of good recommendations were 14.7% for Linton, 27.2% for User-Based, and 30.9% for Item-Based. Pairwise comparison using Bonferroni adjustment showed that both UserBased (p = .006) and Item-Based (p = .001) were significantly different from Linton, but the difference between Item-Based and User-Based was not significant (Figure 9).
             </div>
             <div class="linespace"></div>
-             <img src="../static/figure9.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure9.PNG')}}" style="width:25vw">
+             <!--<img src="../static/figure9.PNG" style="width:25vw">-->
             <div class="caption" id="page6layer3p21">
                 Figure 9. Percentage of “good” suggestions by technique.
             </div>
@@ -2014,7 +2003,8 @@
                Overall, these results are very encouraging. Compared to Linton’s algorithm, the item-based algorithm increased the number of good commands a user would receive by 110.2%, while reducing the number of poor commands by 47.3%, and in both cases the difference was significant. The user-based algorithm also showed promise, increasing good commands by 85.7%, and decreasing poor commands by 22.6%, although these differences were not significant. 
             </div>
             <div class="linespace"></div>
-             <img src="../static/figure10.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure10.PNG')}}" style="width:25vw">
+             <!--<img src="../static/figure10.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer1p3">
                 Figure 10. Percentage of “poor” suggestions.
             </div>
@@ -2024,7 +2014,8 @@
                Participants were asked to rate 6 design properties of a command recommendation system (Figure 11). The two features considered most important were Makes Useful Recommendations and Easy To Dismiss. 
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure11.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure11.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure11.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer1p6">
                 Figure 11. Subjective importance ratings for properties of a command recommender system. 
             </div>
@@ -2037,7 +2028,8 @@
                In general the participants both greatly underestimated how many commands they were using while at the same time greatly overestimating what percentage of the program’s functionality they were using. These results show that users may not appreciate how many commands they need to use, and how much is still available for them to learn. This provides strong evidence for the existence of the awareness problem [15], even among professional users.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure12.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure12.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure12.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer1p9">
                 Figure 12. Actual vs. Estimated commands used.
             </div>
@@ -2046,7 +2038,8 @@
                However, we also asked users what percentage of all AutoCAD commands they thought they used. Taking this percentage, and the number of command they estimated they used, we can calculate how many commands they thought are in AutoCAD (Figure 13). All participants thought the number of commands in the program was much smaller than it truly is, with the average estimated size being 367, or approximately 1/5th the actual total command count.
             </div>
             <div class="linespace"></div>
-             <img src="../static/figure13.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure13.PNG')}}" style="width:25vw">
+             <!--<img src="../static/figure13.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer1p11">
                 Figure 13. Actual vs. Estimated number of commands in the entire program.
             </div>
@@ -2073,7 +2066,8 @@
                Overall, these results are very encouraging. Compared to Linton’s algorithm, the item-based algorithm increased the number of good commands a user would receive by 110.2%, while reducing the number of poor commands by 47.3%, and in both cases the difference was significant. The user-based algorithm also showed promise, increasing good commands by 85.7%, and decreasing poor commands by 22.6%, although these differences were not significant. 
             </div>
             <div class="linespace"></div>
-             <img src="../static/figure10.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure10.PNG')}}" style="width:25vw">
+             <!--<img src="../static/figure10.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer2p3">
                 Figure 10. Percentage of “poor” suggestions.
             </div>
@@ -2083,7 +2077,8 @@
                Participants were asked to rate 6 design properties of a command recommendation system (Figure 11). The two features considered most important were Makes Useful Recommendations and Easy To Dismiss. 
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure11.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure11.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure11.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer2p6">
                 Figure 11. Subjective importance ratings for properties of a command recommender system. 
             </div>
@@ -2096,7 +2091,8 @@
                In general the participants both greatly underestimated how many commands they were using while at the same time greatly overestimating what percentage of the program’s functionality they were using. These results show that users may not appreciate how many commands they need to use, and how much is still available for them to learn. This provides strong evidence for the existence of the awareness problem [15], even among professional users.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure12.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure12.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure12.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer2p9">
                 Figure 12. Actual vs. Estimated commands used.
             </div>
@@ -2105,7 +2101,8 @@
                However, we also asked users what percentage of all AutoCAD commands they thought they used. Taking this percentage, and the number of command they estimated they used, we can calculate how many commands they thought are in AutoCAD (Figure 13). All participants thought the number of commands in the program was much smaller than it truly is, with the average estimated size being 367, or approximately 1/5th the actual total command count.
             </div>
             <div class="linespace"></div>
-             <img src="../static/figure13.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure13.PNG')}}" style="width:25vw">
+             <!--<img src="../static/figure13.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer2p11">
                 Figure 13. Actual vs. Estimated number of commands in the entire program.
             </div>
@@ -2132,7 +2129,8 @@
                Overall, these results are very encouraging. Compared to Linton’s algorithm, the item-based algorithm increased the number of good commands a user would receive by 110.2%, while reducing the number of poor commands by 47.3%, and in both cases the difference was significant. The user-based algorithm also showed promise, increasing good commands by 85.7%, and decreasing poor commands by 22.6%, although these differences were not significant. 
             </div>
             <div class="linespace"></div>
-             <img src="../static/figure10.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure10.PNG')}}" style="width:25vw">
+             <!--<img src="../static/figure10.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer3p3">
                 Figure 10. Percentage of “poor” suggestions.
             </div>
@@ -2142,7 +2140,8 @@
                Participants were asked to rate 6 design properties of a command recommendation system (Figure 11). The two features considered most important were Makes Useful Recommendations and Easy To Dismiss. 
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure11.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure11.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure11.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer3p6">
                 Figure 11. Subjective importance ratings for properties of a command recommender system. 
             </div>
@@ -2155,7 +2154,8 @@
                In general the participants both greatly underestimated how many commands they were using while at the same time greatly overestimating what percentage of the program’s functionality they were using. These results show that users may not appreciate how many commands they need to use, and how much is still available for them to learn. This provides strong evidence for the existence of the awareness problem [15], even among professional users.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure12.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure12.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure12.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer3p9">
                 Figure 12. Actual vs. Estimated commands used.
             </div>
@@ -2164,7 +2164,8 @@
                However, we also asked users what percentage of all AutoCAD commands they thought they used. Taking this percentage, and the number of command they estimated they used, we can calculate how many commands they thought are in AutoCAD (Figure 13). All participants thought the number of commands in the program was much smaller than it truly is, with the average estimated size being 367, or approximately 1/5th the actual total command count.
             </div>
             <div class="linespace"></div>
-             <img src="../static/figure13.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure13.PNG')}}" style="width:25vw">
+             <!--<img src="../static/figure13.PNG" style="width:25vw">-->
             <div class="caption" id="page7layer3p11">
                 Figure 13. Actual vs. Estimated number of commands in the entire program.
             </div>
@@ -2203,6 +2204,7 @@
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer1p6">
                The top panel also contains buttons to access a command “notebook”, view the command suggestion history, and filter the recommendations based on category. 
+            </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer1p7">
                The command notebook contains all of the commands the user has ever used and a place to store relevant tips or tricks about the command. These notebook entries are presented beneath the tooltip information when hovering over a command button. Besides seeing personal notes, users could also see notes from a manager or co-workers. Using this mechanism, managers could put company policies and best practices information in their notebooks, and that information would be visible to their entire teams.
@@ -2212,7 +2214,8 @@
                With the history mechanism the user can see what commands have been suggested in the past. Since after the command has been used once it will no longer appear in the suggestion list, this is a way to revisit previous suggestions.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure14.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure14.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure14.PNG" style="width:25vw">-->
             <div class="caption" id="page8layer1p9">
                 Figure 14. CommunityCommands UI.
             </div>
@@ -2221,7 +2224,8 @@
                We have included a command category selector for when a user would like to focus their learning on a particular area of the program. For AutoCAD this list contains items such as File I/O, Rendering, and 3D Modeling. By default commands for all areas are shown. The category of the command is reflected in the color of the close box or push pin.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure15.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure15.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure15.PNG" style="width:25vw">-->
             <div class="caption" id="page8layer1p11">
                 Figure 15. Overall system UI elements.
             </div>
@@ -2230,7 +2234,8 @@
                The bar on the individual command buttons (Figure 16) represents the relevance of the command to the user’s current workflow. While doing “long term” recommendations the most relevant overall items will always be at the top of the list. While in “short term” mode, the most relevant commands will be at the top of list, and the length of the bar will indicate how closely related the command is to the commands the user is currently using.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure16.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure16.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure16.PNG" style="width:25vw">-->
             <div class="caption" id="page8layer1p13">
                 Figure 16. Individual suggestion UI elements.
             </div>
@@ -2267,6 +2272,7 @@
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer2p6">
                The top panel also contains buttons to access a command “notebook”, view the command suggestion history, and filter the recommendations based on category. 
+            </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer2p7">
                The command notebook contains all of the commands the user has ever used and a place to store relevant tips or tricks about the command. These notebook entries are presented beneath the tooltip information when hovering over a command button. Besides seeing personal notes, users could also see notes from a manager or co-workers. Using this mechanism, managers could put company policies and best practices information in their notebooks, and that information would be visible to their entire teams.
@@ -2276,7 +2282,8 @@
                With the history mechanism the user can see what commands have been suggested in the past. Since after the command has been used once it will no longer appear in the suggestion list, this is a way to revisit previous suggestions.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure14.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure14.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure14.PNG" style="width:25vw">-->
             <div class="caption" id="page8layer2p9">
                 Figure 14. CommunityCommands UI.
             </div>
@@ -2285,7 +2292,8 @@
                We have included a command category selector for when a user would like to focus their learning on a particular area of the program. For AutoCAD this list contains items such as File I/O, Rendering, and 3D Modeling. By default commands for all areas are shown. The category of the command is reflected in the color of the close box or push pin.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure15.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure15.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure15.PNG" style="width:25vw">-->
             <div class="caption" id="page8layer2p11">
                 Figure 15. Overall system UI elements.
             </div>
@@ -2294,7 +2302,8 @@
                The bar on the individual command buttons (Figure 16) represents the relevance of the command to the user’s current workflow. While doing “long term” recommendations the most relevant overall items will always be at the top of the list. While in “short term” mode, the most relevant commands will be at the top of list, and the length of the bar will indicate how closely related the command is to the commands the user is currently using.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure16.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure16.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure16.PNG" style="width:25vw">-->
             <div class="caption" id="page8layer2p13">
                 Figure 16. Individual suggestion UI elements.
             </div>
@@ -2331,6 +2340,7 @@
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer3p6">
                The top panel also contains buttons to access a command “notebook”, view the command suggestion history, and filter the recommendations based on category. 
+            </div>
             <div class="linespace"></div>
             <div class="paragraph" id="page8layer3p7">
                The command notebook contains all of the commands the user has ever used and a place to store relevant tips or tricks about the command. These notebook entries are presented beneath the tooltip information when hovering over a command button. Besides seeing personal notes, users could also see notes from a manager or co-workers. Using this mechanism, managers could put company policies and best practices information in their notebooks, and that information would be visible to their entire teams.
@@ -2340,7 +2350,8 @@
                With the history mechanism the user can see what commands have been suggested in the past. Since after the command has been used once it will no longer appear in the suggestion list, this is a way to revisit previous suggestions.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure14.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure14.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure14.PNG" style="width:25vw">-->
             <div class="caption" id="page8layer3p9">
                 Figure 14. CommunityCommands UI.
             </div>
@@ -2349,7 +2360,8 @@
                We have included a command category selector for when a user would like to focus their learning on a particular area of the program. For AutoCAD this list contains items such as File I/O, Rendering, and 3D Modeling. By default commands for all areas are shown. The category of the command is reflected in the color of the close box or push pin.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure15.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure15.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure15.PNG" style="width:25vw">-->
             <div class="caption" id="page8layer3p11">
                 Figure 15. Overall system UI elements.
             </div>
@@ -2358,7 +2370,8 @@
                The bar on the individual command buttons (Figure 16) represents the relevance of the command to the user’s current workflow. While doing “long term” recommendations the most relevant overall items will always be at the top of the list. While in “short term” mode, the most relevant commands will be at the top of list, and the length of the bar will indicate how closely related the command is to the commands the user is currently using.
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure16.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure16.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure16.PNG" style="width:25vw">-->
             <div class="caption" id="page8layer3p13">
                 Figure 16. Individual suggestion UI elements.
             </div>
@@ -2381,7 +2394,8 @@
                To minimize the screen space used, yet remain visible for ambient awareness, the palette can be docked in the unused space beside the command line in the bottom right corner of the application (Figure 17).
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure17.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure17.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure17.PNG" style="width:25vw">-->
             <div class="caption" id="page9layer1p2">
                 Figure 17. CommunityCommands UI docked in the unused space beside the command line interface
             </div>
@@ -2448,7 +2462,8 @@
                To minimize the screen space used, yet remain visible for ambient awareness, the palette can be docked in the unused space beside the command line in the bottom right corner of the application (Figure 17).
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure17.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure17.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure17.PNG" style="width:25vw">-->
             <div class="caption" id="page9layer2p2">
                 Figure 17. CommunityCommands UI docked in the unused space beside the command line interface
             </div>
@@ -2515,7 +2530,8 @@
                To minimize the screen space used, yet remain visible for ambient awareness, the palette can be docked in the unused space beside the command line in the bottom right corner of the application (Figure 17).
             </div>
             <div class="linespace"></div>
-            <img src="../static/figure17.PNG" style="width:25vw">
+            <img src="{{url_for('static', filename='figure17.PNG')}}" style="width:25vw">
+            <!--<img src="../static/figure17.PNG" style="width:25vw">-->
             <div class="caption" id="page9layer3p2">
                 Figure 17. CommunityCommands UI docked in the unused space beside the command line interface
             </div>
@@ -2575,6 +2591,7 @@
         </div>
         <div class="pagenumber">201</div>
     </div>
+
 </body>
 
 </html>

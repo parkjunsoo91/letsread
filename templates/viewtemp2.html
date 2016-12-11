@@ -7,6 +7,16 @@
     <meta name="description" content="Crowdsourced reading platform">
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
 
+    <!--<link rel="stylesheet" href="../static/default.css">
+    <link rel="stylesheet" href="../static/font.css">
+    <link rel="stylesheet" href="../static/paper.css">
+    <link rel="stylesheet" href="../static/ui.css">-->
+
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='paper.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ui.css') }}">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
 
@@ -54,7 +64,7 @@
     <style>.highlight {background-color: yellow;}</style>
     <style>
         /*page layout*/
-        body {background-color:#333333; /*to prevent padding from changing overall width*/-webkit-box-sizing: border-box;-webkit-box-sizing: border-box; box-sizing: border-box;text-align: justify;}
+        body {background-color: white;/*#333333*//*to prevent padding from changing overall width*/-webkit-box-sizing: border-box;-webkit-box-sizing: border-box; box-sizing: border-box;text-align: justify;}
         img {display: block;margin: 0 auto;}
         .page {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 66vw;height: 85.358vw; /*ratio = 1:1.2933*/  margin-top: 2vw;margin-left: auto;margin-right: auto;
         margin-bottom: 2vw;padding-top: 6vw;padding-left: 5.7vw;padding-right: 5.7vw;padding-bottom: 1vw;position: absolute;left: 15vw;}
@@ -757,8 +767,8 @@
             <div class="sectiontitle" id="page3layer1p7">Theories of Organizational Behavior and Distributed Computing</div>
             <div class="paragraph" id="page3layer1p8">Much professional work consists of complex sets of interdependent tasks that need to be coordinated across individuals with different expertise and capabilities [89]. For example, producing a book, an academic paper, or a new car all may involve many individuals working in structured teams, each with different skills and roles, collaborating on a shared output. To address these more complex goals we draw on concepts from both the organizational behavior [89,97,143,148] and the distributed computing literatures [9,132]. We propose that</div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig1.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig1.PNG" style="width:25vw">
             <div class="caption" id="page3layer1p9">Figure 1: Current crowd work processes.</div>
             <div class="linespace"></div>
             <div class="paragraph" id="page3layer1p10">crowdsourced labor markets can be viewed as large distributed systems in which each person, such as a worker on Mechanical Turk, is analogous to a processor that can solve a task requiring human intelligence. In this way a crowdsourcing market could be seen as a loosely coupled distributed computing system [9]. Fleshing out this analogy, we develop here the beginnings of a framework for the future of crowd work that integrates the human aspects of organizational behavior with the automation and scalability of the distributed computing literature.</div>
@@ -790,8 +800,8 @@
             <div class="sectiontitle" id="page3layer2p7">Theories of Organizational Behavior and Distributed Computing</div>
             <div class="paragraph" id="page3layer2p8">Much professional work consists of complex sets of interdependent tasks that need to be coordinated across individuals with different expertise and capabilities [89]. For example, producing a book, an academic paper, or a new car all may involve many individuals working in structured teams, each with different skills and roles, collaborating on a shared output. To address these more complex goals we draw on concepts from both the organizational behavior [89,97,143,148] and the distributed computing literatures [9,132]. We propose that</div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig1.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig1.PNG" style="width:25vw">
             <div class="caption" id="page3layer2p9">Figure 1: Current crowd work processes.</div>
             <div class="linespace"></div>
             <div class="paragraph" id="page3layer2p10">crowdsourced labor markets can be viewed as large distributed systems in which each person, such as a worker on Mechanical Turk, is analogous to a processor that can solve a task requiring human intelligence. In this way a crowdsourcing market could be seen as a loosely coupled distributed computing system [9]. Fleshing out this analogy, we develop here the beginnings of a framework for the future of crowd work that integrates the human aspects of organizational behavior with the automation and scalability of the distributed computing literature.</div>
@@ -823,8 +833,8 @@
             <div class="sectiontitle" id="page3layer3p7">Theories of Organizational Behavior and Distributed Computing</div>
             <div class="paragraph" id="page3layer3p8">Much professional work consists of complex sets of interdependent tasks that need to be coordinated across individuals with different expertise and capabilities [89]. For example, producing a book, an academic paper, or a new car all may involve many individuals working in structured teams, each with different skills and roles, collaborating on a shared output. To address these more complex goals we draw on concepts from both the organizational behavior [89,97,143,148] and the distributed computing literatures [9,132]. We propose that</div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig1.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig1.PNG" style="width:25vw">
             <div class="caption" id="page3layer3p9">Figure 1: Current crowd work processes.</div>
             <div class="linespace"></div>
             <div class="paragraph" id="page3layer3p10">crowdsourced labor markets can be viewed as large distributed systems in which each person, such as a worker on Mechanical Turk, is analogous to a processor that can solve a task requiring human intelligence. In this way a crowdsourcing market could be seen as a loosely coupled distributed computing system [9]. Fleshing out this analogy, we develop here the beginnings of a framework for the future of crowd work that integrates the human aspects of organizational behavior with the automation and scalability of the distributed computing literature.</div>
@@ -856,8 +866,8 @@
             <div class="sectiontitle" id="page3layer4p7">Theories of Organizational Behavior and Distributed Computing</div>
             <div class="paragraph" id="page3layer4p8">Much professional work consists of complex sets of interdependent tasks that need to be coordinated across individuals with different expertise and capabilities [89]. For example, producing a book, an academic paper, or a new car all may involve many individuals working in structured teams, each with different skills and roles, collaborating on a shared output. To address these more complex goals we draw on concepts from both the organizational behavior [89,97,143,148] and the distributed computing literatures [9,132]. We propose that</div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig1.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig1.PNG" style="width:25vw">
             <div class="caption" id="page3layer4p9">Figure 1: Current crowd work processes.</div>
             <div class="linespace"></div>
             <div class="paragraph" id="page3layer4p10">crowdsourced labor markets can be viewed as large distributed systems in which each person, such as a worker on Mechanical Turk, is analogous to a processor that can solve a task requiring human intelligence. In this way a crowdsourcing market could be seen as a loosely coupled distributed computing system [9]. Fleshing out this analogy, we develop here the beginnings of a framework for the future of crowd work that integrates the human aspects of organizational behavior with the automation and scalability of the distributed computing literature.</div>
@@ -889,8 +899,8 @@
             <div class="sectiontitle" id="page3layer5p7">Theories of Organizational Behavior and Distributed Computing</div>
             <div class="paragraph" id="page3layer5p8">Much professional work consists of complex sets of interdependent tasks that need to be coordinated across individuals with different expertise and capabilities [89]. For example, producing a book, an academic paper, or a new car all may involve many individuals working in structured teams, each with different skills and roles, collaborating on a shared output. To address these more complex goals we draw on concepts from both the organizational behavior [89,97,143,148] and the distributed computing literatures [9,132]. We propose that</div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig1.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig1.PNG" style="width:25vw">
             <div class="caption" id="page3layer5p9">Figure 1: Current crowd work processes.</div>
             <div class="linespace"></div>
             <div class="paragraph" id="page3layer5p10">crowdsourced labor markets can be viewed as large distributed systems in which each person, such as a worker on Mechanical Turk, is analogous to a processor that can solve a task requiring human intelligence. In this way a crowdsourcing market could be seen as a loosely coupled distributed computing system [9]. Fleshing out this analogy, we develop here the beginnings of a framework for the future of crowd work that integrates the human aspects of organizational behavior with the automation and scalability of the distributed computing literature.</div>
@@ -922,8 +932,8 @@
             <div class="sectiontitle" id="page3layer6p7">Theories of Organizational Behavior and Distributed Computing</div>
             <div class="paragraph" id="page3layer6p8">Much professional work consists of complex sets of interdependent tasks that need to be coordinated across individuals with different expertise and capabilities [89]. For example, producing a book, an academic paper, or a new car all may involve many individuals working in structured teams, each with different skills and roles, collaborating on a shared output. To address these more complex goals we draw on concepts from both the organizational behavior [89,97,143,148] and the distributed computing literatures [9,132]. We propose that</div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig1.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig1.PNG" style="width:25vw">
             <div class="caption" id="page3layer6p9">Figure 1: Current crowd work processes.</div>
             <div class="linespace"></div>
             <div class="paragraph" id="page3layer6p10">crowdsourced labor markets can be viewed as large distributed systems in which each person, such as a worker on Mechanical Turk, is analogous to a processor that can solve a task requiring human intelligence. In this way a crowdsourcing market could be seen as a loosely coupled distributed computing system [9]. Fleshing out this analogy, we develop here the beginnings of a framework for the future of crowd work that integrates the human aspects of organizational behavior with the automation and scalability of the distributed computing literature.</div>
@@ -955,8 +965,8 @@
             <div class="sectiontitle" id="page3layer7p7">Theories of Organizational Behavior and Distributed Computing</div>
             <div class="paragraph" id="page3layer7p8">Much professional work consists of complex sets of interdependent tasks that need to be coordinated across individuals with different expertise and capabilities [89]. For example, producing a book, an academic paper, or a new car all may involve many individuals working in structured teams, each with different skills and roles, collaborating on a shared output. To address these more complex goals we draw on concepts from both the organizational behavior [89,97,143,148] and the distributed computing literatures [9,132]. We propose that</div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig1.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig1.PNG" style="width:25vw">
             <div class="caption" id="page3layer7p9">Figure 1: Current crowd work processes.</div>
             <div class="linespace"></div>
             <div class="paragraph" id="page3layer7p10">crowdsourced labor markets can be viewed as large distributed systems in which each person, such as a worker on Mechanical Turk, is analogous to a processor that can solve a task requiring human intelligence. In this way a crowdsourcing market could be seen as a loosely coupled distributed computing system [9]. Fleshing out this analogy, we develop here the beginnings of a framework for the future of crowd work that integrates the human aspects of organizational behavior with the automation and scalability of the distributed computing literature.</div>
@@ -988,8 +998,8 @@
             <div class="sectiontitle" id="page3layer8p7">Theories of Organizational Behavior and Distributed Computing</div>
             <div class="paragraph" id="page3layer8p8">Much professional work consists of complex sets of interdependent tasks that need to be coordinated across individuals with different expertise and capabilities [89]. For example, producing a book, an academic paper, or a new car all may involve many individuals working in structured teams, each with different skills and roles, collaborating on a shared output. To address these more complex goals we draw on concepts from both the organizational behavior [89,97,143,148] and the distributed computing literatures [9,132]. We propose that</div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig1.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig1.PNG" style="width:25vw">
             <div class="caption" id="page3layer8p9">Figure 1: Current crowd work processes.</div>
             <div class="linespace"></div>
             <div class="paragraph" id="page3layer8p10">crowdsourced labor markets can be viewed as large distributed systems in which each person, such as a worker on Mechanical Turk, is analogous to a processor that can solve a task requiring human intelligence. In this way a crowdsourcing market could be seen as a loosely coupled distributed computing system [9]. Fleshing out this analogy, we develop here the beginnings of a framework for the future of crowd work that integrates the human aspects of organizational behavior with the automation and scalability of the distributed computing literature.</div>
@@ -1021,8 +1031,8 @@
             <div class="sectiontitle" id="page3layer9p7">Theories of Organizational Behavior and Distributed Computing</div>
             <div class="paragraph" id="page3layer9p8">Much professional work consists of complex sets of interdependent tasks that need to be coordinated across individuals with different expertise and capabilities [89]. For example, producing a book, an academic paper, or a new car all may involve many individuals working in structured teams, each with different skills and roles, collaborating on a shared output. To address these more complex goals we draw on concepts from both the organizational behavior [89,97,143,148] and the distributed computing literatures [9,132]. We propose that</div>
             <div class="linespace"></div>
-            <img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig1.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig1.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig1.PNG" style="width:25vw">
             <div class="caption" id="page3layer9p9">Figure 1: Current crowd work processes.</div>
             <div class="linespace"></div>
             <div class="paragraph" id="page3layer9p10">crowdsourced labor markets can be viewed as large distributed systems in which each person, such as a worker on Mechanical Turk, is analogous to a processor that can solve a task requiring human intelligence. In this way a crowdsourcing market could be seen as a loosely coupled distributed computing system [9]. Fleshing out this analogy, we develop here the beginnings of a framework for the future of crowd work that integrates the human aspects of organizational behavior with the automation and scalability of the distributed computing literature.</div>
@@ -1045,8 +1055,8 @@
             <div class="sectiontitle" id="page4layer1p2">Crowd-Specific Factors</div>
             <div class="paragraph" id="page4layer1p3">Unlike traditional organizations in which workers possess job security and managers can closely supervise and appropriately reward or sanction workers, or distributed computing systems in which processors are usually highly reliable, crowd work poses unique challenges for both workers and requesters ranging from job satisfaction to direction-setting, coordination, and quality control. For example, organizations can maintain high quality work through management, worker incentives, and sanctions. While some of these methods are available in crowd work (e.g., how much to reward workers, whether to reject their work, or impose a reputation penalty) their power is attenuated due to factors such as lack of direct supervision and visibility into their work behavior, lack of nuanced and individualized rewards, and the difficulty of imposing stringent and lasting sanctions (since workers can leave</div>
             <div class="linespace"></div>    
-            <img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig2.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig2.PNG" style="width:25vw">
             <div class="caption" id="page4layer1p4">Figure 2: Proposed framework for future crowd work processes to support complex and interdependent work.</div>
             <div class="linespace"></div> 
             <div class="paragraph" id="page4layer1p5">with fewer repercussions than in traditional organizations, such as to reference letters or work histories). The worker’s power is also limited: requesters do not make a long-term commitment to the worker, and endure few penalties if they renege on their agreement to pay for quality work. In distributed computing systems, by contrast, requesters (programmers) have fewer problems with motivating and directing their workers (computers). However, machines cannot match the complexity, creativity, and flexibility that human intelligence manifests. Combining ideas from human and computer organization theories may thus provide complementary benefits and address complementary weaknesses over using either alone.</div>
@@ -1069,8 +1079,8 @@
             <div class="sectiontitle" id="page4layer2p2">Crowd-Specific Factors</div>
             <div class="paragraph" id="page4layer2p3">Unlike traditional organizations in which workers possess job security and managers can closely supervise and appropriately reward or sanction workers, or distributed computing systems in which processors are usually highly reliable, crowd work poses unique challenges for both workers and requesters ranging from job satisfaction to direction-setting, coordination, and quality control. For example, organizations can maintain high quality work through management, worker incentives, and sanctions. While some of these methods are available in crowd work (e.g., how much to reward workers, whether to reject their work, or impose a reputation penalty) their power is attenuated due to factors such as lack of direct supervision and visibility into their work behavior, lack of nuanced and individualized rewards, and the difficulty of imposing stringent and lasting sanctions (since workers can leave</div>
             <div class="linespace"></div>    
-            <img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig2.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig2.PNG" style="width:25vw">
             <div class="caption" id="page4layer2p4">Figure 2: Proposed framework for future crowd work processes to support complex and interdependent work.</div>
             <div class="linespace"></div> 
             <div class="paragraph" id="page4layer2p5">with fewer repercussions than in traditional organizations, such as to reference letters or work histories). The worker’s power is also limited: requesters do not make a long-term commitment to the worker, and endure few penalties if they renege on their agreement to pay for quality work. In distributed computing systems, by contrast, requesters (programmers) have fewer problems with motivating and directing their workers (computers). However, machines cannot match the complexity, creativity, and flexibility that human intelligence manifests. Combining ideas from human and computer organization theories may thus provide complementary benefits and address complementary weaknesses over using either alone.</div>
@@ -1093,8 +1103,8 @@
             <div class="sectiontitle" id="page4layer3p2">Crowd-Specific Factors</div>
             <div class="paragraph" id="page4layer3p3">Unlike traditional organizations in which workers possess job security and managers can closely supervise and appropriately reward or sanction workers, or distributed computing systems in which processors are usually highly reliable, crowd work poses unique challenges for both workers and requesters ranging from job satisfaction to direction-setting, coordination, and quality control. For example, organizations can maintain high quality work through management, worker incentives, and sanctions. While some of these methods are available in crowd work (e.g., how much to reward workers, whether to reject their work, or impose a reputation penalty) their power is attenuated due to factors such as lack of direct supervision and visibility into their work behavior, lack of nuanced and individualized rewards, and the difficulty of imposing stringent and lasting sanctions (since workers can leave</div>
             <div class="linespace"></div>    
-            <img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig2.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig2.PNG" style="width:25vw">
             <div class="caption" id="page4layer3p4">Figure 2: Proposed framework for future crowd work processes to support complex and interdependent work.</div>
             <div class="linespace"></div> 
             <div class="paragraph" id="page4layer3p5">with fewer repercussions than in traditional organizations, such as to reference letters or work histories). The worker’s power is also limited: requesters do not make a long-term commitment to the worker, and endure few penalties if they renege on their agreement to pay for quality work. In distributed computing systems, by contrast, requesters (programmers) have fewer problems with motivating and directing their workers (computers). However, machines cannot match the complexity, creativity, and flexibility that human intelligence manifests. Combining ideas from human and computer organization theories may thus provide complementary benefits and address complementary weaknesses over using either alone.</div>
@@ -1117,8 +1127,8 @@
             <div class="sectiontitle" id="page4layer4p2">Crowd-Specific Factors</div>
             <div class="paragraph" id="page4layer4p3">Unlike traditional organizations in which workers possess job security and managers can closely supervise and appropriately reward or sanction workers, or distributed computing systems in which processors are usually highly reliable, crowd work poses unique challenges for both workers and requesters ranging from job satisfaction to direction-setting, coordination, and quality control. For example, organizations can maintain high quality work through management, worker incentives, and sanctions. While some of these methods are available in crowd work (e.g., how much to reward workers, whether to reject their work, or impose a reputation penalty) their power is attenuated due to factors such as lack of direct supervision and visibility into their work behavior, lack of nuanced and individualized rewards, and the difficulty of imposing stringent and lasting sanctions (since workers can leave</div>
             <div class="linespace"></div>    
-            <img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig2.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig2.PNG" style="width:25vw">
             <div class="caption" id="page4layer4p4">Figure 2: Proposed framework for future crowd work processes to support complex and interdependent work.</div>
             <div class="linespace"></div> 
             <div class="paragraph" id="page4layer4p5">with fewer repercussions than in traditional organizations, such as to reference letters or work histories). The worker’s power is also limited: requesters do not make a long-term commitment to the worker, and endure few penalties if they renege on their agreement to pay for quality work. In distributed computing systems, by contrast, requesters (programmers) have fewer problems with motivating and directing their workers (computers). However, machines cannot match the complexity, creativity, and flexibility that human intelligence manifests. Combining ideas from human and computer organization theories may thus provide complementary benefits and address complementary weaknesses over using either alone.</div>
@@ -1141,8 +1151,8 @@
             <div class="sectiontitle" id="page4layer5p2">Crowd-Specific Factors</div>
             <div class="paragraph" id="page4layer5p3">Unlike traditional organizations in which workers possess job security and managers can closely supervise and appropriately reward or sanction workers, or distributed computing systems in which processors are usually highly reliable, crowd work poses unique challenges for both workers and requesters ranging from job satisfaction to direction-setting, coordination, and quality control. For example, organizations can maintain high quality work through management, worker incentives, and sanctions. While some of these methods are available in crowd work (e.g., how much to reward workers, whether to reject their work, or impose a reputation penalty) their power is attenuated due to factors such as lack of direct supervision and visibility into their work behavior, lack of nuanced and individualized rewards, and the difficulty of imposing stringent and lasting sanctions (since workers can leave</div>
             <div class="linespace"></div>    
-            <img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig2.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig2.PNG" style="width:25vw">
             <div class="caption" id="page4layer5p4">Figure 2: Proposed framework for future crowd work processes to support complex and interdependent work.</div>
             <div class="linespace"></div> 
             <div class="paragraph" id="page4layer5p5">with fewer repercussions than in traditional organizations, such as to reference letters or work histories). The worker’s power is also limited: requesters do not make a long-term commitment to the worker, and endure few penalties if they renege on their agreement to pay for quality work. In distributed computing systems, by contrast, requesters (programmers) have fewer problems with motivating and directing their workers (computers). However, machines cannot match the complexity, creativity, and flexibility that human intelligence manifests. Combining ideas from human and computer organization theories may thus provide complementary benefits and address complementary weaknesses over using either alone.</div>
@@ -1165,8 +1175,8 @@
             <div class="sectiontitle" id="page4layer6p2">Crowd-Specific Factors</div>
             <div class="paragraph" id="page4layer6p3">Unlike traditional organizations in which workers possess job security and managers can closely supervise and appropriately reward or sanction workers, or distributed computing systems in which processors are usually highly reliable, crowd work poses unique challenges for both workers and requesters ranging from job satisfaction to direction-setting, coordination, and quality control. For example, organizations can maintain high quality work through management, worker incentives, and sanctions. While some of these methods are available in crowd work (e.g., how much to reward workers, whether to reject their work, or impose a reputation penalty) their power is attenuated due to factors such as lack of direct supervision and visibility into their work behavior, lack of nuanced and individualized rewards, and the difficulty of imposing stringent and lasting sanctions (since workers can leave</div>
             <div class="linespace"></div>    
-            <img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig2.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig2.PNG" style="width:25vw">
             <div class="caption" id="page4layer6p4">Figure 2: Proposed framework for future crowd work processes to support complex and interdependent work.</div>
             <div class="linespace"></div> 
             <div class="paragraph" id="page4layer6p5">with fewer repercussions than in traditional organizations, such as to reference letters or work histories). The worker’s power is also limited: requesters do not make a long-term commitment to the worker, and endure few penalties if they renege on their agreement to pay for quality work. In distributed computing systems, by contrast, requesters (programmers) have fewer problems with motivating and directing their workers (computers). However, machines cannot match the complexity, creativity, and flexibility that human intelligence manifests. Combining ideas from human and computer organization theories may thus provide complementary benefits and address complementary weaknesses over using either alone.</div>
@@ -1190,8 +1200,8 @@
             <div class="sectiontitle" id="page4layer7p2">Crowd-Specific Factors</div>
             <div class="paragraph" id="page4layer7p3">Unlike traditional organizations in which workers possess job security and managers can closely supervise and appropriately reward or sanction workers, or distributed computing systems in which processors are usually highly reliable, crowd work poses unique challenges for both workers and requesters ranging from job satisfaction to direction-setting, coordination, and quality control. For example, organizations can maintain high quality work through management, worker incentives, and sanctions. While some of these methods are available in crowd work (e.g., how much to reward workers, whether to reject their work, or impose a reputation penalty) their power is attenuated due to factors such as lack of direct supervision and visibility into their work behavior, lack of nuanced and individualized rewards, and the difficulty of imposing stringent and lasting sanctions (since workers can leave</div>
             <div class="linespace"></div>    
-            <img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig2.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig2.PNG" style="width:25vw">
             <div class="caption" id="page4layer7p4">Figure 2: Proposed framework for future crowd work processes to support complex and interdependent work.</div>
             <div class="linespace"></div> 
             <div class="paragraph" id="page4layer7p5">with fewer repercussions than in traditional organizations, such as to reference letters or work histories). The worker’s power is also limited: requesters do not make a long-term commitment to the worker, and endure few penalties if they renege on their agreement to pay for quality work. In distributed computing systems, by contrast, requesters (programmers) have fewer problems with motivating and directing their workers (computers). However, machines cannot match the complexity, creativity, and flexibility that human intelligence manifests. Combining ideas from human and computer organization theories may thus provide complementary benefits and address complementary weaknesses over using either alone.</div>
@@ -1214,8 +1224,8 @@
             <div class="sectiontitle" id="page4layer8p2">Crowd-Specific Factors</div>
             <div class="paragraph" id="page4layer8p3">Unlike traditional organizations in which workers possess job security and managers can closely supervise and appropriately reward or sanction workers, or distributed computing systems in which processors are usually highly reliable, crowd work poses unique challenges for both workers and requesters ranging from job satisfaction to direction-setting, coordination, and quality control. For example, organizations can maintain high quality work through management, worker incentives, and sanctions. While some of these methods are available in crowd work (e.g., how much to reward workers, whether to reject their work, or impose a reputation penalty) their power is attenuated due to factors such as lack of direct supervision and visibility into their work behavior, lack of nuanced and individualized rewards, and the difficulty of imposing stringent and lasting sanctions (since workers can leave</div>
             <div class="linespace"></div>    
-            <img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig2.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig2.PNG" style="width:25vw">
             <div class="caption" id="page4layer8p4">Figure 2: Proposed framework for future crowd work processes to support complex and interdependent work.</div>
             <div class="linespace"></div> 
             <div class="paragraph" id="page4layer8p5">with fewer repercussions than in traditional organizations, such as to reference letters or work histories). The worker’s power is also limited: requesters do not make a long-term commitment to the worker, and endure few penalties if they renege on their agreement to pay for quality work. In distributed computing systems, by contrast, requesters (programmers) have fewer problems with motivating and directing their workers (computers). However, machines cannot match the complexity, creativity, and flexibility that human intelligence manifests. Combining ideas from human and computer organization theories may thus provide complementary benefits and address complementary weaknesses over using either alone.</div>
@@ -1238,8 +1248,8 @@
             <div class="sectiontitle" id="page4layer9p2">Crowd-Specific Factors</div>
             <div class="paragraph" id="page4layer9p3">Unlike traditional organizations in which workers possess job security and managers can closely supervise and appropriately reward or sanction workers, or distributed computing systems in which processors are usually highly reliable, crowd work poses unique challenges for both workers and requesters ranging from job satisfaction to direction-setting, coordination, and quality control. For example, organizations can maintain high quality work through management, worker incentives, and sanctions. While some of these methods are available in crowd work (e.g., how much to reward workers, whether to reject their work, or impose a reputation penalty) their power is attenuated due to factors such as lack of direct supervision and visibility into their work behavior, lack of nuanced and individualized rewards, and the difficulty of imposing stringent and lasting sanctions (since workers can leave</div>
             <div class="linespace"></div>    
-            <img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">
-            <!--<img src="../static/fig2.PNG" style="width:25vw">-->
+            <!--<img src="{{url_for('static', filename='fig2.PNG')}}" style="width:25vw">-->
+            <img src="../static/fig2.PNG" style="width:25vw">
             <div class="caption" id="page4layer9p4">Figure 2: Proposed framework for future crowd work processes to support complex and interdependent work.</div>
             <div class="linespace"></div> 
             <div class="paragraph" id="page4layer9p5">with fewer repercussions than in traditional organizations, such as to reference letters or work histories). The worker’s power is also limited: requesters do not make a long-term commitment to the worker, and endure few penalties if they renege on their agreement to pay for quality work. In distributed computing systems, by contrast, requesters (programmers) have fewer problems with motivating and directing their workers (computers). However, machines cannot match the complexity, creativity, and flexibility that human intelligence manifests. Combining ideas from human and computer organization theories may thus provide complementary benefits and address complementary weaknesses over using either alone.</div>
@@ -6609,5 +6619,7 @@
         </div>
         <div class="pagenumber">1317</div>
     </div>
+
+
 </body>
 </html>
