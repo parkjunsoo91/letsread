@@ -8,6 +8,7 @@
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='highlight.css') }}">
 
     <script>
         //currently unused.
@@ -37,23 +38,23 @@
         }
         switch (event.key) {
             case "1":
-                // Do something 
+                setHighlightMode(0);
                 changecurrentcolor1();
             break;
             case "2":
-                // Do something
+                setHighlightMode(1);
                 changecurrentcolor2(); 
             break;
             case "3":
-                // Do something 
+                setHighlightMode(2);
                 changecurrentcolor3();
             break;
             case "4":
-                // Do something 
+                setHighlightMode(3);
                 changecurrentcolor4();
             break;
             case "5":
-                // Do something 
+                setEraserMode();
                 changecurrentcolor5();
             break;
             default:
@@ -147,10 +148,10 @@
 
 <body onload="loadHighlights()">
     <div>
-        <button class="uitext2 sidebutton buttonhigh1" onclick="changecurrentcolor1();setHighlightMode();">   <span style="color:grey;">[1]</span></button>
-        <button class="uitext2 sidebutton buttonhigh2" onclick="changecurrentcolor2();setHighlightMode();">:) <span style="color:grey;">[2]</span></button>
-        <button class="uitext2 sidebutton buttonhigh3" onclick="changecurrentcolor3();setHighlightMode();">:( <span style="color:grey;">[3]</span></button>
-        <button class="uitext2 sidebutton buttonhigh4" onclick="changecurrentcolor4();setHighlightMode();">? <span style="color:grey;">[4]</span></button>
+        <button class="uitext2 sidebutton buttonhigh1" onclick="changecurrentcolor1();setHighlightMode(0);">   <span style="color:grey;">[1]</span></button>
+        <button class="uitext2 sidebutton buttonhigh2" onclick="changecurrentcolor2();setHighlightMode(1);">:) <span style="color:grey;">[2]</span></button>
+        <button class="uitext2 sidebutton buttonhigh3" onclick="changecurrentcolor3();setHighlightMode(2);">:( <span style="color:grey;">[3]</span></button>
+        <button class="uitext2 sidebutton buttonhigh4" onclick="changecurrentcolor4();setHighlightMode(3);">? <span style="color:grey;">[4]</span></button>
         <button class="uitext2 sidebutton buttonerase" onclick="changecurrentcolor5();setEraserMode();">X <span style="color:grey;">[5]</span></button>
         <button class="uitext2 sidebutton buttonhigh5" id="currentcolorbutton"></button>
     </div>
