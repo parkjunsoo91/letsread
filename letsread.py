@@ -75,11 +75,12 @@ def close_db(error):
 def root():
     if session.get('id'):
         return redirect(url_for('view'))
-    return redirect(url_for('tutorialview'))
+    return redirect(url_for('tutorial'))
 
-@app.route('/tutorialview')
-def tutorialview():
-    return render_template('tutorialview.html')
+@app.route('/tutorial')
+def tutorial():
+    print("fuuuuuuuuuuuuuuuuuuuuuuuuck")
+    return render_template('tutorial.html')
 
 @app.route('/view')
 def view():

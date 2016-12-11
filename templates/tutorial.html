@@ -18,12 +18,13 @@
         .uitext3 {font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;letter-spacing: 0.04vw;color:dimgray; font-size:2.3vw; }
     </style>
 </head>
+<body>
 <body background="{{url_for('static', filename='tutorial.jpg')}}">
 <!--<body background="../static/tutorial.jpg">-->
     <div style="height:95vw;">
-        <form action="{{url_for('templates', filename='view.html')}}">
+        <form action="{{url_for('view') }}">
         <!--<form action="../templates/view.html">-->
-        <input class="uitext3 startbutton" type="submit" value="Click here to start!">
+            <input class="uitext3 startbutton" type="submit" value="Click here to start!"></input>
         </form>
     </div>
 </body>
