@@ -133,6 +133,7 @@ def highlight():
     if not session.get('id'):
         return jsonify(ok = False)
     uid = session['id']
+    pid = 1
     layer = request.form.get('layer')
     if layer:
         layer = int(layer)
@@ -217,7 +218,7 @@ def FrequencyToHighlight(FO, HO):
         hist = FO[paragId]['histogram']
         head = FO[paragId]['head']
         tail = FO[paragId]['tail']
-        print "head: %d, tail: %d" % (head, tail)
+        #print "head: %d, tail: %d" % (head, tail)
         thresh = max(hist) / 3
         start = 0
         value = 0
