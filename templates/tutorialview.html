@@ -6,8 +6,6 @@
     <meta charset="utf-8">
     <meta name="description" content="Crowdsourced reading platform">
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="{{ url_for('static', filename='highlight.js') }}"></script>
 
     <style>
         /*page layout*/
@@ -18,13 +16,14 @@
         .uitext3 {font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;letter-spacing: 0.04vw;color:dimgray; font-size:2.3vw; }
     </style>
 </head>
+
 <body background="{{url_for('static', filename='tutorial.jpg')}}">
 <!--<body background="../static/tutorial.jpg">-->
     <div style="height:95vw;">
         <form action="{{url_for('templates', filename='view.html')}}">
         <!--<form action="../templates/view.html">-->
-        <input class="uitext3 startbutton" type="submit" value="Click here to start!">
-    </form>
+            <input class="uitext3 startbutton" type="submit" value="Click here to start!">
+        </form>
     </div>
 </body>
 </html>
