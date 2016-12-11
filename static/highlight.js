@@ -33,9 +33,9 @@ function eraseHighlight() {
 
 //JSON 기반으로 template HTML에 highlight넣어주는 함수
 function highlightJSON(pid, layerNum) {
-    console.log("pid: " + pid + "  layerNum: " + layerNum);
+    //console.log("pid: " + pid + "  layerNum: " + layerNum);
     var len = obj[layerNum-2][pid].length;
-    console.log("len: " + len);
+    //console.log("len: " + len);
     var innerHTML = document.getElementById(pid).innerHTML;
     for (j = len - 2; j >= 0; j--) {
         var start = obj[layerNum-2][pid][j].start;
@@ -156,9 +156,16 @@ function modeSelect(){
 
  function loadHighlights()
 {
-    for(i=0;i<8;i++){
-        loadLayerObects(i);
-    }
+    loadLayerObects(0);
+
+    // for(i=0;i<8;i++){
+    //     var keys = Object.keys(obj[i]);
+    //     console.log("key length: " + keys.length);
+    //     for(j=0;j<keys.length;j++){
+    //         console.log("pid: " + keys[j] + "layerNum: " + (i+2));
+    //         highlightJSON(keys[j],i+2);
+    //     }
+    // }
 }
 
  function loadLayerObects(objNum)
@@ -175,8 +182,11 @@ function modeSelect(){
                 var keys = Object.keys(obj[objNum]);
                 for(i=0;i<keys.length;i++){
                     var pid = keys[i];
-                    console.log("pid: "+pid) ;
-                    highlightJSON(pid, objNum + 2);
+                    console.log("pid: "+pid+"  objNum+2: "+(objNum+2));
+                    highlightJSON(pid,objNum+2);
+                }
+                if(objNum<7){
+                    loadLayerObects(objNum+1);
                 }
             }
             else{
@@ -191,9 +201,8 @@ function modeSelect(){
         console.log("total=0&pid=1&layer="+(objNum+1));
     }
     else{
-        objNum -= 3;
-        xhttp.send("total=1&pid=1&layer="+objNum);   
-        console.log("total=1&pid=1&layer="+objNum);
+        xhttp.send("total=1&pid=1&layer="+(objNum-3));   
+        console.log("total=1&pid=1&layer="+(objNum-3))  ;
     }
 }
 function pushHighlights(pid){
