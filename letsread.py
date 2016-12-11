@@ -137,6 +137,7 @@ def highlight():
     if layer:
         layer = int(layer)
     high = request.form.get('content')
+    print "uid: %d, pid: %d, layer: %d" %(uid, pid, layer)
     db = get_db()
     if layer:
         db.execute('update highlights set json = ? where uid = ? and layer=?', [high, uid, layer])
@@ -156,7 +157,7 @@ def loadHighlights():
     layer = request.form.get('layer')
     if layer:
         layer = int(layer)
-    print "uid: %d, pid: %d, total %d" % (uid, pid, total)
+    print "uid: %d, pid: %d, layer: %d, total %d" % (uid, pid, layer, total)
     if total == 1:
         if layer:
             highlights = query_db('select * from highlights where pid=? and layer=?', [pid, layer], one=False)
