@@ -8,9 +8,9 @@ function eraseHighlight() {
     var sel = window.getSelection();
     var range = sel.getRangeAt(0);
     var pid = sel.anchorNode.parentElement.id;
-    var eraseIdx = -1;
     var erasePoint = range.startOffset;
     for(allNum = 0;allNum<4;allNum++){
+        var eraseIdx = -1;
         for (i = 0; i < obj[allNum][pid].length; i++) {
             if(obj[allNum][pid][i].start <= erasePoint && erasePoint <= obj[allNum][pid][i].end){
                 eraseIdx = i;
