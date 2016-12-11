@@ -118,12 +118,12 @@
         .toppanel{margin-top: 3vw;text-align: center;}
         .button {background-color: #595959;border: none;width: 7vw;height: 2.4vw;margin-left: -0.05vw;}
         .sidebutton {padding-right: 0.9vw;border: none;position: fixed;width: 4.5vw;height: 2.8vw;}
-        .buttonhigh1 {background-color: yellow;border: none;margin-left: 70vw;margin-top:6vw;border-top-left-radius: 0.8vw;border-top-right-radius: 0.8vw;}
-        .buttonhigh2 {background-color: lime;border: none;margin-left: 70vw;margin-top:9.1vw;}
-        .buttonhigh3 {background-color: hotpink;border: none;margin-left: 70vw;margin-top:12.2vw;}
-        .buttonhigh4 {background-color: darkorange;border: none;margin-left: 70vw;margin-top:15.3vw;}
-        .buttonerase {background-color: #595959;border: none;margin-left: 70vw;margin-top:18.4vw;border-bottom-left-radius: 0.8vw;border-bottom-right-radius: 0.8vw;}
-        .buttonhigh5 {background-color: yellow;border: none;margin-left: 71.43vw; margin-top:22vw; height: 1.5vw; width: 1.5vw; border-radius:2vw;}
+        .buttonhigh1 {background-color: yellow;border: none;margin-left: 83vw;margin-top:6vw;border-top-left-radius: 0.8vw;border-top-right-radius: 0.8vw;}
+        .buttonhigh2 {background-color: lime;border: none;margin-left: 83vw;margin-top:9.1vw;}
+        .buttonhigh3 {background-color: hotpink;border: none;margin-left: 83vw;margin-top:12.2vw;}
+        .buttonhigh4 {background-color: darkorange;border: none;margin-left: 83vw;margin-top:15.3vw;}
+        .buttonerase {background-color: #595959;border: none;margin-left: 83vw;margin-top:18.4vw;border-bottom-left-radius: 0.8vw;border-bottom-right-radius: 0.8vw;}
+        .buttonhigh5 {background-color: yellow;border: none;margin-left: 84.43vw; margin-top:22vw; height: 1.5vw; width: 1.5vw; border-radius:2vw;}
         .login{background-color: #1b4ea0;}
         .textinput{background-color: #878787;border: none;text-align: center;width: 15vw;height: 2.2vw;margin-left: 29vw;}
         .inline{display:inline;}
@@ -146,15 +146,15 @@
 </head>
 
 <body onload="loadHighlights()">
+    <div>
+        <button class="uitext2 sidebutton buttonhigh1" onclick="changecurrentcolor1();setHighlightMode();">   <span style="color:grey;">[1]</span></button>
+        <button class="uitext2 sidebutton buttonhigh2" onclick="changecurrentcolor2();setHighlightMode();">:) <span style="color:grey;">[2]</span></button>
+        <button class="uitext2 sidebutton buttonhigh3" onclick="changecurrentcolor3();setHighlightMode();">:( <span style="color:grey;">[3]</span></button>
+        <button class="uitext2 sidebutton buttonhigh4" onclick="changecurrentcolor4();setHighlightMode();">? <span style="color:grey;">[4]</span></button>
+        <button class="uitext2 sidebutton buttonerase" onclick="changecurrentcolor5();setEraserMode();">X <span style="color:grey;">[5]</span></button>
+        <button class="uitext2 sidebutton buttonhigh5" id="currentcolorbutton"></button>
+    </div>
     <div class="toppanel">
-        <span class="buttonpanel">
-            <button class="uitext2 sidebutton buttonhigh1" onclick="changecurrentcolor1();setHighlightMode();">   <span style="color:grey;">[1]</span></button>
-            <button class="uitext2 sidebutton buttonhigh2" onclick="changecurrentcolor2();setHighlightMode();">:) <span style="color:grey;">[2]</span></button>
-            <button class="uitext2 sidebutton buttonhigh3" onclick="changecurrentcolor3();setHighlightMode();">:( <span style="color:grey;">[3]</span></button>
-            <button class="uitext2 sidebutton buttonhigh4" onclick="changecurrentcolor4();setHighlightMode();">? <span style="color:grey;">[4]</span></button>
-            <button class="uitext2 sidebutton buttonerase" onclick="changecurrentcolor5();setEraserMode();">X <span style="color:grey;">[5]</span></button>
-            <button class="uitext2 sidebutton buttonhigh5" id="currentcolorbutton"></button>
-        </span>
         <span class="loginpanel">
         {% if not session.id %}
             <!--input class="uitext textinput" type="text" id="userid"></input>
