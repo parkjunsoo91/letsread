@@ -6,7 +6,6 @@
     <meta charset="utf-8">
     <meta name="description" content="Crowdsourced reading platform">
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
 
@@ -30,31 +29,62 @@
                 $("#loginbutton").html(":)");
             });
         }
-
-        // function loadHighlights()
-        // {
-        //     //code doesn't work
-        //     return;
-        //     var uid = {{session.id}};
-        //     var pid = 0
-        //     document.getElementById("")
-        //     var xhttp = new XMLHttpRequest();
-        //     xhttp.onreadystatechange = function() {
-        //         if (this.readyState == 4 && this.status == 200) {
-        //             //get json of all highlights and draw them accordingly
-        //             alert("placeholder alert." + this.responseText);
-        //             //document.getElementById("demo").innerHTML = this.responseText;
-        //         }
-        //     };
-        //     xhttp.open("POST", "{{url_for('loadHighlights')}}", true);
-        //     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
-        //     xhttp.send("uid=" + uid + "&pid=" + pid);
-        // }
     </script>
+    <script>
+        window.addEventListener("keydown", function (event) {
+        if (event.defaultPrevented) {
+            return; // Do nothing if the event was already processed
+        }
+        switch (event.key) {
+            case "1":
+                // Do something 
+                changecurrentcolor1();
+            break;
+            case "2":
+                // Do something
+                changecurrentcolor2(); 
+            break;
+            case "3":
+                // Do something 
+                changecurrentcolor3();
+            break;
+            case "4":
+                // Do something 
+                changecurrentcolor4();
+            break;
+            case "5":
+                // Do something 
+                changecurrentcolor5();
+            break;
+            default:
+            return; // Quit when this doesn't handle the key event.
+        }
+        // Cancel the default action to avoid it being handled twice
+        event.preventDefault();
+        }, true);
+    </script>
+    <script>
+        var changecurrentcolor1 = function(){
+            $("#currentcolorbutton").css("background-color", "yellow");
+        }
+        var changecurrentcolor2 = function(){
+            $("#currentcolorbutton").css("background-color", "lime");
+        }
+        var changecurrentcolor3 = function(){
+            $("#currentcolorbutton").css("background-color", "hotpink");
+        }
+        var changecurrentcolor4 = function(){
+            $("#currentcolorbutton").css("background-color", "darkorange");
+        }
+        var changecurrentcolor5 = function(){
+            $("#currentcolorbutton").css("background-color", "#595959");
+        }
+    </script>
+
     <style>.highlight {background-color: yellow;}</style>
     <style>
         /*page layout*/
-        body {background-color: #333333; /*to prevent padding from changing overall width*/-webkit-box-sizing: border-box;-webkit-box-sizing: border-box; box-sizing: border-box;text-align: justify;}
+        body {background-color:#333333; /*to prevent padding from changing overall width*/-webkit-box-sizing: border-box;-webkit-box-sizing: border-box; box-sizing: border-box;text-align: justify;}
         img {display: block;margin: 0 auto;}
         .page {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 66vw;height: 85.358vw; /*ratio = 1:1.2933*/  margin-top: 2vw;margin-left: auto;margin-right: auto;
         margin-bottom: 2vw;padding-top: 6vw;padding-left: 5.7vw;padding-right: 5.7vw;padding-bottom: 1vw;position: absolute;left: 15vw;}
@@ -87,11 +117,13 @@
         /*UI*/
         .toppanel{margin-top: 3vw;text-align: center;}
         .button {background-color: #595959;border: none;width: 7vw;height: 2.4vw;margin-left: -0.05vw;}
-        .buttonhigh1 {text-align: right; padding-right: 0.9vw; background-color: #595959;border: none;border-top-right-radius: 1.2vw;border-top-left-radius: 1.2vw;position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:6vw;}
-        .buttonhigh2 {text-align: right; padding-right: 0.9vw;background-color: #595959;border: none;position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:9.1vw;}
-        .buttonhigh3 {text-align: right; padding-right: 0.9vw;background-color: #595959;border: none;position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:12.2vw;}
-        .buttonhigh4 {text-align: right; padding-right: 0.9vw;background-color: #595959;border: none;position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:15.3vw;}
-        .buttonerase {text-align: right; padding-right: 0.9vw;background-color: #595959;border: none;border-bottom-right-radius: 1.2vw; border-bottom-left-radius: 1.2vw; position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:18.4vw;}
+        .sidebutton {padding-right: 0.9vw;border: none;position: fixed;width: 4.5vw;height: 2.8vw;}
+        .buttonhigh1 {background-color: yellow;border: none;margin-left: 70vw;margin-top:6vw;border-top-left-radius: 0.8vw;border-top-right-radius: 0.8vw;}
+        .buttonhigh2 {background-color: lime;border: none;margin-left: 70vw;margin-top:9.1vw;}
+        .buttonhigh3 {background-color: hotpink;border: none;margin-left: 70vw;margin-top:12.2vw;}
+        .buttonhigh4 {background-color: darkorange;border: none;margin-left: 70vw;margin-top:15.3vw;}
+        .buttonerase {background-color: #595959;border: none;margin-left: 70vw;margin-top:18.4vw;border-bottom-left-radius: 0.8vw;border-bottom-right-radius: 0.8vw;}
+        .buttonhigh5 {background-color: yellow;border: none;margin-left: 71.43vw; margin-top:22vw; height: 1.5vw; width: 1.5vw; border-radius:2vw;}
         .login{background-color: #1b4ea0;}
         .textinput{background-color: #878787;border: none;text-align: center;width: 15vw;height: 2.2vw;margin-left: 29vw;}
         .inline{display:inline;}
@@ -108,18 +140,20 @@
         .caption {font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;font-size: 0.9vw;text-align: center; font-weight: bold;padding-left: 2vw;padding-right: 2vw;letter-spacing: -0.03vw;}
         .permission {font-family: TimesNewRoman, "Times New Roman", Times, Baskerville, Georgia, serif;font-size: 0.93vw;letter-spacing: -0.03vw;line-height: 1.125vw;width: 25.9vw;position: absolute;bottom: 8.4vw;left: 5.75vw;}
         .pagenumber {font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;font-size: 1vw;font-weight:bold;position: absolute;bottom: 2vw;left: 32vw;}
-        .uitext {font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;font-size: 1vw;letter-spacing: 0.04vw;color: #CCCCCC;}
+        .uitext {font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;font-size: 1vw;letter-spacing: 0.04vw; color: #CCCCCC;}
+        .uitext2 {font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;font-size: 1.1vw;letter-spacing: 0.04vw;color: black; text-align: right; vertical-align: middle;}
     </style>
 </head>
 
 <body onload="loadHighlights()">
     <div class="toppanel">
         <span class="buttonpanel">
-            <button class="uitext buttonhigh1" onclick="setHighlightMode()">   <span style="color:grey;">[1]</span></button>
-            <button class="uitext buttonhigh2" onclick="setHighlightMode()">:) <span style="color:grey;">[2]</span></button>
-            <button class="uitext buttonhigh3" onclick="setHighlightMode()">:( <span style="color:grey;">[3]</span></button>
-            <button class="uitext buttonhigh4" onclick="setHighlightMode()">? <span style="color:grey;">[4]</span></button>
-            <button class="uitext buttonerase" onclick="setEraserMode()">X <span style="color:grey;">[5]</span></button>
+            <button class="uitext2 sidebutton buttonhigh1" onclick="changecurrentcolor1();setHighlightMode();">   <span style="color:grey;">[1]</span></button>
+            <button class="uitext2 sidebutton buttonhigh2" onclick="changecurrentcolor2();setHighlightMode();">:) <span style="color:grey;">[2]</span></button>
+            <button class="uitext2 sidebutton buttonhigh3" onclick="changecurrentcolor3();setHighlightMode();">:( <span style="color:grey;">[3]</span></button>
+            <button class="uitext2 sidebutton buttonhigh4" onclick="changecurrentcolor4();setHighlightMode();">? <span style="color:grey;">[4]</span></button>
+            <button class="uitext2 sidebutton buttonerase" onclick="changecurrentcolor5();setEraserMode();">X <span style="color:grey;">[5]</span></button>
+            <button class="uitext2 sidebutton buttonhigh5" id="currentcolorbutton"></button>
         </span>
         <span class="loginpanel">
         {% if not session.id %}
