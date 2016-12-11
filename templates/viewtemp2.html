@@ -66,6 +66,7 @@
                 event.preventDefault();
             }, true);
         };        
+        enableColor();
     </script>
     <script>
         var changecurrentcolor1 = function(){
@@ -165,7 +166,7 @@
             <button class="uitext button login" id="loginbutton" onclick="sendID()">Login</button-->
             <form action="" method=post class="inline">
                 <input class="uitext textinput" type="text" id="userid" name="username">
-                <input class="uitext button login" id="loginbutton" type="submit" value="Login" onclick="enableColor()">
+                <input class="uitext button login" id="loginbutton" type="submit" value="Login">
             </form>
         {% else %}
             <span class="uitext textinput">welcome, {{name}}!
