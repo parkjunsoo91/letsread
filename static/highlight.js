@@ -1,8 +1,7 @@
-var obj = [0,0,0,0];
+var obj = [0,0,0,0,0,0,0,0];
 var highlightMode = true;
 var toolNum = 0;
 var className = ["point", "like", "dislike", "questionable", "point-bg", "like-bg", "dislike-bg", "questionable-bg"];
-var totalObj;
 
 function eraseHighlight() {
     var sel = window.getSelection();
@@ -43,10 +42,10 @@ function highlightJSON(pid, layerNum) {
         var end = obj[layerNum-2][pid][j].end;
         innerHTML = innerHTML.substring(0, start) + "<span class='"+className[layerNum-2]+"'>" + innerHTML.substring(start, end) + "</span>" + innerHTML.substring(end);
     }
-    console.log("innerHTML: " + innerHTML);
+    //console.log("innerHTML: " + innerHTML);
     var highlightPid = pid.replace("layer1","layer"+layerNum);
-    console.log("highlightPid: " + highlightPid);
-    console.log("null?: " + document.getElementById(highlightPid).innerHTML);
+    //console.log("highlightPid: " + highlightPid);
+    //console.log("null?: " + document.getElementById(highlightPid).innerHTML);
     document.getElementById(highlightPid).innerHTML = innerHTML;
 }
 
@@ -157,37 +156,46 @@ function modeSelect(){
 
  function loadHighlights()
 {
-    //highlightTotalJSON();
+    for(i=0;i<8;i++){
+        loadLayerObects(i);
+    }
+}
+
+ function loadLayerObects(objNum)
+{
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             //get json of all highlights and draw them accordingly
-            alert("placeholder alert." + this.responseText);
-            for(objNum=0;objNum<4;objNum++){
-                var loadedJson = JSON.parse(this.responseText);
-                if(loadedJson.ok){
-                    console.log("Load complete!");
-                    obj[objNum] = loadedJson.content;
-                    //obj = JSON.parse(obj);
-                    //console.log(JSON.stringify(obj));
-                    var keys = Object.keys(obj[objNum]);
-                    for(i=0;i<keys.length;i++){
-                        var pid = keys[i];
-                        console.log("pid: "+pid) ;
-                        highlightJSON(pid, objNum + 2);
-                    }
+            //alert("placeholder alert." + this.responseText);
+            var loadedJson = JSON.parse(this.responseText);
+            if(loadedJson.ok){
+                console.log("Load complete!");
+                obj[objNum] = loadedJson.content;
+                var keys = Object.keys(obj[objNum]);
+                for(i=0;i<keys.length;i++){
+                    var pid = keys[i];
+                    console.log("pid: "+pid) ;
+                    highlightJSON(pid, objNum + 2);
                 }
-                else{
-                    console.log("Load Error");
-                }
+            }
+            else{
+                console.log("Load Error");
             }
         }
     };
     xhttp.open("POST", "/loadHighlight", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
-    xhttp.send("total=0&pid=1");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");  
+    if(objNum < 4){
+        xhttp.send("total=0&pid=1&layer="+(objNum+1));
+        console.log("total=0&pid=1&layer="+(objNum+1));
+    }
+    else{
+        objNum -= 3;
+        xhttp.send("total=1&pid=1&layer="+objNum);   
+        console.log("total=1&pid=1&layer="+objNum);
+    }
 }
-
 function pushHighlights(pid){
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -197,5 +205,6 @@ function pushHighlights(pid){
     };
     xhttp.open("POST", "/updateHighlight", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");    
-    xhttp.send("pid="+pid+"&content="+JSON.stringify(obj[toolNum]));
+    xhttp.send("pid="+pid+"&content="+JSON.stringify(obj[toolNum])+"&layer="+(toolNum+1));
+    console.log("pid="+pid+"&content="+JSON.stringify(obj[toolNum])+"&layer="+(toolNum+1));
 }
