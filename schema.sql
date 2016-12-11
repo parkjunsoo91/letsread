@@ -3,6 +3,7 @@ create table highlights (
   id integer primary key autoincrement,
   uid integer not null,
   pid integer not null,
+  layer integer,
   json text not null
 );
 create table users (

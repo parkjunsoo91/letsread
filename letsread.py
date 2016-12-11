@@ -1,5 +1,6 @@
 import os
 import sqlite3
+import json
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, jsonify
 # create our little application :)
@@ -92,6 +93,7 @@ def login():
         db = get_db()
         db.execute('insert into users (username) values (?)', [the_username])
         db.commit()
+        
         user = query_db('select * from users where username = ?', [the_username], one=True)
         SITE_ROOT = os.path.realpath(os.path.dirname(__file__))
         json_url = os.path.join(SITE_ROOT,'templates', 'TotalHighlight.json')
@@ -102,6 +104,7 @@ def login():
         f.close()
         db.execute('insert into highlights (uid, pid, json) values (?,?,?)', [user['id'], 1, jsonstring])
         db.commit()
+        
 
     print the_username, 'has the id', user['id']
 
@@ -120,6 +123,8 @@ def logout():
 #server responds with the same data.
 @app.route('/updateHighlight', methods=['POST'])
 def highlight():
+    if not session.get('id'):
+        return jsonify(ok = False)
     uid = session['id']
     high = request.form.get('content')
     db = get_db()
@@ -134,20 +139,86 @@ def loadHighlights():
     if session.get('id'):
         uid = session['id']
     pid = 1
-    total = request.form.get('total')
-    print "uid is " + str(uid)
-    print "pid is " + str(pid)
-    print "total is " + str(total)
+    total = int(request.form.get('total'))
+    layer = request.form.get('layer')
+    if layer:
+        layer = int(layer)
+    print "uid: %d, pid: %d, total %d" % (uid, pid, total)
     if total == 1:
-        highlights = query_db('select * from highlights where pid=?', [pid], one=False)
+        if layer:
+            highlights = query_db('select * from highlights where pid=? and layer=?', [pid, layer], one=False)
+        else:
+            highlights = query_db('select * from highlights where pid=?', [pid], one=False)
         if not highlights:
             return jsonify(ok = False, content = None)
-        #TODO: combine all highlight data and send the bunch.
-        return jsonify(ok = True, content = None)
+        obj = RowsToObj(highlights)
+        return jsonify(ok = True, content = obj)
     else:
-        highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
+        if layer:
+            highlights = query_db('select * from highlights where pid=? and uid=? and layer=?', [pid, uid, layer], one=True)
+        else:
+            highlights = query_db('select * from highlights where pid=? and uid=?', [pid, uid], one=True)
         if not highlights:
-            #should be unlogged in person
-            return jsonify(ok = False, content = None)
-        return jsonify(ok = True, content = highlights['json'])
+            return jsonify(ok = False, content = None)        
+        return jsonify(ok = True, content = json.loads(highlights['json']))
 
+#function that aggregates multiple overlapping highlight data into one weighted highlight data
+#each row is a user highlight about a document on a particular layer.
+#all rows are about the same layer.
+def RowsToObj(rows, uid = 0):
+    HO = {}
+    FO = {}
+    initFOHO(FO, rows)
+    fillFO(FO, rows, uid)
+    FrequencyToHighlight(FO, HO)
+    return HO
+
+def initFOHO(frequencyObj, rows):
+    obj = json.loads(rows[0]['json'])
+    for paragId in obj:
+        frequencyObj[paragId] = {'head': 0, 'tail': 0}
+        head = 65000
+        tail = 0
+        for hl in obj[paragId]:
+            tail = max(hl['end'], tail)
+            head = min(hl['start'], head)
+        frequencyObj[paragId]['histogram'] = [0] * tail
+        frequencyObj[paragId]['head'] = head
+        frequencyObj[paragId]['tail'] = tail
+
+
+def fillFO(frequencyObj, rows, uid = 0):
+    for row in rows:
+        if uid != 0 and row['uid'] != uid:
+            continue
+        obj = json.loads(row['json'])
+        for paragId in obj:
+            for hl in obj[paragId]:
+                for i in range(hl['start'], hl['end']):
+                    frequencyObj[paragId]['histogram'][i] += 1
+
+def FrequencyToHighlight(FO, HO):
+    for paragId in FO:
+        HO[paragId] = []
+        hist = FO[paragId]['histogram']
+        head = FO[paragId]['head']
+        tail = FO[paragId]['tail']
+        print "head: %d, tail: %d" % (head, tail)
+        thresh = max(hist) / 3
+        start = 0
+        value = 0
+        for i in range(len(hist)):
+            if hist[i] <= thresh:
+                if value > thresh:
+                    HO[paragId].append({'start': start, 'end': i})
+            else:
+                if value <= thresh:
+                    start = i
+                if i == len(hist) - 1:
+                    HO[paragId].append({'start': start, 'end': i + 1})
+            value = hist[i]
+
+        if len(HO[paragId]) == 0 or HO[paragId][0]['start'] > head:
+            HO[paragId].insert(0, {'start': head, 'end': head})
+        if HO[paragId][-1]['end'] < tail:
+            HO[paragId].append({'start': tail, 'end': tail})
