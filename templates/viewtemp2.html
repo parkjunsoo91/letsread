@@ -7,16 +7,6 @@
     <meta name="description" content="Crowdsourced reading platform">
     <meta name="author" content="Junsoo Park, Young-bo Sim, Sang-Gyun An">
 
-    <!--<link rel="stylesheet" href="../static/default.css">
-    <link rel="stylesheet" href="../static/font.css">
-    <link rel="stylesheet" href="../static/paper.css">
-    <link rel="stylesheet" href="../static/ui.css">-->
-
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='default.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='font.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='paper.css') }}">
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='ui.css') }}">
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="{{ url_for('static', filename='highlight.js') }}"></script>
 
@@ -64,7 +54,7 @@
     <style>.highlight {background-color: yellow;}</style>
     <style>
         /*page layout*/
-        body {background-color: white;/*#333333*//*to prevent padding from changing overall width*/-webkit-box-sizing: border-box;-webkit-box-sizing: border-box; box-sizing: border-box;text-align: justify;}
+        body {background-color: #333333; /*to prevent padding from changing overall width*/-webkit-box-sizing: border-box;-webkit-box-sizing: border-box; box-sizing: border-box;text-align: justify;}
         img {display: block;margin: 0 auto;}
         .page {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;width: 66vw;height: 85.358vw; /*ratio = 1:1.2933*/  margin-top: 2vw;margin-left: auto;margin-right: auto;
         margin-bottom: 2vw;padding-top: 6vw;padding-left: 5.7vw;padding-right: 5.7vw;padding-bottom: 1vw;position: absolute;left: 15vw;}
@@ -97,6 +87,11 @@
         /*UI*/
         .toppanel{margin-top: 3vw;text-align: center;}
         .button {background-color: #595959;border: none;width: 7vw;height: 2.4vw;margin-left: -0.05vw;}
+        .buttonhigh1 {text-align: right; padding-right: 0.9vw; background-color: #595959;border: none;border-top-right-radius: 1.2vw;border-top-left-radius: 1.2vw;position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:6vw;}
+        .buttonhigh2 {text-align: right; padding-right: 0.9vw;background-color: #595959;border: none;position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:9.1vw;}
+        .buttonhigh3 {text-align: right; padding-right: 0.9vw;background-color: #595959;border: none;position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:12.2vw;}
+        .buttonhigh4 {text-align: right; padding-right: 0.9vw;background-color: #595959;border: none;position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:15.3vw;}
+        .buttonerase {text-align: right; padding-right: 0.9vw;background-color: #595959;border: none;border-bottom-right-radius: 1.2vw; border-bottom-left-radius: 1.2vw; position: fixed;width: 5vw;height: 2.8vw;margin-left: 70vw;margin-top:18.4vw;}
         .login{background-color: #1b4ea0;}
         .textinput{background-color: #878787;border: none;text-align: center;width: 15vw;height: 2.2vw;margin-left: 29vw;}
         .inline{display:inline;}
@@ -120,8 +115,11 @@
 <body onload="loadHighlights()">
     <div class="toppanel">
         <span class="buttonpanel">
-            <button class="uitext button" onclick="setHighlightMode()">Highlighter</button>
-            <button class="uitext button" onclick="setEraserMode()">Eraser</button>
+            <button class="uitext buttonhigh1" onclick="setHighlightMode()">   <span style="color:grey;">[1]</span></button>
+            <button class="uitext buttonhigh2" onclick="setHighlightMode()">:) <span style="color:grey;">[2]</span></button>
+            <button class="uitext buttonhigh3" onclick="setHighlightMode()">:( <span style="color:grey;">[3]</span></button>
+            <button class="uitext buttonhigh4" onclick="setHighlightMode()">? <span style="color:grey;">[4]</span></button>
+            <button class="uitext buttonerase" onclick="setEraserMode()">X <span style="color:grey;">[5]</span></button>
         </span>
         <span class="loginpanel">
         {% if not session.id %}
