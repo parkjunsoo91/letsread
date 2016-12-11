@@ -133,9 +133,15 @@ def highlight():
     if not session.get('id'):
         return jsonify(ok = False)
     uid = session['id']
+    layer = request.form.get('layer')
+    if layer:
+        layer = int(layer)
     high = request.form.get('content')
     db = get_db()
-    db.execute('update highlights set json = ? where uid = ?', [high, uid])
+    if layer:
+        db.execute('update highlights set json = ? where uid = ? and layer=?', [high, uid, layer])
+    else:
+        db.execute('update highlights set json = ? where uid = ?', [high, uid])
     db.commit()
     return jsonify(ok = True)
 
