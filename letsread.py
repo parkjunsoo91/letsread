@@ -73,7 +73,13 @@ def close_db(error):
 
 @app.route('/')
 def root():
-    return redirect(url_for('view'))
+    if session.get('id'):
+        return redirect(url_for('view'))
+    return redirect(url_for('tutorialview'))
+
+@app.route('/tutorialview')
+def tutorialview():
+    return render_template('tutorialview.html')
 
 @app.route('/view')
 def view():
