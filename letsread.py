@@ -1,6 +1,7 @@
 import os
 import sqlite3
 import json
+import csv
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash, jsonify
 # create our little application :)
@@ -63,6 +64,21 @@ def initdb_command():
     """Initializes the database."""
     init_db()
     print 'Initialized the database.'
+
+@app.cli.command('exportdb')
+def exportdb_command():
+    users = query_db('select * from users', one = False)
+    with open('users.csv', 'wb') as csvfile:
+        s = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        s.writerow(['id', 'username'])
+        for user in users:
+            s.writerow([user['id'], user['username']])
+    highlights = query_db('select * from highlights', one = False)            
+    with open('highlights.csv', 'wb') as csvfile:
+        s = csv.writer(csvfile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        s.writerow(['uid', 'layer', 'highlightCount'])
+        for high in highlights:
+            s.writerow([high['uid'], high['layer'], countHighlights(high['json'])])
 
 @app.teardown_appcontext
 def close_db(error):
@@ -219,7 +235,7 @@ def FrequencyToHighlight(FO, HO):
         head = FO[paragId]['head']
         tail = FO[paragId]['tail']
         #print "head: %d, tail: %d" % (head, tail)
-        thresh = max(hist) / 3
+        thresh = max(hist) / 2
         start = 0
         value = 0
         for i in range(len(hist)):
@@ -237,3 +253,10 @@ def FrequencyToHighlight(FO, HO):
             HO[paragId].insert(0, {'start': head, 'end': head})
         if HO[paragId][-1]['end'] < tail:
             HO[paragId].append({'start': tail, 'end': tail})
+
+def countHighlights(jsonString):
+    obj = json.loads(jsonString)
+    count = 0
+    for paragId in obj:
+        count += len(obj[paragId]) - 2
+    return count
